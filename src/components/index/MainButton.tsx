@@ -4,7 +4,7 @@ type Props = {
     name: string
 }
 
-export const HomeButton = (props: Props) => {
+export const MainButton = (props: Props) => {
     const { name } = props
 
     return (
