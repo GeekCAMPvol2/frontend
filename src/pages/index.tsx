@@ -1,16 +1,25 @@
 import TestChild from '@/components/TestChild';
+import { MainButton } from '@/components/index/MainButton';
 import { textState } from '@/store/atoms';
 import styles from '@/styles/Home.module.css';
 import { useRecoilState } from 'recoil';
 
 export default function Home() {
-  const [text, setText] = useRecoilState(textState);
+
+
   return (
-    <>
+    <div>
       <main>
-        <p>{text}</p>
-        <TestChild />
+        <h1>タイトル</h1>
+        <button>スタート</button>
+        <button>一人で遊ぶ</button>
+        <button>二人で遊ぶ</button>
+        <MainButton name="スタート" />
+        <MainButton name="一人で遊ぶ" />
+        <MainButton name="二人で遊ぶ" />
+
       </main>
-    </>
+
+    </div>
   );
 }
