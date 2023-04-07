@@ -11,9 +11,6 @@ export default function Home() {
     <div>
       <main>
         <h1>タイトル</h1>
-        <button>スタート</button>
-        <button>一人で遊ぶ</button>
-        <button>二人で遊ぶ</button>
         <MainButton name="スタート" />
         <MainButton name="一人で遊ぶ" />
         <MainButton name="二人で遊ぶ" />
