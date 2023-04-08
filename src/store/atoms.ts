@@ -8,21 +8,23 @@ export const textState = atom<string>({
 interface itemData {
   quiz: string;
   answer: number;
-  images: { imageUrl: string }[];
+  images: { imageUrl: string | undefined }[];
   affiliatelink: string;
 }
 
 // APIで取得する商品データ
-const defaultItemData: itemData = {
-  quiz: '',
-  answer: 0,
-  images: [{ imageUrl: '/' }],
-  affiliatelink: '',
-};
-
 export const itemData = atom<itemData>({
   key: 'itemState',
-  default: defaultItemData,
+  default: {
+    quiz: '',
+    answer: 0,
+    images: [
+      {
+        imageUrl: undefined,
+      },
+    ],
+    affiliatelink: '',
+  },
 });
 
 export const timeLimit = atom<number>({

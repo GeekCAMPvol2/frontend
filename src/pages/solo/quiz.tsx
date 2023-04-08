@@ -14,8 +14,12 @@ const Quiz = () => {
   const [time, setTime] = useRecoilState(timeLimit);
   // Todo:問題が始まったらAPI取得して新しい商品をセットする + タイマーをセットする
   useEffect(() => {
-    setItem(dummyData);
-    setTime(30);
+    const fetchData = async () => {
+      const resultData = await dummyData;
+      setItem(resultData);
+      setTime(30);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -25,14 +29,16 @@ const Quiz = () => {
         {/* 左側 */}
         <div style={styles.leftWrapper}>
           <ItemNameCard />
-          <div style={styles.itemImageWrapper}>
-            <Image
-              src={item.images[0].imageUrl}
-              alt={item.quiz}
-              width={400}
-              height={400}
-            />
-          </div>
+          {item.images[0].imageUrl !== undefined && (
+            <div style={styles.itemImageWrapper}>
+              <Image
+                src={item.images[0].imageUrl}
+                alt={item.quiz}
+                width={400}
+                height={400}
+              />
+            </div>
+          )}
         </div>
 
         {/* 右側 */}
