@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.8.0",
+    "next-intercept-stdout": "^1.0.1",
     "prettier": "^2.8.7"
   }
 }
