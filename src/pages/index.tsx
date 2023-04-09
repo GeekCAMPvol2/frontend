@@ -31,6 +31,8 @@ const styles: Styles = {
   },
   buttonContainer: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
+    justifyContent:"space-around",
+    textAlign:"center",
   }
 }
