@@ -10,7 +10,7 @@ export default function Home() {
         <h1>Price<br />Quest</h1>
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
-          <MainButton name="スタート" />
+          <MainButton name="遊び方" />
           <MainButton name="一人で遊ぶ" />
           <MainButton name="二人で遊ぶ" />
         </div>
