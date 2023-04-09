@@ -6,12 +6,14 @@ import { dummyData } from '@/dummyData';
 import { itemData, timeLimit } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
   const [time, setTime] = useRecoilState(timeLimit);
+
+  const [nuber, setNuber] = useState(0)
   // Todo:問題が始まったらAPI取得して新しい商品をセットする + タイマーをセットする
   useEffect(() => {
     const fetchData = async () => {

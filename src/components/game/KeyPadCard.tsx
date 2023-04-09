@@ -2,15 +2,22 @@ import { Styles } from "@/types/Styles";
 import { NumButton } from "./NumButton";
 import { ChangeEvent, useCallback, useState } from "react";
 
-const KeyPadCard = () => {
-  const [input, setinput] = useState<number>(0)
+// type Props = {
+//   setNumber: () => void
+// }
 
+const KeyPadCard = () => {
+  // const { setNumber } = props
+
+  const [input, setinput] = useState<number>(0)
 
   // 数字を入れる共通の関数
   const functionInsertNumber = (number: number) => {
     number = Math.max(number, 0)
     // number = Math.min(number, Infinity)
     setinput(number)
+
+    // ### 親にinput渡すときは、ここに記載してください
   }
 
   // 直接数字を入れる関数
@@ -28,7 +35,7 @@ const KeyPadCard = () => {
 
   return (
     <div style={styles.container}>
-      <input type="number" value={input} onChange={handleInput} />
+      <input type="number" value={input} onChange={handleInput} style={styles.input} />
       <div style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr 1fr"
@@ -46,6 +53,12 @@ const KeyPadCard = () => {
 const styles: Styles = {
   container: {
     textAlign: "center",
+  },
+  input: {
+    width: "80%",
+    fontSize: 30,
+    marginBottom: 10,
+    borderBottom: "1px solid #000"
   }
 }
 
