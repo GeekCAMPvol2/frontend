@@ -8,9 +8,12 @@ export default function Home() {
     <div>
       <main style={styles.main}>
         <h1>タイトル</h1>
-        <MainButton name="スタート" />
-        <MainButton name="一人で遊ぶ" />
-        <MainButton name="二人で遊ぶ" />
+        <div style={styles.buttonContainer}>
+          <MainButton name="スタート" />
+          <MainButton name="一人で遊ぶ" />
+          <MainButton name="二人で遊ぶ" />
+        </div>
+
 
       </main>
 
@@ -23,5 +26,9 @@ const styles: Styles = {
     width: 1000,
     margin: "0 auto",
     textAlign: "center"
+  },
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "column"
   }
 }
