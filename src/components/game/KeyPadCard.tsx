@@ -65,7 +65,10 @@ const styles: Styles = {
   input: {
     width: "80%",
     fontSize: 30,
-    marginBottom: 10,
+    textAlign: "left",
+    padding: 10,
+    paddingBottom: 2  ,
+    marginBottom: 15,
     borderBottom: "1px solid #000"
   }
 }
