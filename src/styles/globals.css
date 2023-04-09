@@ -12,4 +12,5 @@ a,
 button {
   color: transparent;
   cursor: pointer;
+  user-select: "none"
 }
