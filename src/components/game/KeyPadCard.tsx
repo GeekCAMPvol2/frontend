@@ -7,7 +7,8 @@ const KeyPadCard = () => {
 
 
   const handleInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const number = parseInt(e.target.value)
+    let number = parseInt(e.target.value)
+    number = Math.max(number, 0)
     setinput(number)
   }, [input])
 
