@@ -3,7 +3,7 @@ import React from 'react'
 import { motion } from "framer-motion"
 
 type Props = {
-    number: number
+    number: number | string
     onClick: () => void
 }
 
@@ -14,6 +14,9 @@ export const NumButton = (props: Props) => {
         <motion.div
             whileTap={{
                 scale: 0.9
+            }}
+            whileHover={{
+                scale: 1.1
             }}
         >
             <button
@@ -34,8 +37,8 @@ const styles: Styles = {
         color: "#000",
         margin: "0 auto",
         marginBottom: 10,
-        borderRadius: "50%"
-
+        borderRadius: "50%",
+        userSelect: "none"
     }
 
 }

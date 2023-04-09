@@ -33,6 +33,11 @@ const KeyPadCard = () => {
     functionInsertNumber(number)
   }
 
+  const handleDelete = () => {
+    const number = Math.floor(input / 10)
+    setinput(number)
+  }
+
   return (
     <div style={styles.container}>
       <input type="number" value={input} onChange={handleInput} style={styles.input} />
@@ -43,6 +48,9 @@ const KeyPadCard = () => {
         {[...Array(9)].map((e, i) => (
           <NumButton number={i + 1} onClick={() => handleNumButton(i + 1)} />
         ))}
+        <NumButton number={"del"} onClick={handleDelete} />
+        <NumButton number={0} onClick={() => handleNumButton(0)} />
+        {/* <NumButton number={i + 1} onClick={() => handleNumButton(i + 1)} /> */}
 
       </div>
 
