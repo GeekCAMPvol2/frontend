@@ -1,14 +1,15 @@
 import { Styles } from "@/types/Styles";
 import { NumButton } from "./NumButton";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 
 const KeyPadCard = () => {
-  const [input, setinput] = useState()
+  const [input, setinput] = useState<number>()
 
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-
-  }
+  const handleInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const number = parseInt(e.target.value)
+    setinput(number)
+  }, [input])
 
   const handleNumButton = () => {
 
