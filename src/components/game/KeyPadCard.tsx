@@ -1,8 +1,9 @@
 const KeyPadCard = () => {
   return (
     <div>
-      KeyPadCard
-      <p>後でやる</p>
+      <input type="number" />
+
+
     </div>
   );
 };
