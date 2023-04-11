@@ -22,7 +22,10 @@ const Lobby = () => {
 };
 const styles: Styles = {
   playerContainer: {
-
+    display: "flex",
+    justifyContent:"center"
+    // width: 300,
+    // margin: "0 auto"
   }
 }
 

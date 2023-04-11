@@ -30,6 +30,7 @@ const styles: Styles = {
         height: 120,
         objectFit: "cover",
         borderRadius: "50%",
-        marginBottom: 10
+        margin:"0 30px",
+        marginBottom: 10,
     }
 }
