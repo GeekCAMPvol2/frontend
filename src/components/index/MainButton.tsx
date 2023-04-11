@@ -4,10 +4,11 @@ import { motion } from "framer-motion"
 
 type Props = {
     name: string
+    onClick: () => void
 }
 
 export const MainButton = (props: Props) => {
-    const { name } = props
+    const { name, onClick } = props
 
     return (
         <motion.button
@@ -20,6 +21,7 @@ export const MainButton = (props: Props) => {
             }}
             initial={{ opacity: 0.5 }}
             style={styles.button}
+            onClick={onClick}
         >{name}
         </motion.button>
     )
