@@ -22,8 +22,11 @@ const Lobby = () => {
 };
 const styles: Styles = {
   playerContainer: {
+    position: "absolute",
+    top: 300,
+    width: "100%",
     display: "flex",
-    justifyContent:"center"
+    justifyContent: "center"
     // width: 300,
     // margin: "0 auto"
   }
