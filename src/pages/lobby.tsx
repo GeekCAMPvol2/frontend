@@ -1,5 +1,6 @@
 import HomeButton from '@/components/elements/HomeButton';
 import { PlayerCard } from '@/components/lobby/PlayerCard';
+import { Styles } from '@/types/Styles';
 
 const Lobby = () => {
 
@@ -11,7 +12,7 @@ const Lobby = () => {
       <div>
         <HomeButton />
 
-        <div>
+        <div style={styles.playerContainer}>
           <PlayerCard name={player1.name} playerImg={player1.playerImg} />
           <PlayerCard name={player1.name} playerImg={player1.playerImg} />
         </div>
@@ -19,5 +20,11 @@ const Lobby = () => {
     </div>
   );
 };
+const styles: Styles = {
+  playerContainer: {
+
+  }
+}
+
 
 export default Lobby;

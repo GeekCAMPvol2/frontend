@@ -10,7 +10,7 @@ export const PlayerCard = (props: Props) => {
     const { name, playerImg } = props
 
     return (
-        <div>
+        <div style={styles.container}>
             <img
                 src={playerImg}
                 style={styles.image}
@@ -22,10 +22,14 @@ export const PlayerCard = (props: Props) => {
 }
 
 const styles: Styles = {
+    container: {
+        textAlign: "center"
+    },
     image: {
-        width: 50,
-        height: 50,
+        width: 120,
+        height: 120,
         objectFit: "cover",
-        borderRadius: "50%"
+        borderRadius: "50%",
+        marginBottom: 10
     }
 }
