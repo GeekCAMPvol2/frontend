@@ -6,6 +6,8 @@ const Lobby = () => {
       {/* ホームボタンコンポーネント */}
       <div>
         <HomeButton />
+
+        
       </div>
     </div>
   );
