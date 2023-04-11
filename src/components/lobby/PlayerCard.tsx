@@ -1,5 +1,6 @@
 import { Styles } from '@/types/Styles'
 import React from 'react'
+import { LobbyButton } from './LobbyButton'
 
 type Props = {
     name: string
@@ -16,7 +17,6 @@ export const PlayerCard = (props: Props) => {
                 style={styles.image}
             />
             <h2>{name}</h2>
-
         </div>
     )
 }
@@ -30,7 +30,7 @@ const styles: Styles = {
         height: 150,
         objectFit: "cover",
         borderRadius: "50%",
-        margin:"0 60px",
+        margin: "0 60px",
         marginBottom: 20,
     }
 }
