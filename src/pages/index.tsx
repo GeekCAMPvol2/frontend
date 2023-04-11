@@ -21,7 +21,7 @@ export default function Home() {
         <div style={styles.buttonContainer}>
           <MainButton name="遊び方" onClick={handleSelectTutorial} />
           <MainButton name="一人で遊ぶ" onClick={() => handlePlayGame("/solo/quiz")} />
-          <MainButton name="二人で遊ぶ" onClick={() => handlePlayGame("/solo/quiz")} />
+          <MainButton name="二人で遊ぶ" onClick={() => handlePlayGame("/lobby")} />
         </div>
 
 
