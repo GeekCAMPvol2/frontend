@@ -26,11 +26,11 @@ const styles: Styles = {
         textAlign: "center"
     },
     image: {
-        width: 120,
-        height: 120,
+        width: 150,
+        height: 150,
         objectFit: "cover",
         borderRadius: "50%",
-        margin:"0 30px",
-        marginBottom: 10,
+        margin:"0 60px",
+        marginBottom: 20,
     }
 }

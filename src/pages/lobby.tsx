@@ -11,7 +11,7 @@ const Lobby = () => {
       {/* ホームボタンコンポーネント */}
       <div>
         <HomeButton />
-
+        <h1 style={styles.title}>PriceQuest</h1>
         <div style={styles.playerContainer}>
           <PlayerCard name={player1.name} playerImg={player1.playerImg} />
           <PlayerCard name={player1.name} playerImg={player1.playerImg} />
@@ -21,6 +21,10 @@ const Lobby = () => {
   );
 };
 const styles: Styles = {
+  title: {
+    textAlign: "center"
+  },
+ 
   playerContainer: {
     position: "absolute",
     top: 300,
