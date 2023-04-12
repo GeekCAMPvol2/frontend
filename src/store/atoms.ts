@@ -36,3 +36,8 @@ export const ansQuizState = atom<string>({
   key: 'ansQuizState',
   default: '',
 });
+
+export const keyPadNumState = atom<number>({
+  key: 'keyPadNumState',
+  default: 0,
+});
