@@ -29,7 +29,7 @@ export const itemData = atom<itemData>({
 
 export const timeLimit = atom<number>({
   key: 'timeLimitState',
-  default: 60,
+  default: 30,
 });
 
 export const ansQuizState = atom<string>({
