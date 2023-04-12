@@ -31,3 +31,8 @@ export const timeLimit = atom<number>({
   key: 'timeLimitState',
   default: 60,
 });
+
+export const ansQuizState = atom<string>({
+  key: 'ansQuizState',
+  default: '',
+});

@@ -1,12 +1,23 @@
 import { itemData } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import { useRecoilState } from 'recoil';
+import { useRouter } from 'next/router';
 
 const ItemNameCard = () => {
+  const router = useRouter();
   const [item, setItem] = useRecoilState(itemData);
   return (
     <div style={styles.container}>
       <h1 style={styles.itemName}>{item.quiz}</h1>
+      {router.pathname === '/solo/quiz' ? (
+        <h2>
+          <span>????????</span>円
+        </h2>
+      ) : (
+        <h2>
+          <span>{item.answer}</span>円
+        </h2>
+      )}
     </div>
   );
 };
