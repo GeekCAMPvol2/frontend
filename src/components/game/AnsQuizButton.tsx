@@ -1,15 +1,20 @@
+import { ansQuizState } from '@/store/atoms';
 import Link from 'next/link';
 import React from 'react';
+import { useRecoilState } from 'recoil';
 
-const ToAnsButton = () => {
+const AnsQuizButton = () => {
+  const [ansQuizUrl, setAnsQuizUrl] =
+    useRecoilState(ansQuizState);
+
   return (
-    <Link href={'/solo/quiz'}>
+    <Link href={ansQuizUrl}>
       <button style={styles.button}>SUBMIT</button>
     </Link>
   );
 };
 
-export default ToAnsButton;
+export default AnsQuizButton;
 
 const styles = {
   button: {
