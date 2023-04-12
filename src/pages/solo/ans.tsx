@@ -2,7 +2,11 @@ import AnsQuizButton from '@/components/game/AnsQuizButton';
 import AnswerCard from '@/components/game/AnswerCard';
 import ItemNameCard from '@/components/game/ItemNameCard';
 import { dummyData } from '@/dummyData';
-import { ansQuizState, itemData } from '@/store/atoms';
+import {
+  ansQuizState,
+  itemData,
+  timeLimit,
+} from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
@@ -10,11 +14,13 @@ import { useRecoilState } from 'recoil';
 
 const Ans = () => {
   const [item, setItem] = useRecoilState(itemData);
+  const [time, setTime] = useRecoilState(timeLimit);
   const [ansQuizUrl, setAnsQuizUrl] =
     useRecoilState(ansQuizState);
 
   useEffect(() => {
     const fetchData = async () => {
+      setTime(30);
       const resultData = await dummyData;
       setItem(resultData);
       setAnsQuizUrl('/solo/quiz');
