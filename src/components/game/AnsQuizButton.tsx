@@ -9,7 +9,11 @@ const AnsQuizButton = () => {
 
   return (
     <Link href={ansQuizUrl}>
-      <button style={styles.button}>SUBMIT</button>
+      {ansQuizUrl === '/solo/ans' ? (
+        <button style={styles.button}>SUBMIT</button>
+      ) : (
+        <button style={styles.button}>NEXT</button>
+      )}
     </Link>
   );
 };
