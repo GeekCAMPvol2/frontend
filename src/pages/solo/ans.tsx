@@ -1,7 +1,6 @@
 import AnsQuizButton from '@/components/game/AnsQuizButton';
 import AnswerCard from '@/components/game/AnswerCard';
 import ItemNameCard from '@/components/game/ItemNameCard';
-import { dummyData } from '@/dummyData';
 import {
   ansQuizState,
   itemData,
@@ -21,8 +20,6 @@ const Ans = () => {
   useEffect(() => {
     const fetchData = async () => {
       setTime(30);
-      const resultData = await dummyData;
-      setItem(resultData);
       setAnsQuizUrl('/solo/quiz');
     };
     fetchData();

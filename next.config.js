@@ -3,7 +3,7 @@ const withInterceptStdout = require('next-intercept-stdout');
 
 module.exports = withInterceptStdout(
   {
-    reactStrictMode: true,
+    reactStrictMode: false,
     images: {
       domains: ['thumbnail.image.rakuten.co.jp'],
     },
