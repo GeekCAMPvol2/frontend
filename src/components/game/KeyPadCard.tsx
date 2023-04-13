@@ -60,6 +60,7 @@ const KeyPadCard = () => {
       >
         {[...Array(9)].map((e, i) => (
           <NumButton
+            key={i}
             number={i + 1}
             onClick={() => handleNumButton(i + 1)}
           />
