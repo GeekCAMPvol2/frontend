@@ -8,9 +8,14 @@ import {
 } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { auth, functions } from '../../lib/firebaseConfig';
-import { firebaseAuthLastUpdatedAtState } from '@/store/atoms';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  firebaseAuthLastUpdatedAtState,
+  getItemNumState,
+  itemData,
+} from '@/store/atoms';
+import { useRecoilState } from 'recoil';
 import { httpsCallable } from 'firebase/functions';
+import { getItemData } from './api/game';
 
 export default function Home() {
   const router = useRouter();
@@ -19,9 +24,22 @@ export default function Home() {
     setFirebaseAuthLastUpdatedAt,
   ] = useRecoilState(firebaseAuthLastUpdatedAtState);
 
+  const [item, setItem] = useRecoilState(itemData);
+
+  const [getItemNum, setGetItemNum] =
+    useRecoilState(getItemNumState);
+
   const handleSelectTutorial = () => {};
 
-  const handlePlayGame = (path: string) => {
+  const resultDataArr: any = [];
+  // ゲーム開始ボタン
+  const handlePlayGame = async (path: string) => {
+    for (let i = 0; i < getItemNum; i++) {
+      const resultData = await getItemData();
+      resultDataArr.push(resultData);
+    }
+    setItem(resultDataArr);
+    console.log(item);
     router.push(path);
   };
 

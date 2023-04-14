@@ -1,4 +1,8 @@
-import { ansQuizState } from '@/store/atoms';
+import {
+  ansQuizState,
+  crrQuizNumState,
+  getItemNumState,
+} from '@/store/atoms';
 import Link from 'next/link';
 import React from 'react';
 import { useRecoilState } from 'recoil';
@@ -6,15 +10,35 @@ import { useRecoilState } from 'recoil';
 const AnsQuizButton = () => {
   const [ansQuizUrl, setAnsQuizUrl] =
     useRecoilState(ansQuizState);
+  const [crrQuizNum, setCrrQuizNum] =
+    useRecoilState(crrQuizNumState);
+  const [getItemNum, setGetItemNum] =
+    useRecoilState(getItemNumState);
 
   return (
-    <Link href={ansQuizUrl}>
-      {ansQuizUrl === '/solo/ans' ? (
-        <button style={styles.button}>SUBMIT</button>
+    <>
+      {crrQuizNum === getItemNum - 1 &&
+      ansQuizUrl === '/solo/quiz' ? (
+        <Link href={'/solo/fin'}>
+          <button style={styles.button}>FINISH</button>
+        </Link>
       ) : (
-        <button style={styles.button}>NEXT</button>
+        <Link href={ansQuizUrl}>
+          {ansQuizUrl === '/solo/ans' ? (
+            <button style={styles.button}>SUBMIT</button>
+          ) : (
+            <button
+              style={styles.button}
+              onClick={() =>
+                setCrrQuizNum((prevNum) => prevNum + 1)
+              }
+            >
+              NEXT
+            </button>
+          )}
+        </Link>
       )}
-    </Link>
+    </>
   );
 };
 

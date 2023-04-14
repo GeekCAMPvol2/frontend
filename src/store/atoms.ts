@@ -2,18 +2,9 @@ import { ItemData } from '@/types/Game';
 import { atom } from 'recoil';
 
 // APIで取得する商品データ
-export const itemData = atom<ItemData>({
+export const itemData = atom<ItemData[]>({
   key: 'itemState',
-  default: {
-    quiz: '',
-    answer: 0,
-    images: [
-      {
-        imageUrl: undefined,
-      },
-    ],
-    affiliatelink: '',
-  },
+  default: [],
 });
 
 export const timeLimit = atom<number>({
@@ -33,5 +24,17 @@ export const keyPadNumState = atom<number>({
 
 export const firebaseAuthLastUpdatedAtState = atom<number>({
   key: 'firebaseAuthLastUpdatedAtState',
+  default: 0,
+});
+
+// 取得する問題数
+export const getItemNumState = atom<number>({
+  key: 'getItemNumState',
+  default: 3,
+});
+
+// 現在の問題番号
+export const crrQuizNumState = atom<number>({
+  key: 'crrQuizNumState',
   default: 0,
 });
