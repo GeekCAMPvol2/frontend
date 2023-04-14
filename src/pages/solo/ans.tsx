@@ -3,6 +3,7 @@ import AnswerCard from '@/components/game/AnswerCard';
 import ItemNameCard from '@/components/game/ItemNameCard';
 import {
   ansQuizState,
+  crrQuizNumState,
   itemData,
   timeLimit,
 } from '@/store/atoms';
@@ -13,16 +14,17 @@ import { useRecoilState } from 'recoil';
 
 const Ans = () => {
   const [item, setItem] = useRecoilState(itemData);
+
+  const [crrQuizNum, setCrrQuizNum] =
+    useRecoilState(crrQuizNumState);
+
   const [time, setTime] = useRecoilState(timeLimit);
   const [ansQuizUrl, setAnsQuizUrl] =
     useRecoilState(ansQuizState);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setTime(30);
-      setAnsQuizUrl('/solo/quiz');
-    };
-    fetchData();
+    setTime(30);
+    setAnsQuizUrl('/solo/quiz');
   }, []);
 
   return (
@@ -32,16 +34,17 @@ const Ans = () => {
         {/* 左側 */}
         <div style={styles.leftWrapper}>
           <ItemNameCard />
-          {item.images[0].imageUrl !== undefined && (
-            <div style={styles.itemImageWrapper}>
-              <Image
-                src={item.images[0].imageUrl}
-                alt={item.quiz}
-                width={400}
-                height={400}
-              />
-            </div>
-          )}
+          <div style={styles.itemImageWrapper}>
+            <Image
+              src={
+                item[crrQuizNum].images[0]
+                  .imageUrl as string
+              }
+              alt={item[crrQuizNum].quiz}
+              width={400}
+              height={400}
+            />
+          </div>
         </div>
 
         {/* 右側 */}

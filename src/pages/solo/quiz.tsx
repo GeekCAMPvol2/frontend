@@ -4,6 +4,7 @@ import KeyPadCard from '@/components/game/KeyPadCard';
 import AnsQuizButton from '@/components/game/AnsQuizButton';
 import {
   ansQuizState,
+  crrQuizNumState,
   itemData,
   keyPadNumState,
 } from '@/store/atoms';
@@ -11,10 +12,12 @@ import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { getItemData } from '../api/game';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
+
+  const [crrQuizNum, setCrrQuizNum] =
+    useRecoilState(crrQuizNumState);
 
   const [ansQuizUrl, setAnsQuizUrl] =
     useRecoilState(ansQuizState);
@@ -25,14 +28,13 @@ const Quiz = () => {
   // Todo:問題が始まったらAPI取得して新しい商品をセットする + タイマーをセットする
   useEffect(() => {
     const fetchData = async () => {
-      const resultData = await getItemData();
-      setItem(resultData);
       setKeyPadNum(0);
       setAnsQuizUrl('/solo/ans');
     };
     fetchData();
   }, []);
 
+  console.log(crrQuizNum);
   return (
     <div style={styles.container}>
       <h1 style={styles.titleWrapper}>Price Quest</h1>
@@ -40,16 +42,17 @@ const Quiz = () => {
         {/* 左側 */}
         <div style={styles.leftWrapper}>
           <ItemNameCard />
-          {item.images[0].imageUrl !== undefined && (
-            <div style={styles.itemImageWrapper}>
-              <Image
-                src={item.images[0].imageUrl}
-                alt={item.quiz}
-                width={400}
-                height={400}
-              />
-            </div>
-          )}
+          <div style={styles.itemImageWrapper}>
+            <Image
+              src={
+                item[crrQuizNum].images[0]
+                  .imageUrl as string
+              }
+              alt={item[crrQuizNum].quiz}
+              width={400}
+              height={400}
+            />
+          </div>
         </div>
 
         {/* 右側 */}

@@ -25,7 +25,7 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-connectAuthEmulator(auth, 'http://localhost:9099');
+// connectAuthEmulator(auth, 'http://localhost:9099');
 
 export const functions = getFunctions(app);
-connectFunctionsEmulator(functions, 'localhost', 5001);
+// connectFunctionsEmulator(functions, 'localhost', 5001);
