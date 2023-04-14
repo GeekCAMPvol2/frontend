@@ -30,3 +30,8 @@ export const keyPadNumState = atom<number>({
   key: 'keyPadNumState',
   default: 0,
 });
+
+export const firebaseAuthLastUpdatedAtState = atom<number>({
+  key: 'firebaseAuthLastUpdatedAtState',
+  default: 0,
+});
