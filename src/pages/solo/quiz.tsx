@@ -2,12 +2,16 @@ import GameTimeCard from '@/components/game/GameTimeCard';
 import ItemNameCard from '@/components/game/ItemNameCard';
 import KeyPadCard from '@/components/game/KeyPadCard';
 import AnsQuizButton from '@/components/game/AnsQuizButton';
-import { dummyData } from '@/dummyData';
-import { ansQuizState, itemData } from '@/store/atoms';
+import {
+  ansQuizState,
+  itemData,
+  keyPadNumState,
+} from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { getItemData } from '../api/game';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -15,11 +19,15 @@ const Quiz = () => {
   const [ansQuizUrl, setAnsQuizUrl] =
     useRecoilState(ansQuizState);
 
+  const [keyPadNum, setKeyPadNum] =
+    useRecoilState(keyPadNumState);
+
   // Todo:問題が始まったらAPI取得して新しい商品をセットする + タイマーをセットする
   useEffect(() => {
     const fetchData = async () => {
-      const resultData = await dummyData;
+      const resultData = await getItemData();
       setItem(resultData);
+      setKeyPadNum(0);
       setAnsQuizUrl('/solo/ans');
     };
     fetchData();

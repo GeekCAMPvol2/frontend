@@ -1,14 +1,8 @@
+import { ItemData } from '@/types/Game';
 import { atom } from 'recoil';
 
-interface itemData {
-  quiz: string;
-  answer: number;
-  images: { imageUrl: string | undefined }[];
-  affiliatelink: string;
-}
-
 // APIで取得する商品データ
-export const itemData = atom<itemData>({
+export const itemData = atom<ItemData>({
   key: 'itemState',
   default: {
     quiz: '',

@@ -9,9 +9,9 @@ const AnswerCard = () => {
   return (
     <div>
       <p>正解</p>
-      <h1>{keyPadNum}</h1>
-      <p>あなたの回答</p>
       <h1>{item.answer}円</h1>
+      <p>あなたの回答</p>
+      <h1>{keyPadNum}円</h1>
       <p>差額</p>
       <h1>{keyPadNum - item.answer}円</h1>
     </div>

@@ -26,9 +26,14 @@ const KeyPadCard = () => {
   // 直接数字を入れる関数
   const handleInput = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      let number = parseInt(e.target.value);
-      number = Math.max(number, 0);
-      setKeyPadNum(number);
+      const value = e.target.value
+      if (value) {
+        let number = parseInt(value);
+        number = Math.max(number, 0);
+        setKeyPadNum(number);
+      } else {
+        setKeyPadNum(0)
+      }
     },
     [keyPadNum]
   );
@@ -60,6 +65,7 @@ const KeyPadCard = () => {
       >
         {[...Array(9)].map((e, i) => (
           <NumButton
+            key={i}
             number={i + 1}
             onClick={() => handleNumButton(i + 1)}
           />
