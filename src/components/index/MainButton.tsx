@@ -7,16 +7,17 @@ type Props = {
     color: string
     name: string
     onClick: () => void
+    onHoverStart: () => void
 }
 
 export const MainButton = (props: Props) => {
-    const { delay, color, name, onClick } = props
+    const { delay, color, name, onClick, onHoverStart } = props
 
     return (
         <motion.button
-        transition={{
-            
-        }}
+            transition={{
+
+            }}
             animate={{
                 x: 0,
                 opacity: 1,
@@ -39,11 +40,12 @@ export const MainButton = (props: Props) => {
                 opacity: 1,
                 scale: 1.1,
                 backgroundColor: color,
-                color:"#fff",
-                border:`5px solid ${color}`,
-                boxShadow:`0px 0px 15px ${color}`,
-          
+                color: "#fff",
+                border: `5px solid ${color}`,
+                boxShadow: `0px 0px 15px ${color}`,
+
             }}
+            onHoverStart={onHoverStart}
             whileTap={{
                 scale: 1,
                 transition: {

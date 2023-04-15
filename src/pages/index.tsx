@@ -17,7 +17,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { httpsCallable } from 'firebase/functions';
 import { getItemData } from './api/game';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Title } from '@/components/index/Title';
 
 export default function Home() {
@@ -28,6 +28,12 @@ export default function Home() {
   ] = useRecoilState(firebaseAuthLastUpdatedAtState);
 
   const [item, setItem] = useRecoilState(itemData);
+
+  const [hoverdColor, sethoverdColor] = useState<string>() //選択中のボタン
+
+  const handleOnHover = (color: string) => {
+    sethoverdColor(color)
+  }
 
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
@@ -72,7 +78,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        position: "absolute",
+        top: 0,
+        // background: `radial-gradient( #111 50% ,#fff  )`,
+        background: `#111`,
+        transitionDuration: "5s"
+      }}
+    >
       <main style={styles.main}>
         <Title />
         <h3>〜失われた金銭感覚を求めて〜</h3>
@@ -87,12 +103,14 @@ export default function Home() {
             color='rgb(199, 81, 250)'
             name="一人で遊ぶ"
             onClick={() => handlePlayGame('/solo/quiz')}
+            onHoverStart={() => handleOnHover('rgb(199, 81, 250)')}
           />
           <MainButton
             delay={0.2}
             color='rgb(0, 225, 255)'
             name="二人で遊ぶ"
             onClick={() => firebaseSignIn()}
+            onHoverStart={() => handleOnHover("rgb(0, 225, 255)")}
           />
         </div>
       </main>
@@ -101,16 +119,22 @@ export default function Home() {
 }
 
 const styles: Styles = {
+  htmlDiv: {
+
+  },
   main: {
     width: 1000,
     margin: '0 auto',
     marginTop: 100,
     textAlign: 'center',
+    backgroundColor: "rgb(0 0 0 /0)"
   },
   buttonContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
     textAlign: 'center',
+    backgroundColor: "rgb(0 0 0 /0)"
+
   },
 };
