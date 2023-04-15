@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 
 type Props = {
     delay: number
+    color: string
     name: string
     onClick: () => void
 }
