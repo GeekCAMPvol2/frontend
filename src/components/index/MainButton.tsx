@@ -23,13 +23,14 @@ export const MainButton = (props: Props) => {
                 rotate: 0,
                 transition: {
                     type: "spring",
-                    stiffness: 50,
+                    stiffness: 100,
                     duration: 0.3,
                     delay: delay
                 }
             }}
             initial={{
-                x: -1750,
+                x: -750,
+                // size:1,
                 opacity: 0,
                 rotate: 90,
             }}
@@ -40,10 +41,17 @@ export const MainButton = (props: Props) => {
                 backgroundColor: color,
                 color:"#fff",
                 border:`5px solid ${color}`,
-                boxShadow:`0px 0px 15px ${color}`
+                boxShadow:`0px 0px 15px ${color}`,
+          
             }}
             whileTap={{
-                scale: 1
+                scale: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 500,
+                    duration: 0.3,
+                    delay: delay
+                }
             }}
             style={{
                 ...styles.button,
