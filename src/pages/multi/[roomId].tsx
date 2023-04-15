@@ -131,7 +131,6 @@ const Lobby = () => {
               name="準備完了"
               onClick={handleReady}
             />
-            {'何人OK/参加人数'}
           </div>
 
           <Background selected={'rgb(0, 225, 255)'} />
