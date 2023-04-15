@@ -7,7 +7,7 @@ import {
   signInWithPopup,
 } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { auth, functions } from '../../lib/firebaseConfig';
+import { auth, functions } from '../lib/firebaseConfig';
 import {
   crrQuizNumState,
   firebaseAuthLastUpdatedAtState,
