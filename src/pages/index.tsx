@@ -131,7 +131,7 @@ export default function Home() {
             style={styles.textInput}
             ref={playerNameRef}
             placeholder='名前を入力'
-                     defaultValue="ななし"
+            defaultValue="ななし"
             onFocus={(e) => e.target.select()}
             maxLength={15}
 
@@ -193,14 +193,14 @@ export default function Home() {
               repeatDelay: 0.5,
               repeat: 5
             }}
-          >
-            <div style={{
+            style={{
               ...styles.countTime,
               border: `20px solid ${hoverdColor}`,
               color: hoverdColor,
               boxShadow: `0 0 30px ${hoverdColor}`,
-            }}>{countDown}
-            </div>
+            }}
+          >
+            {countDown}
           </motion.div>
         </div>
       }
@@ -250,6 +250,7 @@ const styles: Styles = {
     justifyContent: "center"
   },
   countTime: {
+    backgroundColor: "rgb(0 0 0 /.5)",
     borderRadius: "50%",
     width: 800,
     height: 800,
