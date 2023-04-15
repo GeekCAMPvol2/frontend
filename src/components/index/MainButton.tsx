@@ -14,11 +14,16 @@ export const MainButton = (props: Props) => {
 
     return (
         <motion.button
+        transition={{
+            
+        }}
             animate={{
                 x: 0,
                 opacity: 1,
                 rotate: 0,
                 transition: {
+                    type: "spring",
+                    stiffness: 50,
                     duration: 0.3,
                     delay: delay
                 }
@@ -31,15 +36,17 @@ export const MainButton = (props: Props) => {
 
             whileHover={{
                 opacity: 1,
-                scale: 1.1
+                scale: 1.1,
+                backgroundColor: color,
+                color:"#fff",
+                border:`5px solid ${color}`,
+                boxShadow:`0px 0px 15px ${color}`
             }}
             whileTap={{
                 scale: 1
             }}
             style={{
                 ...styles.button,
-                border: `5px solid ${color}`,
-                color: color,
             }}
             onClick={onClick}
         >{name}
@@ -54,7 +61,7 @@ const styles: Styles = {
         color: "#fff",
         backgroundColor: "rgb(5 0 0/0)",
         border: "5px solid #fff",
-        borderRadius: 20,
+        borderRadius: 400,
         // boxShadow: "0px 0px 30px #444",
         opacity: 0.8,
         margin: "0 auto",
