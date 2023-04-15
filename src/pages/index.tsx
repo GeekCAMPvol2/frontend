@@ -60,7 +60,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
@@ -208,7 +208,7 @@ export default function Home() {
             {countDown}
           </motion.div>
         </div>
-      }
+      )}
       <Background selected={hoverdColor} />
     </div >
 
