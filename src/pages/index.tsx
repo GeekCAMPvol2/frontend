@@ -39,6 +39,7 @@ export default function Home() {
   const [item, setItem] = useRecoilState(itemData);
 
   const [hoverdColor, sethoverdColor] = useState<string>(); //選択中のボタン
+  const [countDown, setcountDown] = useState<number>(99)
 
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
@@ -56,11 +57,27 @@ export default function Home() {
 
   const handleSelectTutorial = () => { };
 
+  const fncCountDown = (count: number, path: string) => {
+    setcountDown(count);
+    if (count > 1) {
+      setTimeout(() => {
+        fncCountDown(count - 1, path);
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        router.push(path);
+        // console.log(11);
+
+      }, 1000);
+    }
+  };
+
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
     const resultData = await getItemData();
     setItem([resultData]);
-    router.push(path);
+    fncCountDown(3, path)
+    // router.push(path);
   };
 
   const handlePlayMultiGame = async () => {
@@ -156,7 +173,16 @@ export default function Home() {
           />
         </div>
       </main>
+      {countDown < 4 &&
+        <div style={styles.countdown}>
+          <div style={{
+            ...styles.countTime,
+            boxShadow: `0 0 15px ${hoverdColor}`,
+          }}>{countDown}</div>
+        </div>
+      }
     </div>
+
   );
 }
 
@@ -187,5 +213,26 @@ const styles: Styles = {
     borderRadius: 100,
     padding: "10px 20px",
     marginTop: 30,
+  },
+  countdown: {
+    position: "absolute",
+    backgroundColor: "rgb(0 0 0 /.5)",
+    top: 0,
+    width: "100vw",
+    height: "100vh",
+    zIndex: 9999,
+    verticalAlign: "middle",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  countTime: {
+    borderRadius: "50%",
+    width: 800,
+    height: 800,
+    border: "15px solid #fff",
+    fontSize: 400,
+    lineHeight: 2,
+    textAlign: "center"
   }
 };
