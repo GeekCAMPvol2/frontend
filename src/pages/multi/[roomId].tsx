@@ -73,7 +73,10 @@ const Lobby = () => {
         <h1 style={styles.title}>PriceQuest</h1>
         <div style={styles.playerContainer}>
           {players.map((player, index) => (
-            <PlayerCard key={index} name={player.userId} />
+            <PlayerCard
+              key={index}
+              name={player.playerName}
+            />
           ))}
         </div>
 
@@ -87,6 +90,7 @@ const Lobby = () => {
             name="準備完了"
             onClick={handleReady}
           />
+          {'何人OK/参加人数'}
         </div>
       </div>
     </div>
