@@ -28,7 +28,6 @@ import {
 import { getItemData } from './api/game';
 import { useEffect, useState } from 'react';
 import { Title } from '@/components/index/Title';
-import { useEffect } from 'react';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 
@@ -103,7 +102,7 @@ export default function Home() {
         <Title />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
-          {userId !== undefined ? (
+          {/* {userId !== undefined ? (
             <MainButton
               name="サインアウト"
               onClick={firebaseSignOut}
@@ -123,7 +122,7 @@ export default function Home() {
             onClick={handleSelectTutorial}
             delay={0}
             color={''}
-          />
+          /> */}
           <MainButton
             delay={0.1}
             color="rgb(199, 81, 250)"
