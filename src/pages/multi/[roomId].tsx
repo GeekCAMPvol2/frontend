@@ -54,7 +54,7 @@ const Lobby = () => {
   }, [router]);
 
   const handleCopy = () => {
-    const baseURL = window.location.hostname;
+    const baseURL = window.location.origin;
     navigator.clipboard.writeText(
       `${baseURL}/multi/lobby/${roomId}`
     );
