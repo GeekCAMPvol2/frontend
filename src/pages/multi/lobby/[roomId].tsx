@@ -48,7 +48,11 @@ const Lobby = () => {
 
   const handleJoinRoom = async () => {
     if (userId == undefined) await firebaseSignIn();
-    await joinRoom(roomId, playerNameRef.current!.value);
+    const playerName =
+      playerNameRef.current!.value == ''
+        ? `プレイヤー${players.length + 1}`
+        : playerNameRef.current!.value;
+    await joinRoom(roomId, playerName);
     router.push(`/multi/${roomId}`);
   };
 

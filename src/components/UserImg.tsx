@@ -9,17 +9,15 @@ type props = {
 };
 
 const UserImg = ({ userId }: props) => {
-  if (userId == '') {
-    userId = 'NoName';
-  }
   const [userImgCache, setUserImgCache] = useAtom(
     userImgCacheAtom
   );
   if (!userId)
     return (
-      <LoadingIcon
-        className={`${styles.img} ${styles.loading}`}
-      />
+      // <LoadingIcon
+      //   className={`${styles.img} ${styles.loading}`}
+      // />
+      <>userIdないよ～</>
     );
   if (userImgCache[userId])
     return (
