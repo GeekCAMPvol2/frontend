@@ -30,6 +30,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
+import { motion } from "framer-motion"
 
 export default function Home() {
   const router = useRouter();
@@ -65,8 +66,7 @@ export default function Home() {
       }, 1000);
     } else {
       setTimeout(() => {
-        router.push(path);
-        // console.log(11);
+        // router.push(path);
 
       }, 1000);
     }
@@ -77,7 +77,6 @@ export default function Home() {
     const resultData = await getItemData();
     setItem([resultData]);
     fncCountDown(3, path)
-    // router.push(path);
   };
 
   const handlePlayMultiGame = async () => {
@@ -175,13 +174,29 @@ export default function Home() {
       </main>
       {countDown < 4 &&
         <div style={styles.countdown}>
-          <div style={{
-            ...styles.countTime,
-            boxShadow: `0 0 15px ${hoverdColor}`,
-          }}>{countDown}</div>
+          <motion.div
+            initial={{
+              scale: 1
+            }}
+            animate={{
+              scale: 0.3
+            }}
+            transition={{
+              // repeatDelay: 1,
+              repeat: 3
+            }}
+          >
+            <div style={{
+              ...styles.countTime,
+              border: `15px solid ${hoverdColor}`,
+              color: hoverdColor,
+              boxShadow: `0 0 15px ${hoverdColor}`,
+            }}>{countDown}
+            </div>
+          </motion.div>
         </div>
       }
-    </div>
+    </div >
 
   );
 }
