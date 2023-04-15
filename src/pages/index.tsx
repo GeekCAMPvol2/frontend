@@ -143,8 +143,6 @@ export default function Home() {
               style={styles.textInput}
               ref={playerNameRef}
               placeholder='名前を入力'
-              defaultValue="ななし"
-
               onFocus={(e) => e.target.select()}
               maxLength={15}
 
