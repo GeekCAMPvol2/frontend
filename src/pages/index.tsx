@@ -18,6 +18,7 @@ import { useRecoilState } from 'recoil';
 import { httpsCallable } from 'firebase/functions';
 import { getItemData } from './api/game';
 import { useEffect } from 'react';
+import { Title } from '@/components/index/Title';
 
 export default function Home() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function Home() {
   const [crrQuizNum, setCrrQuizNum] =
     useRecoilState(crrQuizNumState);
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
 
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
@@ -73,11 +74,7 @@ export default function Home() {
   return (
     <div>
       <main style={styles.main}>
-        <h1>
-          Price
-          <br />
-          Quest
-        </h1>
+        <Title />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
           {/* <MainButton

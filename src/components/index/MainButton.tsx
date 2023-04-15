@@ -23,7 +23,7 @@ export const MainButton = (props: Props) => {
                 rotate: 0,
                 transition: {
                     type: "spring",
-                    stiffness: 100,
+                    stiffness: 150,
                     duration: 0.3,
                     delay: delay
                 }
@@ -32,7 +32,7 @@ export const MainButton = (props: Props) => {
                 x: -750,
                 // size:1,
                 opacity: 0,
-                rotate: 90,
+                rotate: 200,
             }}
 
             whileHover={{
