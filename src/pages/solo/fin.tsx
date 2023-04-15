@@ -32,8 +32,6 @@ const Fin = () => {
         <div style={styles.topWrapper}>
           {item.map((item, index) => (
             <div style={styles.itemWrapper} key={index}>
-              <h1>{item.quiz}</h1>
-              <h2>{item.answer}円</h2>
               <div style={styles.itemImageWrapper}>
                 <Image
                   src={item.images[0].imageUrl!}
@@ -42,9 +40,17 @@ const Fin = () => {
                   height={200}
                 />
               </div>
+              <h1 style={{
+                overflow: "hidden",
+                display: "-webkit-box",
+                WebkitBoxOrient: "vertical",
+                WebkitLineClamp: 2,
+
+              }}>{item.quiz}</h1>
+              <h2>{item.answer}円</h2>
               <p>
                 差額金額:
-                {keyPadNumArr[index]}
+                {keyPadNumArr[index]}円
               </p>
             </div>
           ))}
@@ -87,12 +93,17 @@ const styles: Styles = {
   },
   itemWrapper: {
     flex: 1,
+    height: 500,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     gap: '10px',
     color: 'white',
-    backgroundColor: 'black',
+    backgroundColor: 'rgb(0 0 0 /0)',
+    padding: 10,
+    border: "2px solid rgb(199, 81, 250)",
+    boxShadow: "0 0 5px rgb(199, 81, 250)",
+    borderRadius: 10
   },
   itemImageWrapper: {
     border: '2px solid black',
