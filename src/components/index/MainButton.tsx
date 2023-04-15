@@ -22,6 +22,7 @@ export const MainButton = (props: Props) => {
             }}
             animate={{
                 x: 0,
+                scale:1,
                 opacity: 1,
                 rotate: 0,
                 transition: {
@@ -32,9 +33,9 @@ export const MainButton = (props: Props) => {
                 }
             }}
             initial={{
-                x: -750,
-                // size:1,
-                opacity: 0,
+                // x: -750,
+                scale:0,
+                // opacity: 0,
                 rotate: 200,
             }}
             exit={{
