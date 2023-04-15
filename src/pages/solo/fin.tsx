@@ -1,10 +1,7 @@
-import AnsQuizButton from '@/components/game/AnsQuizButton';
-import ItemNameCard from '@/components/game/ItemNameCard';
 import PlayAgainButton from '@/components/game/solo/PlayAgainButton';
 import { itemData, keyPadNumArrState } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 const Fin = () => {
@@ -40,7 +37,7 @@ const Fin = () => {
               </div>
               <p>
                 差額金額:
-                {item.answer - keyPadNumArr[index]}
+                {keyPadNumArr[index]}
               </p>
             </div>
           ))}

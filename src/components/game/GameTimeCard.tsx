@@ -41,7 +41,10 @@ const GameTimeCard = () => {
           const resultData = await getItemData();
           setItem([...item, resultData]);
         }
-        setKeyPadNumArr([...keyPadNumArr, keyPadNum]);
+        setKeyPadNumArr([
+          ...keyPadNumArr,
+          item[crrQuizNum].answer - keyPadNum,
+        ]);
         router.push('/solo/ans');
       }
     };
