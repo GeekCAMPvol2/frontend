@@ -6,6 +6,7 @@ import {
 } from '@/store/atoms';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
+import { motion } from "framer-motion"
 
 const PlayAgainButton = () => {
   const router = useRouter();

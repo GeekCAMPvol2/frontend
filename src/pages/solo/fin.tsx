@@ -1,8 +1,12 @@
+import { Background } from '@/components/elements/Background';
+import HomeButton from '@/components/elements/HomeButton';
 import PlayAgainButton from '@/components/game/solo/PlayAgainButton';
+import { Title } from '@/components/index/Title';
 import { itemData, keyPadNumArrState } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
+
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -12,7 +16,10 @@ const Fin = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.titleWrapper}>Price Quest</h1>
+      <HomeButton />
+      <span style={styles.titleWrapper}>
+        <Title />
+      </span>
       <div style={styles.wrapper}>
         <h1>
           あなたの合計差額:
@@ -48,6 +55,8 @@ const Fin = () => {
           <PlayAgainButton />
         </div>
       </div>
+      <Background selected='rgb(199, 81, 250)' />
+
     </div>
   );
 };
@@ -57,10 +66,11 @@ export default Fin;
 const styles: Styles = {
   container: {
     margin: '50px 0',
+    overflowX: 'hidden'
   },
   titleWrapper: {
     textAlign: 'center',
-    color: 'black',
+    // color: 'black',
   },
   wrapper: {
     width: '1200px',
