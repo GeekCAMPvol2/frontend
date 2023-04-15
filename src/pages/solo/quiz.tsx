@@ -50,6 +50,9 @@ const Quiz = () => {
                 alt={item[crrQuizNum].quiz}
                 width={400}
                 height={400}
+                style={{
+                  boxShadow: "0 0 15px rgb(199,81,250)"
+                }}
               />
             )}
           </div>
@@ -88,7 +91,7 @@ const styles: Styles = {
     textAlign: 'center',
   },
   itemImageWrapper: {
-    border: '2px solid black',
+    // border: '2px solid black',
     borderRadius: '10px',
     display: 'flex',
     justifyContent: 'center',
