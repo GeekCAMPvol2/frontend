@@ -30,10 +30,9 @@ import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
-import { motion, useAnimate } from "framer-motion"
+import { motion, useAnimate } from 'framer-motion';
 import { Background } from '@/components/elements/background';
 import { SigninButton } from '@/components/index/SigninButton';
-
 
 export default function Home() {
   const router = useRouter();
@@ -42,9 +41,10 @@ export default function Home() {
 
   const [item, setItem] = useRecoilState(itemData);
 
-  const [hoverdColor, sethoverdColor] = useState<string>("rgb(199, 81, 250)"); //選択中のボタン
-  const [countDown, setcountDown] = useState<number>(99)
-
+  const [hoverdColor, sethoverdColor] = useState<string>(
+    'rgb(199, 81, 250)'
+  ); //選択中のボタン
+  const [countDown, setcountDown] = useState<number>(99);
 
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
@@ -61,7 +61,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => { };
+  const handleSelectTutorial = () => {};
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
@@ -72,9 +72,7 @@ export default function Home() {
     } else {
       setTimeout(() => {
         router.push(path);
-
       }, 800);
-
     }
   };
 
@@ -87,9 +85,11 @@ export default function Home() {
 
   // multiプレイ開始ボタン
   const handlePlayMultiGame = async () => {
-    const roomId = await createRoom(
-      playerNameRef.current!.value
-    );
+    const playerName =
+      playerNameRef.current!.value == ''
+        ? 'プレイヤー1'
+        : playerNameRef.current!.value;
+    const roomId = await createRoom(playerName);
     router.push(`/multi/${roomId}`);
   };
 
@@ -126,8 +126,8 @@ export default function Home() {
         // background: `radial-gradient( #111 50% ,#fff  )`,
         background: `rgb(0 0 0 /0)`,
         transitionDuration: '5s',
-        overflowX: "hidden",
-        overflowY: "hidden"
+        overflowX: 'hidden',
+        overflowY: 'hidden',
       }}
     >
       <main style={styles.main}>
@@ -147,6 +147,7 @@ export default function Home() {
 
               onFocus={(e) => e.target.select()}
               maxLength={15}
+
             />
             {userId !== undefined ? (
               <SigninButton
@@ -208,15 +209,15 @@ export default function Home() {
             opacity: 1,
             rotate: 0,
             transition: {
-              type: "spring",
+              type: 'spring',
               stiffness: 100,
               duration: 0.3,
-              delay: 1
-            }
+              delay: 1,
+            },
           }}
           initial={{
             scale: 0,
-            x: -650
+            x: -650,
           }}
           // whileHover={{
           //   scale: 1.2,
@@ -225,8 +226,11 @@ export default function Home() {
           //   }
           // }}
 
-          style={styles.credit} href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers
-
+          style={styles.credit}
+          href="https://developers.rakuten.com/"
+          target="_blank"
+        >
+          Supported by Rakuten Developers
         </motion.a>
         {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
       </main>
@@ -238,8 +242,7 @@ export default function Home() {
             }}
             animate={{
               scale: 1.1,
-              opacity: [0, 1]
-
+              opacity: [0, 1],
             }}
             transition={{
               duration: 0.5,
@@ -258,9 +261,7 @@ export default function Home() {
         </div>
       )}
       <Background selected={hoverdColor} />
-    </div >
-
-
+    </div>
   );
 }
 
@@ -274,7 +275,7 @@ const styles: Styles = {
     marginTop: 100,
     textAlign: 'center',
     backgroundColor: 'rgb(0 0 0 /0)',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   buttonContainer: {
     display: 'flex',
@@ -308,9 +309,8 @@ const styles: Styles = {
     justifyContent: 'center',
   },
   countTime: {
-
-    backgroundColor: "rgb(0 0 0 /.5)",
-    borderRadius: "50%",
+    backgroundColor: 'rgb(0 0 0 /.5)',
+    borderRadius: '50%',
 
     width: 800,
     height: 800,
@@ -320,11 +320,11 @@ const styles: Styles = {
     textAlign: 'center',
   },
   credit: {
-    color: "#fff",
-    position: "absolute",
+    color: '#fff',
+    position: 'absolute',
     bottom: 50,
     left: 0,
-    width: "100vw",
-    textAlign: "center"
-  }
+    width: '100vw',
+    textAlign: 'center',
+  },
 };
