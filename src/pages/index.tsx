@@ -30,7 +30,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
-import { motion } from "framer-motion"
+import { motion, useAnimate } from "framer-motion"
 
 export default function Home() {
   const router = useRouter();
@@ -45,6 +45,7 @@ export default function Home() {
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
   };
+  const controll = useAnimate()
 
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
@@ -66,9 +67,9 @@ export default function Home() {
       }, 1000);
     } else {
       setTimeout(() => {
-        // router.push(path);
+        router.push(path);
 
-      }, 1000);
+      }, 500);
     }
   };
 
@@ -179,18 +180,20 @@ export default function Home() {
               scale: 1
             }}
             animate={{
-              scale: 0.3
+              scale: 1.1
             }}
+
             transition={{
-              // repeatDelay: 1,
-              repeat: 3
+              duration: 0.5,
+              repeatDelay: 0.5,
+              repeat: 5
             }}
           >
             <div style={{
               ...styles.countTime,
-              border: `15px solid ${hoverdColor}`,
+              border: `20px solid ${hoverdColor}`,
               color: hoverdColor,
-              boxShadow: `0 0 15px ${hoverdColor}`,
+              boxShadow: `0 0 30px ${hoverdColor}`,
             }}>{countDown}
             </div>
           </motion.div>
