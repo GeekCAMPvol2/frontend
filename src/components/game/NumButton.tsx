@@ -38,8 +38,8 @@ const styles: Styles = {
         fontSize: 30,
         color: "#000",
         margin: "0 auto",
-        marginBottom: 5,
-        marginTop: 5,
+        marginBottom: 8,
+        marginTop: 8,
         borderRadius: "50%",
         userSelect: "none"
     }
