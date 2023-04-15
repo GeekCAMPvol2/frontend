@@ -77,7 +77,7 @@ const styles: Styles = {
         borderRadius: 400,
         // boxShadow: "0px 0px 30px #444",
         opacity: 0.8,
-        marginLeft: 10,
+        marginLeft: 20,
         marginTop: 30,
         fontSize: 30,
     }
