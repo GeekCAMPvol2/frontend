@@ -18,7 +18,6 @@ import {
   httpsCallable,
 } from '@firebase/functions';
 import { Background } from '@/components/elements/background';
-import { Title } from '@/components/index/Title';
 
 const Lobby = () => {
   const router = useRouter();
