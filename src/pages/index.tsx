@@ -54,7 +54,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
 
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
@@ -109,8 +109,10 @@ export default function Home() {
         <div style={styles.buttonContainer}>
           <input
             type="text"
-            style={{ border: '1px solid #fff' }}
+            style={styles.textInput}
             ref={playerNameRef}
+            placeholder='名前を入力'
+            maxLength={15}
           />
           {/* {userId !== undefined ? (
             <MainButton
@@ -174,4 +176,16 @@ const styles: Styles = {
     textAlign: 'center',
     backgroundColor: 'rgb(0 0 0 /0)',
   },
+  textInput: {
+    backgroundColor: "rgb(0 0 0 /0)",
+    border: "2px solid #fff",
+    boxShadow: "0 0 5px #fff",
+    fontSize: 30,
+    alignSelf: "center",
+    width: 500,
+    textAlign: "center",
+    borderRadius: 100,
+    padding: "10px 20px",
+    marginTop: 30,
+  }
 };
