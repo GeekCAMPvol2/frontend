@@ -66,14 +66,25 @@ const AnsQuizButton = () => {
               SUBMIT
             </motion.button>
           ) : (
-            <button
+            <motion.button
               style={styles.button}
               onClick={() =>
                 setCrrQuizNum((prevNum) => prevNum + 1)
               }
+
+              whileHover={{
+                scale: 1.1,
+                backgroundColor: "rgb(199, 81, 250)",
+                color: "white"
+              }}
+              whileTap={{
+                scale: 0.9,
+                backgroundColor: "rgb(199, 81, 250)",
+                color: "white"
+              }}
             >
               NEXT
-            </button>
+            </motion.button>
           )}
         </Link>
       )}
