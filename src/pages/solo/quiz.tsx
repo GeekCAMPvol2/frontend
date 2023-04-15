@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { Background } from '@/components/elements/background';
+import { Title } from '@/components/index/Title';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -34,7 +35,10 @@ const Quiz = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.titleWrapper}>Price Quest</h1>
+      {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
+      <span style={styles.titleWrapper}>
+        <Title />
+      </span>
       <div style={styles.wrapper}>
         {/* 左側 */}
         <div style={styles.leftWrapper}>
@@ -68,6 +72,7 @@ export default Quiz;
 const styles: Styles = {
   container: {
     margin: '50px 0',
+    overflowX: 'hidden'
   },
   titleWrapper: {
     textAlign: 'center',
