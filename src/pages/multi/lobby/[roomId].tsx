@@ -52,6 +52,7 @@ const Lobby = () => {
     router.push(`/multi/${roomId}`);
   };
 
+  // 入室
   const joinRoom = async (
     roomId: string,
     playerName: string
@@ -86,6 +87,7 @@ const Lobby = () => {
             type="text"
             ref={playerNameRef}
             defaultValue="ななし"
+            style={{ backgroundColor: '#000' }}
           />
           <LobbyButton
             name="入室する"
