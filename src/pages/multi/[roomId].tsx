@@ -17,12 +17,19 @@ import {
   HttpsCallable,
   httpsCallable,
 } from '@firebase/functions';
+import { MultiQuestion } from '@/types/MultiQuestion';
 
 const Lobby = () => {
   const router = useRouter();
   const [roomId, setRoomId] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
+  const [gameStatus, setGameStatus] = useState<
+    'INVITING_MEMBERS' | 'GAME_STARTED'
+  >('INVITING_MEMBERS');
+  const [questions, setQuestions] = useState<
+    MultiQuestion[]
+  >([]);
   // useLeavePageConfirmation(roomId);
 
   useEffect(() => {
@@ -30,6 +37,8 @@ const Lobby = () => {
       onSnapshot(doc(db, 'rooms', roomId), (doc) => {
         console.log(doc.data());
         setPlayers(doc.data()!.members);
+        setGameStatus(doc.data()!.status);
+        setQuestions(doc.data()!.questions);
       });
     }
   }, [roomId]);
@@ -44,55 +53,63 @@ const Lobby = () => {
   }, [router]);
 
   const handleCopy = () => {
-    const baseURL = 'http://localhost:3000';
+    const baseURL = window.location.hostname;
     navigator.clipboard.writeText(
       `${baseURL}/multi/lobby/${roomId}`
     );
   };
 
   const handleReady = () => {
-    setMemberReady(roomId);
+    setMemberReady(roomId, !isReady);
     setIsReady(true);
   };
 
-  const setMemberReady = async (roomId: string) => {
+  const setMemberReady = async (
+    roomId: string,
+    ready: boolean
+  ) => {
     const setMemberReadyCallback: HttpsCallable<
-      { roomId: string },
+      { roomId: string; ready: boolean },
       undefined
-    > = httpsCallable(functions, 'setMemberReady');
+    > = httpsCallable(functions, 'setMemberReadyState');
     await setMemberReadyCallback({
       roomId: roomId,
+      ready: ready,
     });
   };
 
   return (
     <div>
       {/* ホームボタンコンポーネント */}
-      <div>
-        <LeaveButton roomId={roomId} />
-        <h1 style={styles.title}>PriceQuest</h1>
-        <div style={styles.playerContainer}>
-          {players.map((player, index) => (
-            <PlayerCard
-              key={index}
-              name={player.playerName}
-            />
-          ))}
-        </div>
+      {gameStatus === 'GAME_STARTED' ? (
+        <div></div>
+      ) : (
+        <div>
+          <LeaveButton roomId={roomId} />
+          <h1 style={styles.title}>PriceQuest</h1>
+          <div style={styles.playerContainer}>
+            {players.map((player, index) => (
+              <PlayerCard
+                key={index}
+                name={player.playerName}
+              />
+            ))}
+          </div>
 
-        <div style={styles.buttonContainer}>
-          <LobbyButton
-            name="URLをコピー"
-            onClick={handleCopy}
-          />
-          <LobbyButton
-            disabled={isReady}
-            name="準備完了"
-            onClick={handleReady}
-          />
-          {'何人OK/参加人数'}
+          <div style={styles.buttonContainer}>
+            <LobbyButton
+              name="URLをコピー"
+              onClick={handleCopy}
+            />
+            <LobbyButton
+              disabled={isReady}
+              name="準備完了"
+              onClick={handleReady}
+            />
+            {/* {'何人OK/参加人数'} */}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
