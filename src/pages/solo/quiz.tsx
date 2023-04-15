@@ -14,6 +14,7 @@ import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { Background } from '@/components/elements/Background';
 import { Title } from '@/components/index/Title';
+import HomeButton from '@/components/elements/HomeButton';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -35,6 +36,7 @@ const Quiz = () => {
 
   return (
     <div style={styles.container}>
+      <HomeButton />
       {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
       <span style={styles.titleWrapper}>
         <Title />

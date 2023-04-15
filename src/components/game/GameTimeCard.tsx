@@ -45,7 +45,7 @@ const GameTimeCard = () => {
           ...keyPadNumArr,
           item[crrQuizNum].answer - keyPadNum,
         ]);
-        // router.push('/solo/ans');
+        router.push('/solo/ans');
       }
     };
     fetchData();
