@@ -16,17 +16,17 @@ export const NumButton = (props: Props) => {
                 scale: 0.9,
                 borderRadius: "50%",
                 rotate: 360,
-
             }}
             whileHover={{
                 scale: 1.1,
                 // rotate: 360,
-                borderRadius: "10%"
+                borderRadius: "10%",
+                boxShadow: "0 0 10px #fff"
             }}
             style={styles.button}
             onClick={onClick}
-            >
-                {number}
+        >
+            {number}
         </motion.button>
     )
 }
