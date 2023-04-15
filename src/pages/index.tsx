@@ -181,6 +181,9 @@ export default function Home() {
             }
           />
         </div>
+        {/* <!-- Rakuten Web Services Attribution Snippet FROM HERE --> */}
+        <a style={styles.credit} href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a>
+        {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
       </main>
       {countDown < 4 && (
         <div style={styles.countdown}>
@@ -268,4 +271,12 @@ const styles: Styles = {
     lineHeight: 2,
     textAlign: 'center',
   },
+  credit: {
+    color: "#fff",
+    position: "absolute",
+    bottom: 100,
+    left: 0,
+    width: "100vw",
+    textAlign: "center"
+  }
 };

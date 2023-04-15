@@ -33,9 +33,7 @@ export const MainButton = (props: Props) => {
                 }
             }}
             initial={{
-                // x: -750,
                 scale:0,
-                // opacity: 0,
                 rotate: 200,
             }}
             exit={{
