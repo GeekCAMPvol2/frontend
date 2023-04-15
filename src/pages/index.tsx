@@ -80,13 +80,15 @@ export default function Home() {
     fncCountDown(3, path)
   };
 
+  // multiプレイ開始ボタン
   const handlePlayMultiGame = async () => {
     const roomId = await createRoom(
       playerNameRef.current!.value
     );
-    router.push(`multi/${roomId}`);
+    router.push(`/multi/${roomId}`);
   };
 
+  // 部屋作成
   const createRoom = async (
     playerName: string
   ): Promise<string> => {
@@ -129,7 +131,10 @@ export default function Home() {
             style={styles.textInput}
             ref={playerNameRef}
             placeholder='名前を入力'
+                     defaultValue="ななし"
+            onFocus={(e) => e.target.select()}
             maxLength={15}
+
           />
           {/* {userId !== undefined ? (
             <MainButton

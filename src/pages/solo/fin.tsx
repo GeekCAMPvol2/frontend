@@ -24,7 +24,7 @@ const Fin = () => {
         {/* 上側 */}
         <div style={styles.topWrapper}>
           {item.map((item, index) => (
-            <div style={styles.itemWrapper}>
+            <div style={styles.itemWrapper} key={index}>
               <h1>{item.quiz}</h1>
               <h2>{item.answer}円</h2>
               <div style={styles.itemImageWrapper}>
@@ -60,6 +60,7 @@ const styles: Styles = {
   },
   titleWrapper: {
     textAlign: 'center',
+    color: 'black',
   },
   wrapper: {
     width: '1200px',

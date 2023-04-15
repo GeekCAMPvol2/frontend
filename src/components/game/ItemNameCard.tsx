@@ -12,20 +12,18 @@ const ItemNameCard = () => {
   return (
     <div style={styles.container}>
       {item[crrQuizNum] && (
-        <>
+        <div>
           <h1 style={styles.itemName}>
             {item[crrQuizNum].quiz}
           </h1>
           {router.pathname === '/solo/quiz' ? (
-            <h2>
-              <span>????????</span>円
-            </h2>
+            <h2>????????円</h2>
           ) : (
             <h2>
               <span>{item[crrQuizNum].answer}</span>円
             </h2>
           )}
-        </>
+        </div>
       )}
     </div>
   );
@@ -38,6 +36,7 @@ const styles: Styles = {
     margin: '50px 0',
   },
   itemName: {
+    color: 'black',
     width: '100%',
     textAlign: 'center',
     fontSize: '30px',
