@@ -10,7 +10,7 @@ type Props = {
 }
 
 export const MainButton = (props: Props) => {
-    const { delay, name, onClick } = props
+    const { delay, color, name, onClick } = props
 
     return (
         <motion.button
@@ -36,7 +36,11 @@ export const MainButton = (props: Props) => {
             whileTap={{
                 scale: 1
             }}
-            style={styles.button}
+            style={{
+                ...styles.button,
+                border: `5px solid ${color}`,
+                color: color,
+            }}
             onClick={onClick}
         >{name}
         </motion.button>
@@ -48,10 +52,10 @@ const styles: Styles = {
         height: 100,
         width: 500,
         color: "#fff",
-        backgroundColor: "#000",
+        backgroundColor: "rgb(5 0 0/0)",
         border: "5px solid #fff",
         borderRadius: 20,
-        boxShadow: "5px 5px 5px #000",
+        boxShadow: "0px 0px 30px #444",
         opacity: 0.8,
         margin: "0 auto",
         marginTop: 50,
