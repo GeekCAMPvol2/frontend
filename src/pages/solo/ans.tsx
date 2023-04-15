@@ -1,4 +1,5 @@
 import { Background } from '@/components/elements/Background';
+import HomeButton from '@/components/elements/HomeButton';
 import AnsQuizButton from '@/components/game/AnsQuizButton';
 import AnswerCard from '@/components/game/AnswerCard';
 import ItemNameCard from '@/components/game/ItemNameCard';
@@ -31,6 +32,7 @@ const Ans = () => {
 
   return (
     <div style={styles.container}>
+      <HomeButton />
       <span style={styles.titleWrapper}>
         <Title />
       </span>
