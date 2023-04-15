@@ -4,6 +4,8 @@ import {
   crrQuizNumState,
   getItemNumState,
   itemData,
+  keyPadNumArrState,
+  keyPadNumState,
 } from '@/store/atoms';
 import Link from 'next/link';
 import React from 'react';
@@ -17,10 +19,21 @@ const AnsQuizButton = () => {
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
   const [item, setItem] = useRecoilState(itemData);
+  const [keyPadNumArr, setKeyPadNumArr] = useRecoilState(
+    keyPadNumArrState
+  );
+  const [keyPadNum, setKeyPadNum] =
+    useRecoilState(keyPadNumState);
 
   const handleSubmit = async () => {
-    const resultData = await getItemData();
-    setItem([...item, resultData]);
+    if (crrQuizNum < getItemNum - 1) {
+      const resultData = await getItemData();
+      setItem([...item, resultData]);
+    }
+    setKeyPadNumArr([
+      ...keyPadNumArr,
+      item[crrQuizNum].answer - keyPadNum,
+    ]);
   };
 
   return (

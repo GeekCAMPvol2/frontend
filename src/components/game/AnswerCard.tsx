@@ -11,7 +11,6 @@ const AnswerCard = () => {
     useRecoilState(keyPadNumState);
   const [crrQuizNum, setCrrQuizNum] =
     useRecoilState(crrQuizNumState);
-
   return (
     <div>
       {item[crrQuizNum] && (
@@ -21,7 +20,7 @@ const AnswerCard = () => {
           <p>あなたの回答</p>
           <h1>{keyPadNum}円</h1>
           <p>差額</p>
-          <h1>{keyPadNum - item[crrQuizNum].answer}円</h1>
+          <h1>{item[crrQuizNum].answer - keyPadNum}円</h1>
         </>
       )}
     </div>

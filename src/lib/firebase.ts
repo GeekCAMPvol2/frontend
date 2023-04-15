@@ -1,6 +1,12 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from 'firebase/auth';
 import { getFunctions } from 'firebase/functions';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,3 +25,18 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const functions = getFunctions(app);
+
+export const firebaseSignIn = async () => {
+  const provider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, provider);
+  const credential =
+    GoogleAuthProvider.credentialFromResult(result);
+  const token = credential!.accessToken;
+  const user = result.user;
+};
+
+export const firebaseSignOut = async () => {
+  signOut(auth)
+    .then(() => {})
+    .catch((error) => {});
+};

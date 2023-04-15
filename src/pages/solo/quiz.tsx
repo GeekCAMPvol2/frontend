@@ -10,7 +10,7 @@ import {
 } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 const Quiz = () => {
@@ -30,7 +30,6 @@ const Quiz = () => {
     setKeyPadNum(0);
     setAnsQuizUrl('/solo/ans');
   }, []);
-  console.log(item);
 
   return (
     <div style={styles.container}>

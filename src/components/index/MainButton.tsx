@@ -1,17 +1,19 @@
-import { Styles } from '@/types/Styles'
-import React from 'react'
-import { motion } from "framer-motion"
+import { Styles } from '@/types/Styles';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 type Props = {
     delay: number
     color: string
     name: string
+      disabled?: boolean;
     onClick: () => void
     onHoverStart: () => void
 }
 
 export const MainButton = (props: Props) => {
-    const { delay, color, name, onClick, onHoverStart } = props
+    const { delay, color, name, onClick, onHoverStart, disabled = false,
+ } = props
 
     return (
         <motion.button
@@ -59,6 +61,7 @@ export const MainButton = (props: Props) => {
                 ...styles.button,
             }}
             onClick={onClick}
+                  disabled={disabled}
         >{name}
         </motion.button>
     )

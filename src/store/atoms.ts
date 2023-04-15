@@ -1,5 +1,7 @@
 import { ItemData } from '@/types/Game';
 import { atom } from 'recoil';
+import { auth } from '@/lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // APIで取得する商品データ
 export const itemData = atom<ItemData[]>({
@@ -22,10 +24,18 @@ export const keyPadNumState = atom<number>({
   default: 0,
 });
 
-export const firebaseAuthLastUpdatedAtState = atom<number>({
-  key: 'firebaseAuthLastUpdatedAtState',
-  default: 0,
-});
+export const firebaseUserIdState = atom<string | undefined>(
+  {
+    key: 'firebaseUserIdState',
+    default: undefined,
+    effects: [
+      ({ setSelf }) =>
+        onAuthStateChanged(auth, (user) =>
+          setSelf(user?.uid)
+        ),
+    ],
+  }
+);
 
 // 取得する問題数
 export const getItemNumState = atom<number>({
@@ -37,4 +47,10 @@ export const getItemNumState = atom<number>({
 export const crrQuizNumState = atom<number>({
   key: 'crrQuizNumState',
   default: 0,
+});
+
+// 入力した金額配列
+export const keyPadNumArrState = atom<number[]>({
+  key: 'crrQuizNumArrState',
+  default: [],
 });
