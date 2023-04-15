@@ -31,6 +31,7 @@ export default function Home() {
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
 
+
   const [crrQuizNum, setCrrQuizNum] =
     useRecoilState(crrQuizNumState);
 
@@ -79,15 +80,20 @@ export default function Home() {
         </h1>
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
-          <MainButton
+          {/* <MainButton
+            delay={0}
             name="遊び方"
             onClick={handleSelectTutorial}
-          />
+          /> */}
           <MainButton
+            delay={0.1}
+            color='rgb(199, 81, 250)'
             name="一人で遊ぶ"
             onClick={() => handlePlayGame('/solo/quiz')}
           />
           <MainButton
+            delay={0.2}
+            color='rgb(0, 225, 255)'
             name="二人で遊ぶ"
             onClick={() => firebaseSignIn()}
           />
