@@ -30,7 +30,10 @@ const AnsQuizButton = () => {
       const resultData = await getItemData();
       setItem([...item, resultData]);
     }
-    setKeyPadNumArr([...keyPadNumArr, keyPadNum]);
+    setKeyPadNumArr([
+      ...keyPadNumArr,
+      item[crrQuizNum].answer - keyPadNum,
+    ]);
   };
 
   return (
