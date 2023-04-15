@@ -5,26 +5,33 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signOut,
 } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { auth, functions } from '../lib/firebaseConfig';
+import {
+  auth,
+  firebaseSignIn,
+  firebaseSignOut,
+  functions,
+} from '../lib/firebase';
 import {
   crrQuizNumState,
-  firebaseAuthLastUpdatedAtState,
   getItemNumState,
   itemData,
 } from '@/store/atoms';
 import { useRecoilState } from 'recoil';
-import { httpsCallable } from 'firebase/functions';
+import {
+  HttpsCallable,
+  httpsCallable,
+} from 'firebase/functions';
 import { getItemData } from './api/game';
 import { useEffect } from 'react';
+import { error } from 'console';
+import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 
 export default function Home() {
   const router = useRouter();
-  const [
-    firebaseAuthLastUpdatedAt,
-    setFirebaseAuthLastUpdatedAt,
-  ] = useRecoilState(firebaseAuthLastUpdatedAtState);
+  const userId = useFirebaseUserId();
 
   const [item, setItem] = useRecoilState(itemData);
 
@@ -43,24 +50,20 @@ export default function Home() {
     router.push(path);
   };
 
-  const firebaseSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    const credential =
-      GoogleAuthProvider.credentialFromResult(result);
-    const token = credential!.accessToken;
-    const user = result.user;
-    setFirebaseAuthLastUpdatedAt(Date.now());
+  const handlePlayMultiGame = () => {};
 
-    const createRoom = httpsCallable(
-      functions,
-      'createRoom'
-    );
-    const roomId = await createRoom({
-      playerName: 'test',
+  const createRoom = async (
+    playerName: string
+  ): Promise<string> => {
+    const createRoomCallback: HttpsCallable<
+      { playerName: string },
+      { roomId: string }
+    > = httpsCallable(functions, 'createRoom');
+    const createRoomResponse = await createRoomCallback({
+      playerName: playerName,
     });
-    console.log(roomId.data);
-    // handlePlayGame('');
+    console.log(createRoomResponse.data.roomId);
+    return createRoomResponse.data.roomId;
   };
 
   // 初期化
@@ -79,6 +82,17 @@ export default function Home() {
         </h1>
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
+          {userId !== undefined ? (
+            <MainButton
+              name="サインアウト"
+              onClick={firebaseSignOut}
+            />
+          ) : (
+            <MainButton
+              name="サインイン"
+              onClick={firebaseSignIn}
+            />
+          )}
           <MainButton
             name="遊び方"
             onClick={handleSelectTutorial}
@@ -89,7 +103,8 @@ export default function Home() {
           />
           <MainButton
             name="二人で遊ぶ"
-            onClick={() => firebaseSignIn()}
+            onClick={() => {}}
+            disabled={userId === undefined}
           />
         </div>
       </main>
