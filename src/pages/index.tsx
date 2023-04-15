@@ -26,7 +26,7 @@ import {
   httpsCallable,
 } from 'firebase/functions';
 import { getItemData } from './api/game';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
@@ -34,21 +34,21 @@ import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 export default function Home() {
   const router = useRouter();
   const userId = useFirebaseUserId();
+  const playerNameRef = useRef<HTMLInputElement>(null);
 
   const [item, setItem] = useRecoilState(itemData);
 
-  const [hoverdColor, sethoverdColor] = useState<string>() //選択中のボタン
+  const [hoverdColor, sethoverdColor] = useState<string>(); //選択中のボタン
 
   const handleOnHover = (color: string) => {
-    sethoverdColor(color)
-  }
+    sethoverdColor(color);
+  };
 
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
 
   const [crrQuizNum, setCrrQuizNum] =
     useRecoilState(crrQuizNumState);
-
 
   const [keyPadNumArr, setKeyPadNumArr] = useRecoilState(
     keyPadNumArrState
@@ -63,7 +63,12 @@ export default function Home() {
     router.push(path);
   };
 
-  const handlePlayMultiGame = () => {};
+  const handlePlayMultiGame = async () => {
+    const roomId = await createRoom(
+      playerNameRef.current!.value
+    );
+    router.push(`multi/${roomId}`);
+  };
 
   const createRoom = async (
     playerName: string
@@ -89,19 +94,24 @@ export default function Home() {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
-        position: "absolute",
+        width: '100vw',
+        height: '100vh',
+        position: 'absolute',
         top: 0,
         // background: `radial-gradient( #111 50% ,#fff  )`,
         background: `#111`,
-        transitionDuration: "5s"
+        transitionDuration: '5s',
       }}
     >
       <main style={styles.main}>
         <Title />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
+          <input
+            type="text"
+            style={{ border: '1px solid #fff' }}
+            ref={playerNameRef}
+          />
           {/* {userId !== undefined ? (
             <MainButton
               name="サインアウト"
@@ -128,17 +138,19 @@ export default function Home() {
             color="rgb(199, 81, 250)"
             name="一人で遊ぶ"
             onClick={() => handlePlayGame('/solo/quiz')}
-            onHoverStart={() => handleOnHover('rgb(199, 81, 250)')}
+            onHoverStart={() =>
+              handleOnHover('rgb(199, 81, 250)')
+            }
           />
           <MainButton
             delay={0.2}
             color="rgb(0, 225, 255)"
             name="二人で遊ぶ"
-
-            onClick={() => {}}
+            onClick={handlePlayMultiGame}
             disabled={userId === undefined}
-            onHoverStart={() => handleOnHover("rgb(0, 225, 255)")}
-
+            onHoverStart={() =>
+              handleOnHover('rgb(0, 225, 255)')
+            }
           />
         </div>
       </main>
@@ -147,22 +159,19 @@ export default function Home() {
 }
 
 const styles: Styles = {
-  htmlDiv: {
-
-  },
+  htmlDiv: {},
   main: {
     width: 1000,
     margin: '0 auto',
     marginTop: 100,
     textAlign: 'center',
-    backgroundColor: "rgb(0 0 0 /0)"
+    backgroundColor: 'rgb(0 0 0 /0)',
   },
   buttonContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around',
     textAlign: 'center',
-    backgroundColor: "rgb(0 0 0 /0)"
-
+    backgroundColor: 'rgb(0 0 0 /0)',
   },
 };
