@@ -58,7 +58,7 @@ const KeyPadCard = () => {
         style={styles.input}
       />
       <div
-        style={{
+        style={{          
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
         }}

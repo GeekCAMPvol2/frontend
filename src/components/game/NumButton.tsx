@@ -11,21 +11,23 @@ export const NumButton = (props: Props) => {
     const { number, onClick } = props
 
     return (
-        <motion.div
+        <motion.button
             whileTap={{
-                scale: 0.9
+                scale: 0.9,
+                borderRadius: "50%",
+                rotate: 360,
+
             }}
             whileHover={{
-                scale: 1.1
+                scale: 1.1,
+                // rotate: 360,
+                borderRadius: "10%"
             }}
-        >
-            <button
-                style={styles.button}
-                onClick={onClick}
+            style={styles.button}
+            onClick={onClick}
             >
                 {number}
-            </button>
-        </motion.div>
+        </motion.button>
     )
 }
 
@@ -36,7 +38,8 @@ const styles: Styles = {
         fontSize: 30,
         color: "#000",
         margin: "0 auto",
-        marginBottom: 10,
+        marginBottom: 5,
+        marginTop: 5,
         borderRadius: "50%",
         userSelect: "none"
     }
