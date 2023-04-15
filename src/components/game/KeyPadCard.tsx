@@ -56,6 +56,7 @@ const KeyPadCard = () => {
         value={keyPadNum}
         onChange={handleInput}
         style={styles.input}
+        maxLength={9}
       />
       <div
         style={{
@@ -91,6 +92,7 @@ const styles: Styles = {
     width: '80%',
     fontSize: 30,
     textAlign: 'left',
+    textShadow: "0 0 3px #fff",
     padding: 10,
     paddingBottom: 2,
     marginBottom: 15,
