@@ -18,6 +18,7 @@ import {
   crrQuizNumState,
   getItemNumState,
   itemData,
+  keyPadNumArrState,
 } from '@/store/atoms';
 import { useRecoilState } from 'recoil';
 import {
@@ -40,6 +41,10 @@ export default function Home() {
 
   const [crrQuizNum, setCrrQuizNum] =
     useRecoilState(crrQuizNumState);
+
+  const [keyPadNumArr, setKeyPadNumArr] = useRecoilState(
+    keyPadNumArrState
+  );
 
   const handleSelectTutorial = () => {};
 
@@ -70,6 +75,7 @@ export default function Home() {
   useEffect(() => {
     setItem([]);
     setCrrQuizNum(0);
+    setKeyPadNumArr([]);
   }, []);
 
   return (

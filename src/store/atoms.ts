@@ -48,3 +48,9 @@ export const crrQuizNumState = atom<number>({
   key: 'crrQuizNumState',
   default: 0,
 });
+
+// 入力した金額配列
+export const keyPadNumArrState = atom<number[]>({
+  key: 'crrQuizNumArrState',
+  default: [],
+});
