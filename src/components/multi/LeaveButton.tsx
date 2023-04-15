@@ -7,6 +7,8 @@ import {
 } from 'firebase/functions';
 import { functions } from '@/lib/firebase';
 import { leaveRoom } from './leaveHandler';
+import HomeIcon from '@mui/icons-material/Home';
+import { Styles } from '@/types/Styles';
 
 type Props = {
   roomId: string;
@@ -25,7 +27,8 @@ const LeaveButton = (props: Props) => {
         style={styles.button}
         onClick={handleLeaveRoom}
       >
-        ホームへ
+        <HomeIcon />
+        ホーム
       </button>
     </Link>
   );
@@ -33,9 +36,19 @@ const LeaveButton = (props: Props) => {
 
 export default LeaveButton;
 
-const styles = {
+const styles: Styles = {
   button: {
-    color: 'black',
-    backgroundColor: 'white',
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    gap: 10,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    backgroundColor: 'transparent',
+    border: '2px solid white',
+    borderRadius: 400,
+    padding: '10px 20px',
+    margin: '50px',
   },
 };
