@@ -201,18 +201,14 @@ export default function Home() {
           initial={{
             scale: 0,
             x: -650
-            // rotate: 200,
           }}
-          whileHover={{
-            scale: 1.2,
-            transition: {
-              delay: 0,
-            }
-          }}
-
-          // whileTap={{
-          //   scale: 1
+          // whileHover={{
+          //   scale: 1.2,
+          //   transition: {
+          //     delay: 0,
+          //   }
           // }}
+
           style={styles.credit} href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers
 
         </motion.a>
