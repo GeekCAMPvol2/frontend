@@ -53,8 +53,34 @@ const GameTimeCard = () => {
 
   return (
     <div style={styles.container}>
-      <h2>TIME LIMIT</h2>
-      <h2>{time}</h2>
+      {/* <h2>TIME LIMIT</h2> */}
+      {/* <h2>{time}</h2> */}
+      <div style={{
+        textAlign: "left",
+        fontWeight: "bold",
+        fontSize: 26,
+        paddingLeft: 20,
+        paddingTop: 10,
+        color: "rgb(199 81 250)",
+        textShadow: "0 0 5px rgb(199 81 250)"
+      }}>Remain</div>
+      <div
+        style={{
+          textAlign: "right",
+          paddingRight: 30,
+          fontSize: 50,
+        }}
+      >
+        {time}
+        <span
+          style={{
+            marginLeft: 20,
+            fontSize: 20
+          }}
+        >
+          sec
+        </span>
+      </div>
     </div>
   );
 };
@@ -65,11 +91,12 @@ const styles: Styles = {
   container: {
     minHeight: '150px',
     width: '100%',
-    border: '2px solid #000',
-    borderRadius: '10px',
+    // border: '2px solid #000',
+    // borderRadius: '10px',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    textAlign: "left",
   },
 };

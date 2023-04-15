@@ -32,6 +32,7 @@ import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from 'framer-motion';
 import { Background } from '@/components/elements/background';
+import { SigninButton } from '@/components/index/SigninButton';
 
 export default function Home() {
   const router = useRouter();
@@ -133,34 +134,52 @@ export default function Home() {
         <Title />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
-          <input
-            type="text"
-            style={styles.textInput}
-            ref={playerNameRef}
-            placeholder="名前を入力"
-            onFocus={(e) => e.target.select()}
-            maxLength={15}
-          />
-          {/* {userId !== undefined ? (
-            <MainButton
-              name="サインアウト"
-              onClick={firebaseSignOut}
-              delay={0}
-              color={''}
+          <div style={{
+            display: "flex",
+            margin: "0 auto"
+          }}>
+            <input
+              type="text"
+              style={styles.textInput}
+              ref={playerNameRef}
+              placeholder='名前を入力'
+              defaultValue="ななし"
+
+              onFocus={(e) => e.target.select()}
+              maxLength={15}
+
             />
-          ) : (
-            <MainButton
-              name="サインイン"
-              onClick={firebaseSignIn}
-              delay={0}
-              color={''}
-            />
-          )}
-          <MainButton
+            {userId !== undefined ? (
+              <SigninButton
+                name="サインアウト"
+                onClick={firebaseSignOut}
+                delay={0}
+                color="rgb(255, 255, 255)"
+                onHoverStart={() =>
+                  handleOnHover('rgb(199, 81, 250)')
+                }
+              />
+            ) : (
+              <SigninButton
+                name="サインイン"
+                onClick={firebaseSignIn}
+                delay={0}
+                color="rgb(255, 255, 255)"
+                onHoverStart={() =>
+                  handleOnHover('rgb(199, 81, 250)')
+                }
+              />
+            )}
+          </div>
+
+          {/* <MainButton
             name="遊び方"
             onClick={handleSelectTutorial}
             delay={0}
-            color={''}
+            color="rgb(255, 255, 255)"
+            onHoverStart={() =>
+              handleOnHover('rgb(199, 81, 250)')
+            }
           /> */}
           <MainButton
             delay={0.1}

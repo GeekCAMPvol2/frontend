@@ -13,7 +13,17 @@ const ItemNameCard = () => {
     <div style={styles.container}>
       {item[crrQuizNum] && (
         <div>
+          <div
+            style={{
+              fontWeight: "bold",
+              textAlign: "left",
+              color: "rgb(199,81,250)",
+              textShadow: "0 0 5px rgb(199,81,250)",
+              fontSize: 26
+            }}
+          >Name </div>
           <h1 style={styles.itemName}>
+
             {item[crrQuizNum].quiz}
           </h1>
           {router.pathname === '/solo/quiz' ? (
@@ -36,10 +46,13 @@ const styles: Styles = {
     margin: '50px 0',
   },
   itemName: {
-    color: 'black',
+    color: '#fff',
     width: '100%',
     textAlign: 'center',
     fontSize: '30px',
     maxHeight: '100px',
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis"
   },
 };
