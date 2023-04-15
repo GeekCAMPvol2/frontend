@@ -37,7 +37,7 @@ const Fin = () => {
               </div>
               <p>
                 差額金額:
-                {keyPadNumArr[index] - item.answer}
+                {keyPadNumArr[index]}
               </p>
             </div>
           ))}
