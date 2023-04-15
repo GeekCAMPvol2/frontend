@@ -47,7 +47,7 @@ const styles: Styles = {
   },
   itemName: {
     color: '#fff',
-    width: '100%',
+    width: '1000px',
     textAlign: 'center',
     fontSize: '30px',
     maxHeight: '100px',
