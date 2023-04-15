@@ -1,4 +1,4 @@
-import { Background } from '@/components/elements/background';
+import { Background } from '@/components/elements/Background';
 import AnsQuizButton from '@/components/game/AnsQuizButton';
 import AnswerCard from '@/components/game/AnswerCard';
 import ItemNameCard from '@/components/game/ItemNameCard';

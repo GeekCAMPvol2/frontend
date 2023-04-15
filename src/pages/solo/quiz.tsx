@@ -12,7 +12,7 @@ import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { Background } from '@/components/elements/background';
+import { Background } from '@/components/elements/Background';
 import { Title } from '@/components/index/Title';
 
 const Quiz = () => {
