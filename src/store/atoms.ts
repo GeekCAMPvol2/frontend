@@ -30,7 +30,7 @@ export const firebaseAuthLastUpdatedAtState = atom<number>({
 // 取得する問題数
 export const getItemNumState = atom<number>({
   key: 'getItemNumState',
-  default: 3,
+  default: 5,
 });
 
 // 現在の問題番号

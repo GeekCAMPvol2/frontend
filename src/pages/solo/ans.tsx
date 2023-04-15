@@ -36,10 +36,7 @@ const Ans = () => {
           <ItemNameCard />
           <div style={styles.itemImageWrapper}>
             <Image
-              src={
-                item[crrQuizNum].images[0]
-                  .imageUrl as string
-              }
+              src={item[crrQuizNum].images[0].imageUrl!}
               alt={item[crrQuizNum].quiz}
               width={400}
               height={400}

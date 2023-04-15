@@ -9,6 +9,7 @@ import {
 import { useRouter } from 'next/router';
 import { auth, functions } from '../../lib/firebaseConfig';
 import {
+  crrQuizNumState,
   firebaseAuthLastUpdatedAtState,
   getItemNumState,
   itemData,
@@ -16,6 +17,7 @@ import {
 import { useRecoilState } from 'recoil';
 import { httpsCallable } from 'firebase/functions';
 import { getItemData } from './api/game';
+import { useEffect } from 'react';
 
 export default function Home() {
   const router = useRouter();
@@ -29,17 +31,15 @@ export default function Home() {
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
 
+  const [crrQuizNum, setCrrQuizNum] =
+    useRecoilState(crrQuizNumState);
+
   const handleSelectTutorial = () => {};
 
-  const resultDataArr: any = [];
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
-    for (let i = 0; i < getItemNum; i++) {
-      const resultData = await getItemData();
-      resultDataArr.push(resultData);
-    }
-    setItem(resultDataArr);
-    console.log(item);
+    const resultData = await getItemData();
+    setItem([resultData]);
     router.push(path);
   };
 
@@ -62,6 +62,12 @@ export default function Home() {
     console.log(roomId.data);
     // handlePlayGame('');
   };
+
+  // 初期化
+  useEffect(() => {
+    setItem([]);
+    setCrrQuizNum(0);
+  }, []);
 
   return (
     <div>
