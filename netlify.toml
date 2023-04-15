@@ -1,15 +1,7 @@
-build:
-  command: yarn build
-  commandOrigin: config
-  environment:
-    - REVIEW_ID
-    - NEXT_PRIVATE_TARGET
-  publish: /opt/build/repo/.next
-  publishOrigin: config
-plugins:
-  - inputs: {}
-    origin: config
-    package: '@netlify/plugin-nextjs'
-  - inputs: {}
-    origin: config
-    package: netlify-plugin-cache-nextjs
+[build]
+  publish = ".next"
+  command = "yarn build"
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+[[plugins]]
+  package = "netlify-plugin-cache-nextjs"
