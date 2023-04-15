@@ -11,7 +11,6 @@ const AnswerCard = () => {
     useRecoilState(keyPadNumState);
   const [crrQuizNum, setCrrQuizNum] =
     useRecoilState(crrQuizNumState);
-
   return (
     <div>
       {item[crrQuizNum] && (
