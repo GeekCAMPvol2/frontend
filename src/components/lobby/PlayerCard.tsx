@@ -1,6 +1,4 @@
 import { Styles } from '@/types/Styles';
-import React from 'react';
-import { LobbyButton } from './LobbyButton';
 import { UserImg } from '../UserImg';
 
 type Props = {
@@ -12,7 +10,9 @@ export const PlayerCard = (props: Props) => {
 
   return (
     <div style={styles.container}>
-      <UserImg userId={name} />
+      <div style={styles.imageWrapper}>
+        <UserImg userId={name} />
+      </div>
       <h2>{name}</h2>
     </div>
   );
@@ -22,12 +22,13 @@ const styles: Styles = {
   container: {
     textAlign: 'center',
   },
-  image: {
+  imageWrapper: {
+    overflow: 'hidden',
     width: 150,
     height: 150,
-    objectFit: 'cover',
-    borderRadius: '50%',
-    margin: '0 60px',
+    backgroundColor: '#00000067',
+    borderRadius: '100%',
+    margin: '0 50px',
     marginBottom: 20,
   },
 };
