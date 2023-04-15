@@ -31,6 +31,7 @@ import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from "framer-motion"
+import { Background } from '@/components/elements/background';
 
 export default function Home() {
   const router = useRouter();
@@ -39,7 +40,7 @@ export default function Home() {
 
   const [item, setItem] = useRecoilState(itemData);
 
-  const [hoverdColor, sethoverdColor] = useState<string>(); //選択中のボタン
+  const [hoverdColor, sethoverdColor] = useState<string>("rgb(199, 81, 250)"); //選択中のボタン
   const [countDown, setcountDown] = useState<number>(99)
 
   const handleOnHover = (color: string) => {
@@ -69,7 +70,7 @@ export default function Home() {
       setTimeout(() => {
         router.push(path);
 
-      }, 500);
+      }, 800);
     }
   };
 
@@ -118,7 +119,7 @@ export default function Home() {
         position: 'absolute',
         top: 0,
         // background: `radial-gradient( #111 50% ,#fff  )`,
-        background: `#111`,
+        background: `rgb(0 0 0 /0)`,
         transitionDuration: '5s',
       }}
     >
@@ -185,7 +186,8 @@ export default function Home() {
               scale: 1
             }}
             animate={{
-              scale: 1.1
+              scale: 1.1,
+              opacity: [0, 1]
             }}
 
             transition={{
@@ -204,6 +206,7 @@ export default function Home() {
           </motion.div>
         </div>
       }
+      <Background selected={hoverdColor} />
     </div >
 
   );
