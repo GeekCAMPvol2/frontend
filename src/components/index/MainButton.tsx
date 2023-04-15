@@ -6,14 +6,14 @@ type Props = {
     delay: number
     color: string
     name: string
-      disabled?: boolean;
+    disabled?: boolean;
     onClick: () => void
     onHoverStart: () => void
 }
 
 export const MainButton = (props: Props) => {
     const { delay, color, name, onClick, onHoverStart, disabled = false,
- } = props
+    } = props
 
     return (
         <motion.button
@@ -37,7 +37,9 @@ export const MainButton = (props: Props) => {
                 opacity: 0,
                 rotate: 200,
             }}
+            exit={{
 
+            }}
             whileHover={{
                 opacity: 1,
                 scale: 1.1,
@@ -61,7 +63,7 @@ export const MainButton = (props: Props) => {
                 ...styles.button,
             }}
             onClick={onClick}
-                  disabled={disabled}
+            disabled={disabled}
         >{name}
         </motion.button>
     )

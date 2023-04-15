@@ -29,7 +29,7 @@ export const Title = () => {
                 textShadow: `0px 0px 5px #fff`,
 
             }}>
-            $
+                $
             </span>
             <span
                 style={{

@@ -30,6 +30,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
+import { motion, useAnimate } from "framer-motion"
 
 export default function Home() {
   const router = useRouter();
@@ -39,10 +40,12 @@ export default function Home() {
   const [item, setItem] = useRecoilState(itemData);
 
   const [hoverdColor, sethoverdColor] = useState<string>(); //選択中のボタン
+  const [countDown, setcountDown] = useState<number>(99)
 
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
   };
+  const controll = useAnimate()
 
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
@@ -54,13 +57,27 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
+
+  const fncCountDown = (count: number, path: string) => {
+    setcountDown(count);
+    if (count > 1) {
+      setTimeout(() => {
+        fncCountDown(count - 1, path);
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        router.push(path);
+
+      }, 500);
+    }
+  };
 
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
     const resultData = await getItemData();
     setItem([resultData]);
-    router.push(path);
+    fncCountDown(3, path)
   };
 
   // multiプレイ開始ボタン
@@ -111,13 +128,13 @@ export default function Home() {
         <div style={styles.buttonContainer}>
           <input
             type="text"
-            style={{
-              border: '1px solid #fff',
-              backgroundColor: '#000',
-            }}
+            style={styles.textInput}
             ref={playerNameRef}
-            defaultValue="ななし"
+            placeholder='名前を入力'
+                     defaultValue="ななし"
             onFocus={(e) => e.target.select()}
+            maxLength={15}
+
           />
           {/* {userId !== undefined ? (
             <MainButton
@@ -161,7 +178,34 @@ export default function Home() {
           />
         </div>
       </main>
-    </div>
+      {countDown < 4 &&
+        <div style={styles.countdown}>
+          <motion.div
+            initial={{
+              scale: 1
+            }}
+            animate={{
+              scale: 1.1
+            }}
+
+            transition={{
+              duration: 0.5,
+              repeatDelay: 0.5,
+              repeat: 5
+            }}
+          >
+            <div style={{
+              ...styles.countTime,
+              border: `20px solid ${hoverdColor}`,
+              color: hoverdColor,
+              boxShadow: `0 0 30px ${hoverdColor}`,
+            }}>{countDown}
+            </div>
+          </motion.div>
+        </div>
+      }
+    </div >
+
   );
 }
 
@@ -181,4 +225,37 @@ const styles: Styles = {
     textAlign: 'center',
     backgroundColor: 'rgb(0 0 0 /0)',
   },
+  textInput: {
+    backgroundColor: "rgb(0 0 0 /0)",
+    border: "2px solid #fff",
+    boxShadow: "0 0 5px #fff",
+    fontSize: 30,
+    alignSelf: "center",
+    width: 500,
+    textAlign: "center",
+    borderRadius: 100,
+    padding: "10px 20px",
+    marginTop: 30,
+  },
+  countdown: {
+    position: "absolute",
+    backgroundColor: "rgb(0 0 0 /.5)",
+    top: 0,
+    width: "100vw",
+    height: "100vh",
+    zIndex: 9999,
+    verticalAlign: "middle",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  countTime: {
+    borderRadius: "50%",
+    width: 800,
+    height: 800,
+    border: "15px solid #fff",
+    fontSize: 400,
+    lineHeight: 2,
+    textAlign: "center"
+  }
 };
