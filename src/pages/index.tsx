@@ -86,22 +86,32 @@ export default function Home() {
             <MainButton
               name="サインアウト"
               onClick={firebaseSignOut}
+              delay={0}
+              color={''}
             />
           ) : (
             <MainButton
               name="サインイン"
               onClick={firebaseSignIn}
+              delay={0}
+              color={''}
             />
           )}
           <MainButton
             name="遊び方"
             onClick={handleSelectTutorial}
+            delay={0}
+            color={''}
           />
           <MainButton
+            delay={0.1}
+            color="rgb(199, 81, 250)"
             name="一人で遊ぶ"
             onClick={() => handlePlayGame('/solo/quiz')}
           />
           <MainButton
+            delay={0.2}
+            color="rgb(0, 225, 255)"
             name="二人で遊ぶ"
             onClick={() => {}}
             disabled={userId === undefined}

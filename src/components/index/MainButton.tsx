@@ -3,16 +3,38 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 type Props = {
+  delay: number;
+  color: string;
   name: string;
   onClick: () => void;
   disabled?: boolean;
 };
 
 export const MainButton = (props: Props) => {
-  const { name, onClick, disabled = false } = props;
+  const {
+    delay,
+    color,
+    name,
+    onClick,
+    disabled = false,
+  } = props;
 
   return (
     <motion.button
+      animate={{
+        x: 0,
+        opacity: 1,
+        rotate: 0,
+        transition: {
+          duration: 0.3,
+          delay: delay,
+        },
+      }}
+      initial={{
+        x: -1750,
+        opacity: 0,
+        rotate: 90,
+      }}
       whileHover={{
         opacity: 1,
         scale: 1.1,
@@ -20,8 +42,11 @@ export const MainButton = (props: Props) => {
       whileTap={{
         scale: 1,
       }}
-      initial={{ opacity: 0.5 }}
-      style={styles.button}
+      style={{
+        ...styles.button,
+        border: `5px solid ${color}`,
+        color: color,
+      }}
       onClick={onClick}
       disabled={disabled}
     >
@@ -35,10 +60,10 @@ const styles: Styles = {
     height: 100,
     width: 500,
     color: '#fff',
-    backgroundColor: '#000',
+    backgroundColor: 'rgb(5 0 0/0)',
     border: '5px solid #fff',
     borderRadius: 20,
-    boxShadow: '5px 5px 5px #000',
+    // boxShadow: "0px 0px 30px #444",
     opacity: 0.8,
     margin: '0 auto',
     marginTop: 50,
