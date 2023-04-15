@@ -12,6 +12,7 @@ import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { Background } from '@/components/elements/background';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -57,6 +58,7 @@ const Quiz = () => {
           <AnsQuizButton />
         </div>
       </div>
+      <Background selected='rgb(199, 81, 250)' />
     </div>
   );
 };
