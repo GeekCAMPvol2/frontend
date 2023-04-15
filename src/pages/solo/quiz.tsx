@@ -40,12 +40,14 @@ const Quiz = () => {
         <div style={styles.leftWrapper}>
           <ItemNameCard />
           <div style={styles.itemImageWrapper}>
-            <Image
-              src={item[crrQuizNum].images[0].imageUrl!}
-              alt={item[crrQuizNum].quiz}
-              width={400}
-              height={400}
-            />
+            {item[crrQuizNum] && (
+              <Image
+                src={item[crrQuizNum].images[0].imageUrl!}
+                alt={item[crrQuizNum].quiz}
+                width={400}
+                height={400}
+              />
+            )}
           </div>
         </div>
 
