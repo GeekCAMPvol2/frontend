@@ -11,17 +11,21 @@ const ItemNameCard = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.itemName}>
-        {item[crrQuizNum].quiz}
-      </h1>
-      {router.pathname === '/solo/quiz' ? (
-        <h2>
-          <span>????????</span>円
-        </h2>
-      ) : (
-        <h2>
-          <span>{item[crrQuizNum].answer}</span>円
-        </h2>
+      {item[crrQuizNum] && (
+        <>
+          <h1 style={styles.itemName}>
+            {item[crrQuizNum].quiz}
+          </h1>
+          {router.pathname === '/solo/quiz' ? (
+            <h2>
+              <span>????????</span>円
+            </h2>
+          ) : (
+            <h2>
+              <span>{item[crrQuizNum].answer}</span>円
+            </h2>
+          )}
+        </>
       )}
     </div>
   );
