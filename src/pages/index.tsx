@@ -31,7 +31,7 @@ import { Title } from '@/components/index/Title';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from 'framer-motion';
-import { Background } from '@/components/elements/background';
+import { Background } from '@/components/elements/Background';
 import { SigninButton } from '@/components/index/SigninButton';
 
 export default function Home() {
