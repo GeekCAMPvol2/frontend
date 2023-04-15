@@ -24,11 +24,6 @@ const Lobby = () => {
   const userId = useFirebaseUserId();
   const playerNameRef = useRef<HTMLInputElement>(null);
 
-  const player1 = {
-    playerName: 'aaa',
-    playerImg: '/flower2.jpg',
-  };
-
   useEffect(() => {
     console.log(roomId);
     if (roomId != '') {
@@ -82,7 +77,6 @@ const Lobby = () => {
             <PlayerCard
               key={index}
               name={player.playerName}
-              playerImg={player1.playerImg}
             />
           ))}
         </div>

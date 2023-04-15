@@ -17,11 +17,6 @@ const Lobby = () => {
   const [roomId, setRoomId] = useState('');
   const [players, setPlayers] = useState<Player[]>([]);
 
-  const player1 = {
-    playerName: 'aaa',
-    playerImg: '/flower2.jpg',
-  };
-
   useEffect(() => {
     if (roomId != '') {
       const unsub = onSnapshot(
@@ -58,11 +53,7 @@ const Lobby = () => {
         <h1 style={styles.title}>PriceQuest</h1>
         <div style={styles.playerContainer}>
           {players.map((player, index) => (
-            <PlayerCard
-              key={index}
-              name={player.playerName}
-              playerImg={player1.playerImg}
-            />
+            <PlayerCard key={index} name={player.userId} />
           ))}
         </div>
 
