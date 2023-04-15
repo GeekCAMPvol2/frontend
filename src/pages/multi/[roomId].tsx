@@ -9,26 +9,28 @@ import {
   doc,
   onSnapshot,
 } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { db, functions } from '@/lib/firebase';
 import { Player } from '@/types/Player';
 import LeaveButton from '@/components/multi/LeaveButton';
 import useLeavePageConfirmation from '@/hooks/useLeavePageConfirmation';
+import {
+  HttpsCallable,
+  httpsCallable,
+} from '@firebase/functions';
 
 const Lobby = () => {
   const router = useRouter();
   const [roomId, setRoomId] = useState('');
+  const [isReady, setIsReady] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
-  useLeavePageConfirmation(roomId);
+  // useLeavePageConfirmation(roomId);
 
   useEffect(() => {
     if (roomId != '') {
-      const unsub = onSnapshot(
-        doc(db, 'rooms', roomId),
-        (doc) => {
-          console.log(doc.data());
-          setPlayers(doc.data()!.members);
-        }
-      );
+      onSnapshot(doc(db, 'rooms', roomId), (doc) => {
+        console.log(doc.data());
+        setPlayers(doc.data()!.members);
+      });
     }
   }, [roomId]);
 
@@ -46,6 +48,21 @@ const Lobby = () => {
     navigator.clipboard.writeText(
       `${baseURL}/multi/lobby/${roomId}`
     );
+  };
+
+  const handleReady = () => {
+    setMemberReady(roomId);
+    setIsReady(true);
+  };
+
+  const setMemberReady = async (roomId: string) => {
+    const setMemberReadyCallback: HttpsCallable<
+      { roomId: string },
+      undefined
+    > = httpsCallable(functions, 'setMemberReady');
+    await setMemberReadyCallback({
+      roomId: roomId,
+    });
   };
 
   return (
@@ -68,7 +85,11 @@ const Lobby = () => {
             name="URLをコピー"
             onClick={handleCopy}
           />
-          <LobbyButton name="準備完了" onClick={() => {}} />
+          <LobbyButton
+            disabled={isReady}
+            name="準備完了"
+            onClick={handleReady}
+          />
           {'何人OK/参加人数'}
         </div>
       </div>
