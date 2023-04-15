@@ -9,6 +9,9 @@ type props = {
 };
 
 const UserImg = ({ userId }: props) => {
+  if (userId == '') {
+    userId = 'NoName';
+  }
   const [userImgCache, setUserImgCache] = useAtom(
     userImgCacheAtom
   );
@@ -42,6 +45,8 @@ const styles: Styles = {
     aspectRatio: '1',
     width: '100%',
     height: '100%',
+    overflow: 'hidden',
+    borderRadius: '100%',
   },
   loading: {
     transform: 'scale(75%)',

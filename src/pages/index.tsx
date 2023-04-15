@@ -33,6 +33,7 @@ import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from "framer-motion"
 import { Background } from '@/components/elements/background';
 
+
 export default function Home() {
   const router = useRouter();
   const userId = useFirebaseUserId();
@@ -43,10 +44,11 @@ export default function Home() {
   const [hoverdColor, sethoverdColor] = useState<string>("rgb(199, 81, 250)"); //選択中のボタン
   const [countDown, setcountDown] = useState<number>(99)
 
+
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
   };
-  const controll = useAnimate()
+  const controll = useAnimate();
 
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
@@ -58,7 +60,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => { };
+  const handleSelectTutorial = () => {};
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
@@ -71,6 +73,7 @@ export default function Home() {
         router.push(path);
 
       }, 800);
+
     }
   };
 
@@ -78,7 +81,7 @@ export default function Home() {
   const handlePlayGame = async (path: string) => {
     const resultData = await getItemData();
     setItem([resultData]);
-    fncCountDown(3, path)
+    fncCountDown(3, path);
   };
 
   // multiプレイ開始ボタン
@@ -133,9 +136,9 @@ export default function Home() {
             ref={playerNameRef}
             placeholder='名前を入力'
             defaultValue="ななし"
+
             onFocus={(e) => e.target.select()}
             maxLength={15}
-
           />
           {/* {userId !== undefined ? (
             <MainButton
@@ -179,21 +182,21 @@ export default function Home() {
           />
         </div>
       </main>
-      {countDown < 4 &&
+      {countDown < 4 && (
         <div style={styles.countdown}>
           <motion.div
             initial={{
-              scale: 1
+              scale: 1,
             }}
             animate={{
               scale: 1.1,
               opacity: [0, 1]
-            }}
 
+            }}
             transition={{
               duration: 0.5,
               repeatDelay: 0.5,
-              repeat: 5
+              repeat: 5,
             }}
             style={{
               ...styles.countTime,
@@ -208,6 +211,7 @@ export default function Home() {
       }
       <Background selected={hoverdColor} />
     </div >
+
 
   );
 }
@@ -229,37 +233,39 @@ const styles: Styles = {
     backgroundColor: 'rgb(0 0 0 /0)',
   },
   textInput: {
-    backgroundColor: "rgb(0 0 0 /0)",
-    border: "2px solid #fff",
-    boxShadow: "0 0 5px #fff",
+    backgroundColor: 'rgb(0 0 0 /0)',
+    border: '2px solid #fff',
+    boxShadow: '0 0 5px #fff',
     fontSize: 30,
-    alignSelf: "center",
+    alignSelf: 'center',
     width: 500,
-    textAlign: "center",
+    textAlign: 'center',
     borderRadius: 100,
-    padding: "10px 20px",
+    padding: '10px 20px',
     marginTop: 30,
   },
   countdown: {
-    position: "absolute",
-    backgroundColor: "rgb(0 0 0 /.5)",
+    position: 'absolute',
+    backgroundColor: 'rgb(0 0 0 /.5)',
     top: 0,
-    width: "100vw",
-    height: "100vh",
+    width: '100vw',
+    height: '100vh',
     zIndex: 9999,
-    verticalAlign: "middle",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
+    verticalAlign: 'middle',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   countTime: {
+
     backgroundColor: "rgb(0 0 0 /.5)",
     borderRadius: "50%",
+
     width: 800,
     height: 800,
-    border: "15px solid #fff",
+    border: '15px solid #fff',
     fontSize: 400,
     lineHeight: 2,
-    textAlign: "center"
-  }
+    textAlign: 'center',
+  },
 };

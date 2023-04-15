@@ -86,7 +86,7 @@ const Lobby = () => {
           <input
             type="text"
             ref={playerNameRef}
-            defaultValue="ななし"
+            placeholder="名前を入力"
             style={{ backgroundColor: '#000' }}
           />
           <LobbyButton
