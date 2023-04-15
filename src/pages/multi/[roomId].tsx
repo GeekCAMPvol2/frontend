@@ -11,11 +11,14 @@ import {
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { Player } from '@/types/Player';
+import LeaveButton from '@/components/multi/LeaveButton';
+import useLeavePageConfirmation from '@/hooks/useLeavePageConfirmation';
 
 const Lobby = () => {
   const router = useRouter();
   const [roomId, setRoomId] = useState('');
   const [players, setPlayers] = useState<Player[]>([]);
+  useLeavePageConfirmation(roomId);
 
   const player1 = {
     playerName: 'aaa',
@@ -54,7 +57,7 @@ const Lobby = () => {
     <div>
       {/* ホームボタンコンポーネント */}
       <div>
-        <HomeButton />
+        <LeaveButton roomId={roomId} />
         <h1 style={styles.title}>PriceQuest</h1>
         <div style={styles.playerContainer}>
           {players.map((player, index) => (
