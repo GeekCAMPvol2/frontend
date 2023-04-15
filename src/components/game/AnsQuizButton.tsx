@@ -1,7 +1,9 @@
+import { getItemData } from '@/pages/api/game';
 import {
   ansQuizState,
   crrQuizNumState,
   getItemNumState,
+  itemData,
 } from '@/store/atoms';
 import Link from 'next/link';
 import React from 'react';
@@ -14,6 +16,12 @@ const AnsQuizButton = () => {
     useRecoilState(crrQuizNumState);
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
+  const [item, setItem] = useRecoilState(itemData);
+
+  const handleSubmit = async () => {
+    const resultData = await getItemData();
+    setItem([...item, resultData]);
+  };
 
   return (
     <>
@@ -25,7 +33,12 @@ const AnsQuizButton = () => {
       ) : (
         <Link href={ansQuizUrl}>
           {ansQuizUrl === '/solo/ans' ? (
-            <button style={styles.button}>SUBMIT</button>
+            <button
+              style={styles.button}
+              onClick={() => handleSubmit()}
+            >
+              SUBMIT
+            </button>
           ) : (
             <button
               style={styles.button}
