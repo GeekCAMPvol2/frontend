@@ -121,9 +121,12 @@ export default function Home() {
         height: '100vh',
         position: 'absolute',
         top: 0,
+        left: 0,
         // background: `radial-gradient( #111 50% ,#fff  )`,
         background: `rgb(0 0 0 /0)`,
         transitionDuration: '5s',
+        overflowX: "hidden",
+        overflowY: "hidden"
       }}
     >
       <main style={styles.main}>
@@ -182,7 +185,37 @@ export default function Home() {
           />
         </div>
         {/* <!-- Rakuten Web Services Attribution Snippet FROM HERE --> */}
-        <a style={styles.credit} href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a>
+        <motion.a
+          animate={{
+            x: 0,
+            scale: 1,
+            opacity: 1,
+            rotate: 0,
+            transition: {
+              type: "spring",
+              stiffness: 100,
+              duration: 0.3,
+              delay: 1
+            }
+          }}
+          initial={{
+            scale: 0,
+            x: -650
+            // rotate: 200,
+          }}
+          whileHover={{
+            scale: 1.2,
+            transition: {
+              delay: 0,
+            }
+          }}
+
+          // whileTap={{
+          //   scale: 1
+          // }}
+          style={styles.credit} href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers
+
+        </motion.a>
         {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
       </main>
       {countDown < 4 && (
@@ -223,10 +256,13 @@ const styles: Styles = {
   htmlDiv: {},
   main: {
     width: 1000,
+    height: 900,
+    // paddingBottom:300,
     margin: '0 auto',
     marginTop: 100,
     textAlign: 'center',
     backgroundColor: 'rgb(0 0 0 /0)',
+    overflow: 'hidden'
   },
   buttonContainer: {
     display: 'flex',
@@ -274,7 +310,7 @@ const styles: Styles = {
   credit: {
     color: "#fff",
     position: "absolute",
-    bottom: 100,
+    bottom: 50,
     left: 0,
     width: "100vw",
     textAlign: "center"

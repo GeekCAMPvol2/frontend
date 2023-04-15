@@ -11,6 +11,11 @@
 
 }
 
+html, body {
+  overflow: 'hidden'
+
+}
+
 a,
 button {
   color: transparent;
