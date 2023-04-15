@@ -3,15 +3,31 @@ import React from 'react'
 import { motion } from "framer-motion"
 
 type Props = {
+    delay: number
     name: string
     onClick: () => void
 }
 
 export const MainButton = (props: Props) => {
-    const { name, onClick } = props
+    const { delay, name, onClick } = props
 
     return (
         <motion.button
+            animate={{
+                x: 0,
+                opacity: 1,
+                rotate: 0,
+                transition: {
+                    duration: 0.3,
+                    delay: delay
+                }
+            }}
+            initial={{
+                x: -1750,
+                opacity: 0,
+                rotate: 90,
+            }}
+
             whileHover={{
                 opacity: 1,
                 scale: 1.1
@@ -19,7 +35,6 @@ export const MainButton = (props: Props) => {
             whileTap={{
                 scale: 1
             }}
-            initial={{ opacity: 0.5 }}
             style={styles.button}
             onClick={onClick}
         >{name}

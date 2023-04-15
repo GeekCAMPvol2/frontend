@@ -29,7 +29,7 @@ export default function Home() {
   const [getItemNum, setGetItemNum] =
     useRecoilState(getItemNumState);
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
 
   const resultDataArr: any = [];
   // ゲーム開始ボタン
@@ -74,14 +74,17 @@ export default function Home() {
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
           <MainButton
+            delay={0}
             name="遊び方"
             onClick={handleSelectTutorial}
           />
           <MainButton
+            delay={0.1}
             name="一人で遊ぶ"
             onClick={() => handlePlayGame('/solo/quiz')}
           />
           <MainButton
+            delay={0.2}
             name="二人で遊ぶ"
             onClick={() => firebaseSignIn()}
           />
