@@ -26,13 +26,14 @@ import {
   httpsCallable,
 } from 'firebase/functions';
 import { getItemData } from './api/game';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { error } from 'console';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 
 export default function Home() {
   const router = useRouter();
   const userId = useFirebaseUserId();
+  const playerNameRef = useRef<HTMLInputElement>(null);
 
   const [item, setItem] = useRecoilState(itemData);
 
@@ -55,7 +56,12 @@ export default function Home() {
     router.push(path);
   };
 
-  const handlePlayMultiGame = () => {};
+  const handlePlayMultiGame = async () => {
+    const roomId = await createRoom(
+      playerNameRef.current!.value
+    );
+    router.push(`multi/${roomId}`);
+  };
 
   const createRoom = async (
     playerName: string
@@ -88,6 +94,11 @@ export default function Home() {
         </h1>
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
+          <input
+            type="text"
+            style={{ border: '1px solid #fff' }}
+            ref={playerNameRef}
+          />
           {userId !== undefined ? (
             <MainButton
               name="サインアウト"
@@ -119,7 +130,7 @@ export default function Home() {
             delay={0.2}
             color="rgb(0, 225, 255)"
             name="二人で遊ぶ"
-            onClick={() => {}}
+            onClick={handlePlayMultiGame}
             disabled={userId === undefined}
           />
         </div>
