@@ -17,7 +17,7 @@ import {
   HttpsCallable,
   httpsCallable,
 } from '@firebase/functions';
-import { Background } from '@/components/elements/background';
+import { Background } from '@/components/elements/Background';
 import { MultiQuestion } from '@/types/MultiQuestion';
 
 const Lobby = () => {

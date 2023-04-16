@@ -1,5 +1,5 @@
 import HomeButton from '@/components/elements/HomeButton';
-import { Background } from '@/components/elements/background';
+import { Background } from '@/components/elements/Background';
 import { LobbyButton } from '@/components/lobby/LobbyButton';
 import { PlayerCard } from '@/components/lobby/PlayerCard';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
