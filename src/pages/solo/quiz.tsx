@@ -36,25 +36,30 @@ const Quiz = () => {
   }, []);
 
   return (
-    <motion.div style={styles.container}
-      initial={{
-        scale: 0
-      }}
-      animate={{
-        scale: 1
-      }}
-      transition={{
-        type: 'spring',
-        stiffness: 150,
-        duration: 0.5,
-      }}
+    <div style={styles.container}
+
     >
       <HomeButton />
       {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
       <span style={styles.titleWrapper}>
         <Title canBounding={false} />
       </span>
-      <div style={styles.wrapper}>
+      <motion.div style={styles.wrapper}
+        initial={{
+          scale: 0
+        }}
+        animate={{
+          scale: 1
+        }}
+        exit={{
+          opacity: 0
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 150,
+          duration: 0.3,
+        }}
+      >
         {/* 左側 */}
         <div style={styles.leftWrapper}>
           <ItemNameCard />
@@ -79,9 +84,9 @@ const Quiz = () => {
           <KeyPadCard />
           <AnsQuizButton />
         </div>
-      </div>
+      </motion.div>
       <Background selected='rgb(199, 81, 250)' />
-    </motion.div>
+    </div>
   );
 };
 
