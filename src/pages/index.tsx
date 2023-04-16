@@ -61,7 +61,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => { };
+  const handleSelectTutorial = () => {};
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
@@ -134,18 +134,19 @@ export default function Home() {
         <Title canBounding={true} />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
-          <div style={{
-            display: "flex",
-            margin: "0 auto"
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              margin: '0 auto',
+            }}
+          >
             <input
               type="text"
               style={styles.textInput}
               ref={playerNameRef}
-              placeholder='名前を入力'
+              placeholder="名前を入力"
               onFocus={(e) => e.target.select()}
               maxLength={15}
-
             />
             {userId !== undefined ? (
               <SigninButton
@@ -191,7 +192,7 @@ export default function Home() {
           <MainButton
             delay={0.2}
             color="rgb(0, 225, 255)"
-            name="二人で遊ぶ"
+            name="みんなで遊ぶ"
             onClick={handlePlayMultiGame}
             disabled={userId === undefined}
             onHoverStart={() =>
