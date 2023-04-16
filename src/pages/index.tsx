@@ -70,9 +70,9 @@ export default function Home() {
         fncCountDown(count - 1, path);
       }, 1000);
     } else {
-      setTimeout(() => {
+      // setTimeout(() => {
         router.push(path);
-      }, 800);
+      // }, 0);
     }
   };
 
@@ -140,7 +140,7 @@ export default function Home() {
         transition={{
           type: 'spring',
           stiffness: 150,
-          duration: 0.5,
+          duration: 0.2,
         }}
         exit={{
           scale: 0

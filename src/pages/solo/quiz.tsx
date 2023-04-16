@@ -15,6 +15,7 @@ import { useRecoilState } from 'recoil';
 import { Background } from '@/components/elements/Background';
 import { Title } from '@/components/index/Title';
 import HomeButton from '@/components/elements/HomeButton';
+import { motion } from "framer-motion"
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -35,7 +36,19 @@ const Quiz = () => {
   }, []);
 
   return (
-    <div style={styles.container}>
+    <motion.div style={styles.container}
+      initial={{
+        scale: 0
+      }}
+      animate={{
+        scale: 1
+      }}
+      transition={{
+        type: 'spring',
+        stiffness: 150,
+        duration: 0.5,
+      }}
+    >
       <HomeButton />
       {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
       <span style={styles.titleWrapper}>
@@ -68,7 +81,7 @@ const Quiz = () => {
         </div>
       </div>
       <Background selected='rgb(199, 81, 250)' />
-    </div>
+    </motion.div>
   );
 };
 
