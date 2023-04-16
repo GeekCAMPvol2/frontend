@@ -28,7 +28,8 @@
     "react-dom": "18.2.0",
     "recoil": "^0.7.7",
     "svg-loaders-react": "^2.2.1",
-    "typescript": "5.0.3"
+    "typescript": "5.0.3",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.34.0",
