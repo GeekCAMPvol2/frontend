@@ -17,7 +17,7 @@ import {
   HttpsCallable,
   httpsCallable,
 } from '@firebase/functions';
-import { Background } from '@/components/elements/background';
+import { Background } from '@/components/elements/Background';
 import { MultiQuestion } from '@/types/MultiQuestion';
 
 const Lobby = () => {
@@ -25,6 +25,9 @@ const Lobby = () => {
   const [roomId, setRoomId] = useState('');
   const [isReady, setIsReady] = useState(false);
   const [players, setPlayers] = useState<Player[]>([]);
+  const [membersReady, setMembersReady] = useState<
+    Record<string, boolean> | undefined
+  >(undefined);
   const [gameStatus, setGameStatus] = useState<
     'INVITING_MEMBERS' | 'GAME_STARTED'
   >('INVITING_MEMBERS');
@@ -38,6 +41,9 @@ const Lobby = () => {
       onSnapshot(doc(db, 'rooms', roomId), (doc) => {
         console.log(doc.data());
         setPlayers(doc.data()!.members);
+        console.log(doc.data()!.membersReadyState);
+        if (doc.data()!.status == 'INVITING_MEMBERS')
+          setMembersReady(doc.data()?.membersReadyState);
         setGameStatus(doc.data()!.status);
         setQuestions(doc.data()!.questions);
       });
@@ -113,12 +119,16 @@ const Lobby = () => {
             </span>
           </h1>
           <div style={styles.playerContainer}>
-            {players.map((player, index) => (
-              <PlayerCard
-                key={index}
-                name={player.playerName}
-              />
-            ))}
+            {players.map((player, index) => {
+              const userId = player.userId;
+              return (
+                <PlayerCard
+                  key={index}
+                  name={player.playerName}
+                  checked={membersReady![userId]}
+                />
+              );
+            })}
           </div>
 
           <div style={styles.buttonContainer}>
