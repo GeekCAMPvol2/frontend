@@ -18,7 +18,7 @@ const Fin = () => {
     <div style={styles.container}>
       <HomeButton />
       <span style={styles.titleWrapper}>
-        <Title />
+        <Title canBounding={false} />
       </span>
       <div style={styles.wrapper}>
         <h1>
@@ -71,8 +71,9 @@ export default Fin;
 
 const styles: Styles = {
   container: {
-    margin: '50px 0',
-    overflowX: 'hidden'
+    margin: '0px 0',
+    overflowX: 'hidden',
+    overflowY: "hidden"
   },
   titleWrapper: {
     textAlign: 'center',

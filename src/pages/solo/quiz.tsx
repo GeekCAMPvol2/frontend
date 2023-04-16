@@ -39,7 +39,7 @@ const Quiz = () => {
       <HomeButton />
       {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
       <span style={styles.titleWrapper}>
-        <Title />
+        <Title canBounding={false} />
       </span>
       <div style={styles.wrapper}>
         {/* 左側 */}

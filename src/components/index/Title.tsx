@@ -1,21 +1,31 @@
 import React from 'react'
 import { motion } from "framer-motion"
 
-export const Title = () => {
+type Props = {
+    canBounding: boolean
+}
+
+export const Title = (props: Props) => {
+    const { canBounding } = props
+
     return (
         <motion.h1
             style={{
                 fontSize: 120,
                 backgroundColor: "rgb(0 0 0 /0)"
             }}
-            animate={{
-                scale: [1.03, 1, 1, 1, 1, 1, 1],
-                // y: [-10, 0, 0, 0, 0, 0],
-                transition: {
-                    repeat: Infinity,
-                    duration: 0.5,
-                }
-            }}
+            animate={
+                canBounding
+                    ? {
+                        scale: [1.03, 1, 1, 1, 1, 1, 1],
+                        // y: [-10, 0, 0, 0, 0, 0],
+                        transition: {
+                            repeat: Infinity,
+                            duration: 0.5,
+                        }
+                    }
+                    : {}
+            }
         >
             <span style={{
                 color: 'rgb(199,81,250)',
