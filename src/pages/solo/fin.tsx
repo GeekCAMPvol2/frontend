@@ -47,11 +47,18 @@ const Fin = () => {
                 WebkitLineClamp: 2,
 
               }}>{item.quiz}</h1>
-              <h2>{item.answer}円</h2>
-              <p>
-                差額金額:
+              <p style={{
+                fontSize: 16
+              }}>金額：{item.answer}円</p>
+              <h1 style={{
+                marginTop: 20,
+                color: "rgb(199, 81, 250)",
+                textShadow: "0 0 5px rgb(199, 81, 250)",
+                fontSize: 30
+              }}>
+                差額金額：<br />
                 {keyPadNumArr[index]}円
-              </p>
+              </h1>
             </div>
           ))}
         </div>
