@@ -6,7 +6,7 @@ import { itemData, keyPadNumArrState } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
-
+import { motion } from "framer-motion"
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -59,6 +59,22 @@ const Fin = () => {
                 差額金額：<br />
                 {keyPadNumArr[index]}円
               </h1>
+              <motion.a href={item.affiliatelink} target='_blank'
+                style={{
+                  border: "2px rgb(199, 81, 250) solid",
+                  borderRadius: 40,
+                  backgroundColor: "rgb(199, 81, 250)",
+                  fontSize: 18,
+                  padding: "2px 14px",
+                  color: "white"
+                }}
+                whileHover={{
+                  scale: 1.3
+                }}
+                whileTap={{
+                  scale: 1
+                }}
+              >商品のページへ</motion.a>
             </div>
           ))}
         </div>
