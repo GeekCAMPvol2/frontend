@@ -34,7 +34,7 @@ const Ans = () => {
     <div style={styles.container}>
       <HomeButton />
       <span style={styles.titleWrapper}>
-        <Title />
+        <Title canBounding={true} />
       </span>
       <div style={styles.wrapper}>
         {/* 左側 */}

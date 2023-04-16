@@ -61,7 +61,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
@@ -131,7 +131,7 @@ export default function Home() {
       }}
     >
       <main style={styles.main}>
-        <Title />
+        <Title canBounding={true} />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
           <div style={{
