@@ -6,6 +6,8 @@ import {
 } from '@/store/atoms';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
+import { motion } from "framer-motion"
+import { Styles } from '@/types/Styles';
 
 const PlayAgainButton = () => {
   const router = useRouter();
@@ -26,23 +28,34 @@ const PlayAgainButton = () => {
     router.push('/solo/quiz');
   };
   return (
-    <button
+    <motion.button
       style={styles.button}
       onClick={() => handlePlayAgain()}
+      whileHover={{
+        scale: 1.1,
+        width: '100%',
+        border: "2px solid rgb(199, 81, 250)",
+        backgroundColor: "rgb(199, 81, 250)",
+        boxShadow: "0 0 15px rgb(199, 81, 250)"
+      }}
+
     >
       PLAY AGAIN
-    </button>
+    </motion.button>
   );
 };
 
 export default PlayAgainButton;
 
-const styles = {
+const styles: Styles = {
   button: {
     color: 'white',
-    backgroundColor: 'black',
+    border: "2px solid #fff",
+    backgroundColor: 'rgb(0 0 0 /0)',
     borderRadius: '10px',
-    width: '100%',
+    width: '50%',
+    margin: "0 auto",
+    marginBottom: 10,
     padding: '10px',
     fontSize: '30px',
   },

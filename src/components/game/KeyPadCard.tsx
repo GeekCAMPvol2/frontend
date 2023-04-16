@@ -56,9 +56,12 @@ const KeyPadCard = () => {
         value={keyPadNum}
         onChange={handleInput}
         style={styles.input}
+        maxLength={9}
       />
       <div
         style={{
+          width: 220,
+          margin: "0 auto",
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
         }}
@@ -89,10 +92,12 @@ const styles: Styles = {
     width: '80%',
     fontSize: 30,
     textAlign: 'left',
+    textShadow: "0 0 3px #fff",
     padding: 10,
     paddingBottom: 2,
     marginBottom: 15,
-    borderBottom: '1px solid #000',
+    borderBottom: '3px solid #fff',
+    backgroundColor: "rgb(0 0 0 /0)"
   },
 };
 

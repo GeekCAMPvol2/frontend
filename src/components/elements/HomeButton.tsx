@@ -2,14 +2,20 @@ import Link from 'next/link';
 import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import { Styles } from '@/types/Styles';
+import { motion } from 'framer-motion';
 
 const HomeButton = () => {
   return (
     <Link href={'/'}>
-      <button style={styles.button}>
-        <HomeIcon />
+      <motion.button style={styles.button}
+        whileHover={{
+          scale: 1.1,
+          boxShadow: "0 0 10px #fff",
+        }}
+      >
+        <HomeIcon/>
         ホーム
-      </button>
+      </motion.button>
     </Link>
   );
 };
@@ -23,6 +29,7 @@ const styles: Styles = {
     justifyContent: 'center',
     gap: 10,
     color: 'white',
+    zIndex: 10,
     fontSize: 20,
     fontWeight: 'bold',
     backgroundColor: 'transparent',

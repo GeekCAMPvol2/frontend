@@ -12,6 +12,9 @@ import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { Background } from '@/components/elements/Background';
+import { Title } from '@/components/index/Title';
+import HomeButton from '@/components/elements/HomeButton';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -33,7 +36,11 @@ const Quiz = () => {
 
   return (
     <div style={styles.container}>
-      <h1 style={styles.titleWrapper}>Price Quest</h1>
+      <HomeButton />
+      {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
+      <span style={styles.titleWrapper}>
+        <Title canBounding={false} />
+      </span>
       <div style={styles.wrapper}>
         {/* 左側 */}
         <div style={styles.leftWrapper}>
@@ -45,6 +52,9 @@ const Quiz = () => {
                 alt={item[crrQuizNum].quiz}
                 width={400}
                 height={400}
+                style={{
+                  boxShadow: "0 0 15px rgb(199,81,250)"
+                }}
               />
             )}
           </div>
@@ -57,6 +67,7 @@ const Quiz = () => {
           <AnsQuizButton />
         </div>
       </div>
+      <Background selected='rgb(199, 81, 250)' />
     </div>
   );
 };
@@ -66,6 +77,7 @@ export default Quiz;
 const styles: Styles = {
   container: {
     margin: '50px 0',
+    overflowX: 'hidden'
   },
   titleWrapper: {
     textAlign: 'center',
@@ -81,7 +93,7 @@ const styles: Styles = {
     textAlign: 'center',
   },
   itemImageWrapper: {
-    border: '2px solid black',
+    // border: '2px solid black',
     borderRadius: '10px',
     display: 'flex',
     justifyContent: 'center',
