@@ -1,4 +1,5 @@
 import HomeButton from '@/components/elements/HomeButton';
+import Title from '@/components/elements/Title';
 import { Background } from '@/components/elements/Background';
 import { LobbyButton } from '@/components/lobby/LobbyButton';
 import { PlayerCard } from '@/components/lobby/PlayerCard';
@@ -8,6 +9,7 @@ import {
   firebaseSignIn,
   functions,
 } from '@/lib/firebase';
+import { playersState, roomIdState } from '@/store/atoms';
 import { Player } from '@/types/Player';
 import { Styles } from '@/types/Styles';
 import { doc, onSnapshot } from 'firebase/firestore';
@@ -17,11 +19,13 @@ import {
 } from 'firebase/functions';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
 
 const Lobby = () => {
   const router = useRouter();
-  const [roomId, setRoomId] = useState('');
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [roomId, setRoomId] = useRecoilState(roomIdState);
+  const [players, setPlayers] =
+    useRecoilState(playersState);
   const userId = useFirebaseUserId();
   const playerNameRef = useRef<HTMLInputElement>(null);
 
@@ -77,32 +81,7 @@ const Lobby = () => {
       {/* ホームボタンコンポーネント */}
       <div>
         <HomeButton />
-        <h1 style={styles.titleWrapper}>
-          <span
-            style={{
-              color: 'rgb(199,81,250)',
-              textShadow: `0px 0px 10px rgb(199,81,250)`,
-            }}
-          >
-            Price
-          </span>
-          <span
-            style={{
-              color: '#fff',
-              textShadow: `0px 0px 5px #fff`,
-            }}
-          >
-            $
-          </span>
-          <span
-            style={{
-              color: 'rgb(0,255,250)',
-              textShadow: `0px 0px 10px rgb(0,255,250)`,
-            }}
-          >
-            Quest
-          </span>
-        </h1>
+        <Title />
         <div style={styles.playerContainer}>
           {players.map((player, index) => (
             <PlayerCard
@@ -136,12 +115,6 @@ const styles: Styles = {
   title: {
     textAlign: 'center',
   },
-  titleWrapper: {
-    fontSize: 80,
-    textAlign: 'center',
-    padding: '50px',
-  },
-
   playerContainer: {
     width: '100%',
     display: 'flex',

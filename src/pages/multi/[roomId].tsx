@@ -19,21 +19,29 @@ import {
 } from '@firebase/functions';
 import { Background } from '@/components/elements/Background';
 import { MultiQuestion } from '@/types/MultiQuestion';
+import MultiGame from '@/components/multi/MultiGame';
+import Title from '@/components/elements/Title';
+import { useRecoilState } from 'recoil';
+import {
+  playersState,
+  questionsState,
+  roomIdState,
+} from '@/store/atoms';
 
 const Lobby = () => {
   const router = useRouter();
-  const [roomId, setRoomId] = useState('');
+  const [roomId, setRoomId] = useRecoilState(roomIdState);
   const [isReady, setIsReady] = useState(false);
-  const [players, setPlayers] = useState<Player[]>([]);
+  const [players, setPlayers] =
+    useRecoilState(playersState);
   const [membersReady, setMembersReady] = useState<
     Record<string, boolean> | undefined
   >(undefined);
   const [gameStatus, setGameStatus] = useState<
     'INVITING_MEMBERS' | 'GAME_STARTED'
   >('INVITING_MEMBERS');
-  const [questions, setQuestions] = useState<
-    MultiQuestion[]
-  >([]);
+  const [questions, setQuestions] =
+    useRecoilState(questionsState);
   // useLeavePageConfirmation(roomId);
 
   useEffect(() => {
@@ -88,36 +96,11 @@ const Lobby = () => {
   return (
     <div>
       {gameStatus == 'GAME_STARTED' ? (
-        <div></div>
+        <MultiGame />
       ) : (
         <div>
           <LeaveButton roomId={roomId} />
-          <h1 style={styles.titleWrapper}>
-            <span
-              style={{
-                color: 'rgb(199,81,250)',
-                textShadow: `0px 0px 10px rgb(199,81,250)`,
-              }}
-            >
-              Price
-            </span>
-            <span
-              style={{
-                color: '#fff',
-                textShadow: `0px 0px 5px #fff`,
-              }}
-            >
-              $
-            </span>
-            <span
-              style={{
-                color: 'rgb(0,255,250)',
-                textShadow: `0px 0px 10px rgb(0,255,250)`,
-              }}
-            >
-              Quest
-            </span>
-          </h1>
+          <Title />
           <div style={styles.playerContainer}>
             {players.map((player, index) => {
               const userId = player.userId;
