@@ -61,11 +61,11 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => {};
+  const handleSelectTutorial = () => { };
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
-    if (count > 1) {
+    if (count > 0) {
       setTimeout(() => {
         fncCountDown(count - 1, path);
       }, 1000);
@@ -130,7 +130,22 @@ export default function Home() {
         overflowY: 'hidden',
       }}
     >
-      <main style={styles.main}>
+      <motion.main style={styles.main}
+        initial={{
+          scale: 0
+        }}
+        animate={{
+          scale: 1
+        }}
+        transition={{
+          type: 'spring',
+          stiffness: 150,
+          duration: 0.5,
+        }}
+        exit={{
+          scale: 0
+        }}
+      >
         <Title canBounding={true} />
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
@@ -232,7 +247,7 @@ export default function Home() {
           Supported by Rakuten Developers
         </motion.a>
         {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
-      </main>
+      </motion.main>
       {countDown < 4 && (
         <div style={styles.countdown}>
           <motion.div
@@ -255,7 +270,9 @@ export default function Home() {
               boxShadow: `0 0 30px ${hoverdColor}`,
             }}
           >
-            {countDown}
+            {countDown > 0
+              ? countDown
+              : "Go"}
           </motion.div>
         </div>
       )}
