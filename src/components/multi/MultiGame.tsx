@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import Title from '../elements/Title';
-import { Background } from '../elements/background';
+
 import LeaveButton from './LeaveButton';
 import { useRecoilState } from 'recoil';
 import {
@@ -12,6 +12,7 @@ import { questionsState } from '@/store/atoms';
 import Quiz from './FlgComponents/Quiz';
 import Ans from './FlgComponents/Ans';
 import Fin from './FlgComponents/Fin';
+import { Background } from '../elements/Background';
 
 const MultiGame = () => {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
