@@ -3,7 +3,11 @@ import { Styles } from '@/types/Styles';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 
-const ItemNameCard = () => {
+export type ProductTitleCardProps = {
+  productTitle: string;
+};
+
+const ProductTitleCard = (props: ProductTitleCardProps) => {
   const router = useRouter();
   const [item, setItem] = useRecoilState(itemData);
   const [crrQuizNum, setCrrQuizNum] =
@@ -27,20 +31,14 @@ const ItemNameCard = () => {
           <h1 style={styles.itemName}>
             {item[crrQuizNum].quiz}
           </h1>
-          {router.pathname === '/solo/quiz' ? (
-            <h2>????????円</h2>
-          ) : (
-            <h2>
-              <span>{item[crrQuizNum].answer}</span>円
-            </h2>
-          )}
+          <h2>????????円</h2>
         </div>
       )}
     </div>
   );
 };
 
-export default ItemNameCard;
+export default ProductTitleCard;
 
 const styles: Styles = {
   container: {

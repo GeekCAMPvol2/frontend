@@ -29,18 +29,18 @@ const Lobby = () => {
   const userId = useFirebaseUserId();
   const playerNameRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    console.log(roomId);
-    if (roomId != '') {
-      const unsub = onSnapshot(
-        doc(db, 'rooms', roomId),
-        (doc) => {
-          console.log(doc.data());
-          setPlayers(doc.data()!.members);
-        }
-      );
-    }
-  }, [roomId]);
+  // useEffect(() => {
+  //   console.log(roomId);
+  //   if (roomId != '') {
+  //     const unsub = onSnapshot(
+  //       doc(db, 'rooms', roomId),
+  //       (doc) => {
+  //         console.log(doc.data());
+  //         setPlayers(doc.data()!.members);
+  //       }
+  //     );
+  //   }
+  // }, [roomId]);
 
   useEffect(() => {
     const queryRoomId =

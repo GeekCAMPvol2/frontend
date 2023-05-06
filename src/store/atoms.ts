@@ -16,7 +16,10 @@ import {
   doc,
   onSnapshot,
 } from 'firebase/firestore';
-import { calculateCurrentQuestionIndex } from '@/features/multi/calculateCurrentQuestionIndex';
+import {
+  FirebaseRoomGame,
+  calculateGame,
+} from '@/features/multi/calculateGame';
 
 // APIで取得する商品データ
 export const itemData = atom<ItemData[]>({
@@ -89,38 +92,39 @@ export const firebaseRoomStatusState = selectorFamily<
       get(firebaseRoomState(roomId)).status,
 });
 
-export type FirebaseRoomCurrentQuestion =
-  | undefined
-  | (GameQuestion & {
-      questionIndex: number;
-    });
+export const clock100MillisState = atom<number>({
+  key: 'clock100MillisState',
+  default: 0,
+  effects: [
+    ({ setSelf }) => {
+      setSelf(Date.now());
+      const timer = setInterval(
+        () => setSelf(Date.now()),
+        100
+      );
+      return () => clearInterval(timer);
+    },
+  ],
+});
 
-export const firebaseRoomCurrentQuestionState =
-  selectorFamily<FirebaseRoomCurrentQuestion, string>({
-    key: 'firebaseRoomCurrentQuestionState',
-    get:
-      (roomId) =>
-      ({ get }) => {
-        const room = get(firebaseRoomState(roomId));
-        if (room.status !== 'GAME_STARTED') return;
+export const firebaseRoomGameState = selectorFamily<
+  FirebaseRoomGame | undefined,
+  string
+>({
+  key: 'firebaseRoomGameState',
+  get:
+    (roomId) =>
+    ({ get }) => {
+      const room = get(firebaseRoomState(roomId));
+      if (room.status !== 'GAME_STARTED') return;
 
-        const { questions } = room;
-        const lastQ = questions[questions.length - 1];
-        const lastQMillis = lastQ.presentedAt.toMillis();
-        const qDurationSeconds = room.timeLimitSeconds + 10;
-        const gameOverMillis =
-          lastQMillis + qDurationSeconds * 1000;
-
-        const i = calculateCurrentQuestionIndex(
-          Date.now(),
-          gameOverMillis,
-          questions
-        );
-
-        if (i == undefined) return;
-        return { questionIndex: i, ...questions[i] };
-      },
-  });
+      return calculateGame(
+        get(clock100MillisState),
+        room.timeLimitSeconds,
+        room.questions
+      );
+    },
+});
 
 // 取得する問題数
 export const getItemNumState = atom<number>({
@@ -144,6 +148,7 @@ export const keyPadNumArrState = atom<number[]>({
 export const roomIdState = atom<string>({
   key: 'roomIdState',
   default: '',
+  // effects: [(setSelf)]
 });
 
 //
