@@ -33,6 +33,7 @@ import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from 'framer-motion';
 import { Background } from '@/components/elements/Background';
 import { SigninButton } from '@/components/index/SigninButton';
+import { SideFlowing } from '@/animations/variants';
 
 export default function Home() {
   const router = useRouter();
@@ -61,7 +62,7 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => { };
+  const handleSelectTutorial = () => {};
 
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
@@ -71,7 +72,7 @@ export default function Home() {
       }, 1000);
     } else {
       // setTimeout(() => {
-        router.push(path);
+      router.push(path);
       // }, 0);
     }
   };
@@ -123,19 +124,19 @@ export default function Home() {
         position: 'absolute',
         top: 0,
         left: 0,
-        // background: `radial-gradient( #111 50% ,#fff  )`,
         background: `rgb(0 0 0 /0)`,
         transitionDuration: '5s',
         overflowX: 'hidden',
         overflowY: 'hidden',
       }}
     >
-      <motion.main style={styles.main}
+      <motion.main
+        style={styles.main}
         initial={{
-          scale: 0
+          scale: 0,
         }}
         animate={{
-          scale: 1
+          scale: 1,
         }}
         transition={{
           type: 'spring',
@@ -143,7 +144,7 @@ export default function Home() {
           duration: 0.2,
         }}
         exit={{
-          scale: 0
+          scale: 0,
         }}
       >
         <Title canBounding={true} />
@@ -186,15 +187,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* <MainButton
-            name="遊び方"
-            onClick={handleSelectTutorial}
-            delay={0}
-            color="rgb(255, 255, 255)"
-            onHoverStart={() =>
-              handleOnHover('rgb(199, 81, 250)')
-            }
-          /> */}
           <MainButton
             delay={0.1}
             color="rgb(199, 81, 250)"
@@ -217,29 +209,7 @@ export default function Home() {
         </div>
         {/* <!-- Rakuten Web Services Attribution Snippet FROM HERE --> */}
         <motion.a
-          animate={{
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            rotate: 0,
-            transition: {
-              type: 'spring',
-              stiffness: 100,
-              duration: 0.3,
-              delay: 1,
-            },
-          }}
-          initial={{
-            scale: 0,
-            x: -650,
-          }}
-          // whileHover={{
-          //   scale: 1.2,
-          //   transition: {
-          //     delay: 0,
-          //   }
-          // }}
-
+          {...SideFlowing}
           style={styles.credit}
           href="https://developers.rakuten.com/"
           target="_blank"
@@ -270,9 +240,7 @@ export default function Home() {
               boxShadow: `0 0 30px ${hoverdColor}`,
             }}
           >
-            {countDown > 0
-              ? countDown
-              : "Go"}
+            {countDown > 0 ? countDown : 'Go'}
           </motion.div>
         </div>
       )}
@@ -286,7 +254,6 @@ const styles: Styles = {
   main: {
     width: 1000,
     height: 900,
-    // paddingBottom:300,
     margin: '0 auto',
     marginTop: 100,
     textAlign: 'center',
