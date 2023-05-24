@@ -62,3 +62,45 @@ export const spinPopUp = (
     },
   };
 };
+
+export const infiniteVibration: Variants = {
+  visible: {
+    scale: [1.03, 1, 1, 1, 1, 1, 1],
+    transition: {
+      repeat: Infinity,
+      duration: 0.5,
+    },
+  },
+};
+
+export const pagePopUp: HTMLMotionProps<'main'> = {
+  initial: {
+    scale: 0,
+  },
+  animate: {
+    scale: 1,
+  },
+  transition: {
+    type: 'spring',
+    stiffness: 150,
+    duration: 0.2,
+  },
+  exit: {
+    scale: 0,
+  },
+};
+
+export const circularWaves: HTMLMotionProps<'div'> = {
+  initial: {
+    scale: 1,
+  },
+  animate: {
+    scale: 1.1,
+    opacity: [0, 1],
+  },
+  transition: {
+    duration: 0.5,
+    repeatDelay: 0.5,
+    repeat: 5,
+  },
+};

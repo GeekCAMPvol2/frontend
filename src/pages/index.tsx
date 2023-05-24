@@ -33,7 +33,12 @@ import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from 'framer-motion';
 import { Background } from '@/components/elements/Background';
 import { SigninButton } from '@/components/index/SigninButton';
-import { SideFlowing } from '@/animations/variants';
+import {
+  circularWaves,
+  infiniteVibration,
+  pagePopUp,
+  SideFlowing,
+} from '@/animations/variants';
 
 export default function Home() {
   const router = useRouter();
@@ -62,8 +67,6 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => {};
-
   const fncCountDown = (count: number, path: string) => {
     setcountDown(count);
     if (count > 0) {
@@ -71,9 +74,7 @@ export default function Home() {
         fncCountDown(count - 1, path);
       }, 1000);
     } else {
-      // setTimeout(() => {
       router.push(path);
-      // }, 0);
     }
   };
 
@@ -119,8 +120,8 @@ export default function Home() {
   return (
     <div
       style={{
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -130,24 +131,13 @@ export default function Home() {
         overflowY: 'hidden',
       }}
     >
-      <motion.main
-        style={styles.main}
-        initial={{
-          scale: 0,
-        }}
-        animate={{
-          scale: 1,
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 150,
-          duration: 0.2,
-        }}
-        exit={{
-          scale: 0,
-        }}
-      >
-        <Title canBounding={true} />
+      <motion.main style={styles.main} {...pagePopUp}>
+        <motion.div
+          animate="visible"
+          variants={infiniteVibration}
+        >
+          <Title />
+        </motion.div>
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
           <div
@@ -221,18 +211,7 @@ export default function Home() {
       {countDown < 4 && (
         <div style={styles.countdown}>
           <motion.div
-            initial={{
-              scale: 1,
-            }}
-            animate={{
-              scale: 1.1,
-              opacity: [0, 1],
-            }}
-            transition={{
-              duration: 0.5,
-              repeatDelay: 0.5,
-              repeat: 5,
-            }}
+            {...circularWaves}
             style={{
               ...styles.countTime,
               border: `20px solid ${hoverdColor}`,

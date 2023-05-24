@@ -15,7 +15,7 @@ import { useRecoilState } from 'recoil';
 import { Background } from '@/components/elements/Background';
 import { Title } from '@/components/index/Title';
 import HomeButton from '@/components/elements/HomeButton';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 
 const Quiz = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -36,23 +36,21 @@ const Quiz = () => {
   }, []);
 
   return (
-    <div style={styles.container}
-
-    >
+    <div style={styles.container}>
       <HomeButton />
-      {/* <h1 style={styles.titleWrapper}>Price Quest</h1> */}
       <span style={styles.titleWrapper}>
-        <Title canBounding={false} />
+        <Title />
       </span>
-      <motion.div style={styles.wrapper}
+      <motion.div
+        style={styles.wrapper}
         initial={{
-          scale: 0
+          scale: 0,
         }}
         animate={{
-          scale: 1
+          scale: 1,
         }}
         exit={{
-          opacity: 0
+          opacity: 0,
         }}
         transition={{
           type: 'spring',
@@ -71,7 +69,7 @@ const Quiz = () => {
                 width={400}
                 height={400}
                 style={{
-                  boxShadow: "0 0 15px rgb(199,81,250)"
+                  boxShadow: '0 0 15px rgb(199,81,250)',
                 }}
               />
             )}
@@ -85,7 +83,7 @@ const Quiz = () => {
           <AnsQuizButton />
         </div>
       </motion.div>
-      <Background selected='rgb(199, 81, 250)' />
+      <Background selected="rgb(199, 81, 250)" />
     </div>
   );
 };
@@ -95,7 +93,7 @@ export default Quiz;
 const styles: Styles = {
   container: {
     margin: '50px 0',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
   },
   titleWrapper: {
     textAlign: 'center',

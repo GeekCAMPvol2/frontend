@@ -44,7 +44,6 @@ const styles: Styles = {
     backgroundColor: 'rgb(5 0 0/0)',
     border: '5px solid #fff',
     borderRadius: 400,
-    // boxShadow: "0px 0px 30px #444",
     opacity: 0.8,
     margin: '0 auto',
     marginTop: 50,

@@ -14,7 +14,7 @@ import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 
 const Ans = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -32,21 +32,21 @@ const Ans = () => {
   }, []);
 
   return (
-    <div style={styles.container}      >
+    <div style={styles.container}>
       <HomeButton />
       <span style={styles.titleWrapper}>
-        <Title canBounding={true} />
+        <Title />
       </span>
-      <motion.div style={styles.wrapper}
+      <motion.div
+        style={styles.wrapper}
         initial={{
-          opacity: 0
+          opacity: 0,
         }}
         animate={{
-          opacity: 1
-
+          opacity: 1,
         }}
         exit={{
-          scale: 0
+          scale: 0,
         }}
         transition={{
           type: 'spring',
@@ -65,7 +65,7 @@ const Ans = () => {
                 width={400}
                 height={400}
                 style={{
-                  boxShadow: "0 0 15px rgb(199,81,250)"
+                  boxShadow: '0 0 15px rgb(199,81,250)',
                 }}
               />
             )}
@@ -78,7 +78,7 @@ const Ans = () => {
           <AnsQuizButton />
         </div>
       </motion.div>
-      <Background selected='rgb(199, 81, 250)' />
+      <Background selected="rgb(199, 81, 250)" />
     </div>
   );
 };
@@ -88,8 +88,7 @@ export default Ans;
 const styles: Styles = {
   container: {
     margin: '50px 0',
-    overflowX: 'hidden'
-
+    overflowX: 'hidden',
   },
   titleWrapper: {
     textAlign: 'center',
@@ -105,7 +104,6 @@ const styles: Styles = {
     textAlign: 'center',
   },
   itemImageWrapper: {
-
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
