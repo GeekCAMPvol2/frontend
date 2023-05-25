@@ -50,7 +50,11 @@ export default function Home() {
   const [hoverdColor, sethoverdColor] = useState<string>(
     'rgb(199, 81, 250)'
   ); //選択中のボタン
-  const [countDown, setcountDown] = useState<number>(99);
+  const [countDown, setCountDown] = useState<
+    number | string
+  >(99);
+  const [isCounting, setIsCounting] =
+    useState<boolean>(false);
 
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
@@ -68,13 +72,21 @@ export default function Home() {
   );
 
   const fncCountDown = (count: number, path: string) => {
-    setcountDown(count);
+    if (count === 0) {
+      setCountDown('Go');
+    } else {
+      setCountDown(count);
+    }
+
     if (count > 0) {
       setTimeout(() => {
         fncCountDown(count - 1, path);
       }, 1000);
-    } else {
-      router.push(path);
+    } else if (count === 0) {
+      setTimeout(() => {
+        setIsCounting(false);
+        router.push(path);
+      }, 800);
     }
   };
 
@@ -82,6 +94,7 @@ export default function Home() {
   const handlePlayGame = async (path: string) => {
     const resultData = await getItemData();
     setItem([resultData]);
+    setIsCounting(true);
     fncCountDown(3, path);
   };
 
@@ -208,7 +221,7 @@ export default function Home() {
         </motion.a>
         {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
       </motion.main>
-      {countDown < 4 && (
+      {isCounting && (
         <div style={styles.countdown}>
           <motion.div
             {...circularWaves}
@@ -219,7 +232,7 @@ export default function Home() {
               boxShadow: `0 0 30px ${hoverdColor}`,
             }}
           >
-            {countDown > 0 ? countDown : 'Go'}
+            {countDown}
           </motion.div>
         </div>
       )}
