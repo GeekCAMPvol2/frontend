@@ -12,7 +12,7 @@ import Quiz from './FlgComponents/Quiz';
 import Ans from './FlgComponents/Ans';
 import Fin from './FlgComponents/Fin';
 import { Background } from '../elements/Background';
-import { Title } from '../index/Title';
+import { Title } from '@/components/index/Title';
 
 const MultiGame = () => {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
