@@ -11,7 +11,8 @@ import { Styles } from '@/types/Styles';
 import Link from 'next/link';
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
+import { hoverTapRed } from '@/animations/variants';
 
 const AnsQuizButton = () => {
   const [ansQuizUrl, setAnsQuizUrl] =
@@ -41,7 +42,7 @@ const AnsQuizButton = () => {
   return (
     <>
       {crrQuizNum === getItemNum - 1 &&
-        ansQuizUrl === '/solo/quiz' ? (
+      ansQuizUrl === '/solo/quiz' ? (
         <Link href={'/solo/fin'}>
           <button style={styles.button}>FINISH</button>
         </Link>
@@ -51,17 +52,7 @@ const AnsQuizButton = () => {
             <motion.button
               style={styles.button}
               onClick={() => handleSubmit()}
-
-              whileHover={{
-                scale: 1.1,
-                backgroundColor: "rgb(199, 81, 250)",
-                color: "white"
-              }}
-              whileTap={{
-                scale: 0.9,
-                backgroundColor: "rgb(199, 81, 250)",
-                color: "white"
-              }}
+              {...hoverTapRed}
             >
               SUBMIT
             </motion.button>
@@ -71,17 +62,7 @@ const AnsQuizButton = () => {
               onClick={() =>
                 setCrrQuizNum((prevNum) => prevNum + 1)
               }
-
-              whileHover={{
-                scale: 1.1,
-                backgroundColor: "rgb(199, 81, 250)",
-                color: "white"
-              }}
-              whileTap={{
-                scale: 0.9,
-                backgroundColor: "rgb(199, 81, 250)",
-                color: "white"
-              }}
+              {...hoverTapRed}
             >
               NEXT
             </motion.button>
@@ -97,9 +78,9 @@ export default AnsQuizButton;
 const styles: Styles = {
   button: {
     color: 'rgb(199, 81, 250)',
-    border: "3px solid rgb(199, 81, 250)",
-    boxShadow: "0 0 5px rgb(199, 81, 250)",
-    textShadow: "0 0 5px rgb(199, 81, 250)",
+    border: '3px solid rgb(199, 81, 250)',
+    boxShadow: '0 0 5px rgb(199, 81, 250)',
+    textShadow: '0 0 5px rgb(199, 81, 250)',
     backgroundColor: 'rgb(255 255 255 /0)',
     borderRadius: '50px',
     width: '100%',

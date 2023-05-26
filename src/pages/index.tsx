@@ -33,6 +33,12 @@ import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from 'framer-motion';
 import { Background } from '@/components/elements/Background';
 import { SigninButton } from '@/components/index/SigninButton';
+import {
+  circularWaves,
+  infiniteVibration,
+  pagePopup,
+  SideFlowing,
+} from '@/animations/variants';
 
 export default function Home() {
   const router = useRouter();
@@ -44,7 +50,11 @@ export default function Home() {
   const [hoverdColor, sethoverdColor] = useState<string>(
     'rgb(199, 81, 250)'
   ); //選択中のボタン
-  const [countDown, setcountDown] = useState<number>(99);
+  const [countDown, setCountDown] = useState<
+    number | string
+  >(99);
+  const [isCounting, setIsCounting] =
+    useState<boolean>(false);
 
   const handleOnHover = (color: string) => {
     sethoverdColor(color);
@@ -61,18 +71,22 @@ export default function Home() {
     keyPadNumArrState
   );
 
-  const handleSelectTutorial = () => { };
-
   const fncCountDown = (count: number, path: string) => {
-    setcountDown(count);
+    if (count === 0) {
+      setCountDown('Go');
+    } else {
+      setCountDown(count);
+    }
+
     if (count > 0) {
       setTimeout(() => {
         fncCountDown(count - 1, path);
       }, 1000);
-    } else {
-      // setTimeout(() => {
+    } else if (count === 0) {
+      setTimeout(() => {
+        setIsCounting(false);
         router.push(path);
-      // }, 0);
+      }, 800);
     }
   };
 
@@ -80,6 +94,7 @@ export default function Home() {
   const handlePlayGame = async (path: string) => {
     const resultData = await getItemData();
     setItem([resultData]);
+    setIsCounting(true);
     fncCountDown(3, path);
   };
 
@@ -118,35 +133,24 @@ export default function Home() {
   return (
     <div
       style={{
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         position: 'absolute',
         top: 0,
         left: 0,
-        // background: `radial-gradient( #111 50% ,#fff  )`,
         background: `rgb(0 0 0 /0)`,
         transitionDuration: '5s',
         overflowX: 'hidden',
         overflowY: 'hidden',
       }}
     >
-      <motion.main style={styles.main}
-        initial={{
-          scale: 0
-        }}
-        animate={{
-          scale: 1
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 150,
-          duration: 0.2,
-        }}
-        exit={{
-          scale: 0
-        }}
-      >
-        <Title canBounding={true} />
+      <motion.div style={styles.main} {...pagePopup}>
+        <motion.div
+          animate="visible"
+          variants={infiniteVibration}
+        >
+          <Title />
+        </motion.div>
         <h3>〜失われた金銭感覚を求めて〜</h3>
         <div style={styles.buttonContainer}>
           <div
@@ -186,15 +190,6 @@ export default function Home() {
             )}
           </div>
 
-          {/* <MainButton
-            name="遊び方"
-            onClick={handleSelectTutorial}
-            delay={0}
-            color="rgb(255, 255, 255)"
-            onHoverStart={() =>
-              handleOnHover('rgb(199, 81, 250)')
-            }
-          /> */}
           <MainButton
             delay={0.1}
             color="rgb(199, 81, 250)"
@@ -217,29 +212,7 @@ export default function Home() {
         </div>
         {/* <!-- Rakuten Web Services Attribution Snippet FROM HERE --> */}
         <motion.a
-          animate={{
-            x: 0,
-            scale: 1,
-            opacity: 1,
-            rotate: 0,
-            transition: {
-              type: 'spring',
-              stiffness: 100,
-              duration: 0.3,
-              delay: 1,
-            },
-          }}
-          initial={{
-            scale: 0,
-            x: -650,
-          }}
-          // whileHover={{
-          //   scale: 1.2,
-          //   transition: {
-          //     delay: 0,
-          //   }
-          // }}
-
+          {...SideFlowing}
           style={styles.credit}
           href="https://developers.rakuten.com/"
           target="_blank"
@@ -247,22 +220,11 @@ export default function Home() {
           Supported by Rakuten Developers
         </motion.a>
         {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
-      </motion.main>
-      {countDown < 4 && (
+      </motion.div>
+      {isCounting && (
         <div style={styles.countdown}>
           <motion.div
-            initial={{
-              scale: 1,
-            }}
-            animate={{
-              scale: 1.1,
-              opacity: [0, 1],
-            }}
-            transition={{
-              duration: 0.5,
-              repeatDelay: 0.5,
-              repeat: 5,
-            }}
+            {...circularWaves}
             style={{
               ...styles.countTime,
               border: `20px solid ${hoverdColor}`,
@@ -270,9 +232,7 @@ export default function Home() {
               boxShadow: `0 0 30px ${hoverdColor}`,
             }}
           >
-            {countDown > 0
-              ? countDown
-              : "Go"}
+            {countDown}
           </motion.div>
         </div>
       )}
@@ -286,7 +246,6 @@ const styles: Styles = {
   main: {
     width: 1000,
     height: 900,
-    // paddingBottom:300,
     margin: '0 auto',
     marginTop: 100,
     textAlign: 'center',

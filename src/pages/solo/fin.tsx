@@ -6,7 +6,8 @@ import { itemData, keyPadNumArrState } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
+import { hoverTapLink } from '@/animations/variants';
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -18,7 +19,7 @@ const Fin = () => {
     <div style={styles.container}>
       <HomeButton />
       <span style={styles.titleWrapper}>
-        <Title canBounding={false} />
+        <Title />
       </span>
       <div style={styles.wrapper}>
         <h1>
@@ -40,41 +41,50 @@ const Fin = () => {
                   height={200}
                 />
               </div>
-              <h1 style={{
-                overflow: "hidden",
-                display: "-webkit-box",
-                WebkitBoxOrient: "vertical",
-                WebkitLineClamp: 2,
-
-              }}>{item.quiz}</h1>
-              <p style={{
-                fontSize: 16
-              }}>金額：{item.answer}円</p>
-              <h1 style={{
-                marginTop: 20,
-                color: "rgb(199, 81, 250)",
-                textShadow: "0 0 5px rgb(199, 81, 250)",
-                fontSize: 30
-              }}>
-                差額金額：<br />
+              <h1
+                style={{
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitBoxOrient: 'vertical',
+                  WebkitLineClamp: 2,
+                }}
+              >
+                {item.quiz}
+              </h1>
+              <p
+                style={{
+                  fontSize: 16,
+                }}
+              >
+                金額：{item.answer}円
+              </p>
+              <h1
+                style={{
+                  marginTop: 20,
+                  color: 'rgb(199, 81, 250)',
+                  textShadow: '0 0 5px rgb(199, 81, 250)',
+                  fontSize: 30,
+                }}
+              >
+                差額金額：
+                <br />
                 {keyPadNumArr[index]}円
               </h1>
-              <motion.a href={item.affiliatelink} target='_blank'
+              <motion.a
+                href={item.affiliatelink}
+                target="_blank"
                 style={{
-                  border: "2px rgb(199, 81, 250) solid",
+                  border: '2px rgb(199, 81, 250) solid',
                   borderRadius: 40,
-                  backgroundColor: "rgb(199, 81, 250)",
+                  backgroundColor: 'rgb(199, 81, 250)',
                   fontSize: 18,
-                  padding: "2px 14px",
-                  color: "white"
+                  padding: '2px 14px',
+                  color: 'white',
                 }}
-                whileHover={{
-                  scale: 1.3
-                }}
-                whileTap={{
-                  scale: 1
-                }}
-              >商品のページへ</motion.a>
+                {...hoverTapLink}
+              >
+                商品のページへ
+              </motion.a>
             </div>
           ))}
         </div>
@@ -84,8 +94,7 @@ const Fin = () => {
           <PlayAgainButton />
         </div>
       </div>
-      <Background selected='rgb(199, 81, 250)' />
-
+      <Background selected="rgb(199, 81, 250)" />
     </div>
   );
 };
@@ -96,11 +105,10 @@ const styles: Styles = {
   container: {
     margin: '0px 0',
     overflowX: 'hidden',
-    overflowY: "hidden"
+    overflowY: 'hidden',
   },
   titleWrapper: {
     textAlign: 'center',
-    // color: 'black',
   },
   wrapper: {
     width: '1200px',
@@ -125,9 +133,9 @@ const styles: Styles = {
     color: 'white',
     backgroundColor: 'rgb(0 0 0 /0)',
     padding: 10,
-    border: "2px solid rgb(199, 81, 250)",
-    boxShadow: "0 0 5px rgb(199, 81, 250)",
-    borderRadius: 10
+    border: '2px solid rgb(199, 81, 250)',
+    boxShadow: '0 0 5px rgb(199, 81, 250)',
+    borderRadius: 10,
   },
   itemImageWrapper: {
     border: '2px solid black',
