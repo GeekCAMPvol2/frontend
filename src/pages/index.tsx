@@ -36,7 +36,7 @@ import { SigninButton } from '@/components/index/SigninButton';
 import {
   circularWaves,
   infiniteVibration,
-  pagePopUp,
+  pagePopup,
   SideFlowing,
 } from '@/animations/variants';
 
@@ -144,7 +144,7 @@ export default function Home() {
         overflowY: 'hidden',
       }}
     >
-      <motion.main style={styles.main} {...pagePopUp}>
+      <motion.div style={styles.main} {...pagePopup}>
         <motion.div
           animate="visible"
           variants={infiniteVibration}
@@ -220,7 +220,7 @@ export default function Home() {
           Supported by Rakuten Developers
         </motion.a>
         {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
-      </motion.main>
+      </motion.div>
       {isCounting && (
         <div style={styles.countdown}>
           <motion.div

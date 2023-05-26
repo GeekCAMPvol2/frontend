@@ -24,7 +24,8 @@ export const MainButton = (props: Props) => {
 
   return (
     <motion.button
-      {...spinPopUp(delay, color, onHoverStart)}
+      {...spinPopUp(delay, color)}
+      onHoverStart={onHoverStart}
       style={{
         ...styles.button,
       }}

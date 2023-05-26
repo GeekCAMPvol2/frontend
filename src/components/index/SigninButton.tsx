@@ -24,10 +24,11 @@ export const SigninButton = (props: Props) => {
 
   return (
     <motion.button
-      {...spinPopUp(delay, color, onHoverStart)}
+      {...spinPopUp(delay, color)}
       style={{
         ...styles.button,
       }}
+      onHoverStart={onHoverStart}
       onClick={onClick}
       disabled={disabled}
     >

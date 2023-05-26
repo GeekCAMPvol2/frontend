@@ -7,6 +7,7 @@ import { Styles } from '@/types/Styles';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
+import { hoverTapLink } from '@/animations/variants';
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -80,12 +81,7 @@ const Fin = () => {
                   padding: '2px 14px',
                   color: 'white',
                 }}
-                whileHover={{
-                  scale: 1.3,
-                }}
-                whileTap={{
-                  scale: 1,
-                }}
+                {...hoverTapLink}
               >
                 商品のページへ
               </motion.a>
@@ -113,7 +109,6 @@ const styles: Styles = {
   },
   titleWrapper: {
     textAlign: 'center',
-    // color: 'black',
   },
   wrapper: {
     width: '1200px',
