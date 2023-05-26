@@ -20,13 +20,13 @@ import {
 import { Background } from '@/components/elements/Background';
 import { MultiQuestion } from '@/types/MultiQuestion';
 import MultiGame from '@/components/multi/MultiGame';
-import Title from '@/components/elements/Title';
 import { useRecoilState } from 'recoil';
 import {
   playersState,
   questionsState,
   roomIdState,
 } from '@/store/atoms';
+import { Title } from '@/components/index/Title';
 
 const Lobby = () => {
   const router = useRouter();

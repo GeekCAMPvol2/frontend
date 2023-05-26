@@ -1,5 +1,5 @@
 import HomeButton from '@/components/elements/HomeButton';
-import Title from '@/components/elements/Title';
+import { Title } from '@/components/index/Title';
 import { Background } from '@/components/elements/Background';
 import { LobbyButton } from '@/components/lobby/LobbyButton';
 import { PlayerCard } from '@/components/lobby/PlayerCard';
