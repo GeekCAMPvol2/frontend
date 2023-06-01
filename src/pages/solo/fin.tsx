@@ -1,7 +1,7 @@
 import { Background } from '@/components/elements/Background';
 import HomeButton from '@/components/elements/HomeButton';
-import PlayAgainButton from '@/components/game/solo/PlayAgainButton';
-import { Title } from '@/components/index/Title';
+import PlayAgainButton from '@/components/solo/PlayAgainButton';
+import { Title } from '@/components/elements/Title';
 import { itemData, keyPadNumArrState } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';

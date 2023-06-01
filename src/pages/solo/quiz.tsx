@@ -1,7 +1,7 @@
-import GameTimeCard from '@/components/game/GameTimeCard';
-import ItemNameCard from '@/components/game/ItemNameCard';
-import KeyPadCard from '@/components/game/KeyPadCard';
-import AnsQuizButton from '@/components/game/AnsQuizButton';
+import GameTimeCard from '@/components/solo/GameTimeCard';
+import ItemNameCard from '@/components/solo/ItemNameCard';
+import KeyPadCard from '@/components/solo/KeyPadCard';
+import AnsQuizButton from '@/components/solo/AnsQuizButton';
 import {
   ansQuizState,
   crrQuizNumState,
@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { Background } from '@/components/elements/Background';
-import { Title } from '@/components/index/Title';
+import { Title } from '@/components/elements/Title';
 import HomeButton from '@/components/elements/HomeButton';
 import { motion } from 'framer-motion';
 import { pagePopup } from '@/animations/variants';

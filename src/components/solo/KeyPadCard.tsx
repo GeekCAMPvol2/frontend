@@ -26,13 +26,13 @@ const KeyPadCard = () => {
   // 直接数字を入れる関数
   const handleInput = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value
+      const value = e.target.value;
       if (value) {
         let number = parseInt(value);
         number = Math.max(number, 0);
         setKeyPadNum(number);
       } else {
-        setKeyPadNum(0)
+        setKeyPadNum(0);
       }
     },
     [keyPadNum]
@@ -61,7 +61,7 @@ const KeyPadCard = () => {
       <div
         style={{
           width: 220,
-          margin: "0 auto",
+          margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
         }}
@@ -78,7 +78,6 @@ const KeyPadCard = () => {
           number={0}
           onClick={() => handleNumButton(0)}
         />
-        {/* <NumButton number={i + 1} onClick={() => handleNumButton(i + 1)} /> */}
       </div>
     </div>
   );
@@ -92,12 +91,12 @@ const styles: Styles = {
     width: '80%',
     fontSize: 30,
     textAlign: 'left',
-    textShadow: "0 0 3px #fff",
+    textShadow: '0 0 3px #fff',
     padding: 10,
     paddingBottom: 2,
     marginBottom: 15,
     borderBottom: '3px solid #fff',
-    backgroundColor: "rgb(0 0 0 /0)"
+    backgroundColor: 'rgb(0 0 0 /0)',
   },
 };
 

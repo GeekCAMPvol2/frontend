@@ -1,10 +1,10 @@
 import { Styles } from '@/types/Styles';
 
-const Fin = () => {
-  return <div>Fin</div>;
+const MultiAns = () => {
+  return <div>Ans</div>;
 };
 
-export default Fin;
+export default MultiAns;
 
 const styles: Styles = {
   container: {
@@ -12,36 +12,26 @@ const styles: Styles = {
   },
   titleWrapper: {
     textAlign: 'center',
-    color: 'black',
   },
   wrapper: {
     width: '1200px',
     margin: '0 auto',
     display: 'flex',
-    flexDirection: 'column',
     gap: '50px',
   },
-  topWrapper: {
-    fontSize: '10px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    gap: '10px',
-  },
-  itemWrapper: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '10px',
-    color: 'white',
-    backgroundColor: 'black',
+  leftWrapper: {
+    flex: 3,
+    textAlign: 'center',
   },
   itemImageWrapper: {
     border: '2px solid black',
     borderRadius: '10px',
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  bottomWrapper: {
+  rightWrapper: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',

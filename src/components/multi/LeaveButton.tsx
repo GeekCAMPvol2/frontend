@@ -1,11 +1,4 @@
 import Link from 'next/link';
-import React, { useEffect } from 'react';
-import HomeButton from '../elements/HomeButton';
-import {
-  HttpsCallable,
-  httpsCallable,
-} from 'firebase/functions';
-import { functions } from '@/lib/firebase';
 import { leaveRoom } from './leaveHandler';
 import HomeIcon from '@mui/icons-material/Home';
 import { Styles } from '@/types/Styles';

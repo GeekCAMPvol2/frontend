@@ -1,5 +1,5 @@
 import HomeButton from '@/components/elements/HomeButton';
-import { Title } from '@/components/index/Title';
+import { Title } from '@/components/elements/Title';
 import { Background } from '@/components/elements/Background';
 import { LobbyButton } from '@/components/lobby/LobbyButton';
 import { PlayerCard } from '@/components/lobby/PlayerCard';
@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
+// 待機画面
 const Lobby = () => {
   const router = useRouter();
   const [roomId, setRoomId] = useRecoilState(roomIdState);
@@ -79,35 +80,32 @@ const Lobby = () => {
   return (
     <div>
       {/* ホームボタンコンポーネント */}
-      <div>
-        <HomeButton />
-        <Title />
-        <div style={styles.playerContainer}>
-          {players.map((player, index) => (
-            <PlayerCard
-              key={index}
-              name={player.playerName}
-            />
-          ))}
-        </div>
-
-        <div style={styles.buttonContainer}>
-          <input
-            type="text"
-            style={styles.textInput}
-            ref={playerNameRef}
-            placeholder="名前を入力"
-            onFocus={(e) => e.target.select()}
-            maxLength={15}
+      <HomeButton />
+      <Title />
+      <div style={styles.playerContainer}>
+        {players.map((player, index) => (
+          <PlayerCard
+            key={index}
+            name={player.playerName}
           />
-          <LobbyButton
-            name="入室する"
-            onClick={handleJoinRoom}
-          />
-        </div>
-
-        <Background selected={'rgb(0, 225, 255)'} />
+        ))}
       </div>
+
+      <div style={styles.buttonContainer}>
+        <input
+          type="text"
+          style={styles.textInput}
+          ref={playerNameRef}
+          placeholder="名前を入力"
+          onFocus={(e) => e.target.select()}
+          maxLength={15}
+        />
+        <LobbyButton
+          name="入室する"
+          onClick={handleJoinRoom}
+        />
+      </div>
+      <Background selected={'rgb(0, 225, 255)'} />
     </div>
   );
 };
