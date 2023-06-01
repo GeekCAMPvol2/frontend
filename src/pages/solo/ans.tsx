@@ -1,9 +1,9 @@
 import { Background } from '@/components/elements/Background';
 import HomeButton from '@/components/elements/HomeButton';
-import AnsQuizButton from '@/components/game/AnsQuizButton';
-import AnswerCard from '@/components/game/AnswerCard';
-import ItemNameCard from '@/components/game/ItemNameCard';
-import { Title } from '@/components/index/Title';
+import AnsQuizButton from '@/components/solo/AnsQuizButton';
+import AnswerCard from '@/components/solo/AnswerCard';
+import ItemNameCard from '@/components/solo/ItemNameCard';
+import { Title } from '@/components/elements/Title';
 import {
   ansQuizState,
   crrQuizNumState,

@@ -1,5 +1,4 @@
 import { Styles } from '@/types/Styles';
-import React from 'react';
 import { motion } from 'framer-motion';
 import { spinPopUp } from '@/animations/variants';
 

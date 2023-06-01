@@ -1,15 +1,7 @@
-import { MainButton } from '@/components/index/MainButton';
+import { MainButton } from '@/components/elements/MainButton';
 import { Styles } from '@/types/Styles';
-import {
-  connectAuthEmulator,
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-} from 'firebase/auth';
 import { useRouter } from 'next/router';
 import {
-  auth,
   firebaseSignIn,
   firebaseSignOut,
   functions,
@@ -27,12 +19,11 @@ import {
 } from 'firebase/functions';
 import { getItemData } from './api/game';
 import { useEffect, useRef, useState } from 'react';
-import { Title } from '@/components/index/Title';
-import { error } from 'console';
+import { Title } from '@/components/elements/Title';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
 import { motion, useAnimate } from 'framer-motion';
 import { Background } from '@/components/elements/Background';
-import { SigninButton } from '@/components/index/SigninButton';
+import { SigninButton } from '@/components/elements/SigninButton';
 import {
   circularWaves,
   infiniteVibration,

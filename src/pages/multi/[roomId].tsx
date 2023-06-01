@@ -26,8 +26,9 @@ import {
   questionsState,
   roomIdState,
 } from '@/store/atoms';
-import { Title } from '@/components/index/Title';
+import { Title } from '@/components/elements/Title';
 
+// マルチモードが実際に行われるページコンポーネント
 const Lobby = () => {
   const router = useRouter();
   const [roomId, setRoomId] = useRecoilState(roomIdState);
@@ -96,6 +97,7 @@ const Lobby = () => {
   return (
     <div>
       {gameStatus == 'GAME_STARTED' ? (
+        // ゲーム画面コンポーネント
         <MultiGame />
       ) : (
         <div>

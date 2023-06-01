@@ -9,7 +9,6 @@ import {
 } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Link from 'next/link';
-import React from 'react';
 import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { hoverTapRed } from '@/animations/variants';

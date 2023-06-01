@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-
 import LeaveButton from './LeaveButton';
 import { useRecoilState } from 'recoil';
 import {
@@ -8,11 +6,11 @@ import {
   roomIdState,
 } from '@/store/atoms';
 import { questionsState } from '@/store/atoms';
-import Quiz from './FlgComponents/Quiz';
-import Ans from './FlgComponents/Ans';
-import Fin from './FlgComponents/Fin';
+import MultiQuiz from './flgComponents/MultiQuiz';
+import MultiAns from './flgComponents/MultiAns';
+import MultiFin from './flgComponents/MultiFin';
 import { Background } from '../elements/Background';
-import { Title } from '@/components/index/Title';
+import { Title } from '@/components/elements/Title';
 
 const MultiGame = () => {
   const [roomId, setRoomId] = useRecoilState(roomIdState);
@@ -30,11 +28,11 @@ const MultiGame = () => {
       <Background selected={'rgb(0, 225, 255)'} />
       <Title />
       {/* クイズ画面 */}
-      {multiGameStateFlg == 'quiz' && <Quiz />}
+      {multiGameStateFlg == 'quiz' && <MultiQuiz />}
       {/* 解答画面 */}
-      {multiGameStateFlg == 'ans' && <Ans />}
+      {multiGameStateFlg == 'ans' && <MultiAns />}
       {/* 最終結果画面 */}
-      {multiGameStateFlg == 'fin' && <Fin />}
+      {multiGameStateFlg == 'fin' && <MultiFin />}
     </div>
   );
 };

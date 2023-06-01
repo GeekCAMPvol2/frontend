@@ -1,23 +1,10 @@
 import { Styles } from '@/types/Styles';
 
-const Quiz = () => {
-  return (
-    <div>
-      {/* 左側 */}
-      <div>
-        {/* 商品名 */}
-        {/* 商品画像 */}
-      </div>
-      {/* 右側 */}
-      <div>
-        {/* タイマー */}
-        {/* キーパッド */}
-      </div>
-    </div>
-  );
+const MultiFin = () => {
+  return <div>Fin</div>;
 };
 
-export default Quiz;
+export default MultiFin;
 
 const styles: Styles = {
   container: {
@@ -25,26 +12,36 @@ const styles: Styles = {
   },
   titleWrapper: {
     textAlign: 'center',
+    color: 'black',
   },
   wrapper: {
     width: '1200px',
     margin: '0 auto',
     display: 'flex',
+    flexDirection: 'column',
     gap: '50px',
   },
-  leftWrapper: {
-    flex: 3,
-    textAlign: 'center',
+  topWrapper: {
+    fontSize: '10px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '10px',
+  },
+  itemWrapper: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '10px',
+    color: 'white',
+    backgroundColor: 'black',
   },
   itemImageWrapper: {
     border: '2px solid black',
     borderRadius: '10px',
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  rightWrapper: {
-    flex: 1,
+  bottomWrapper: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
