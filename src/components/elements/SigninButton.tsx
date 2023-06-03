@@ -1,10 +1,8 @@
 import { Styles } from '@/types/Styles';
 import { motion } from 'framer-motion';
-import { spinPopUp } from '@/animations/variants';
+import { signInPopUp } from '@/animations/variants';
 
 type Props = {
-  delay: number;
-  color: string;
   name: string;
   disabled?: boolean;
   onClick: () => void;
@@ -13,8 +11,6 @@ type Props = {
 
 export const SigninButton = (props: Props) => {
   const {
-    delay,
-    color,
     name,
     onClick,
     onHoverStart,
@@ -23,7 +19,7 @@ export const SigninButton = (props: Props) => {
 
   return (
     <motion.button
-      {...spinPopUp(delay, color)}
+      {...signInPopUp}
       style={{
         ...styles.button,
       }}
@@ -41,7 +37,7 @@ const styles: Styles = {
     height: 60,
     width: 200,
     color: '#fff',
-    backgroundColor: 'rgb(5 0 0/0)',
+    backgroundColor: 'transparent',
     border: '3px solid #fff',
     borderRadius: 400,
     opacity: 0.8,
