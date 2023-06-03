@@ -22,6 +22,42 @@ export const SideFlowing: HTMLMotionProps<'a'> = {
   },
 };
 
+// 回転しならがら出現するアニメーション: signInボタンに使用
+export const signInPopUp: HTMLMotionProps<'button'> = {
+  animate: {
+    x: 0,
+    scale: 1,
+    opacity: 1,
+    rotate: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 150,
+      duration: 0.3,
+    },
+  },
+  initial: {
+    scale: 0,
+    rotate: 200,
+  },
+  exit: {},
+  whileHover: {
+    opacity: 1,
+    scale: 1.1,
+    backgroundColor: 'rgb(255, 255, 255)',
+    color: '#1e1e68',
+    border: `5px solid rgb(255, 255, 255)`,
+    boxShadow: `0px 0px 15px rgb(255, 255, 255)`,
+  },
+  whileTap: {
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 500,
+      duration: 0.3,
+    },
+  },
+};
+
 // 回転しならがら出現するアニメーション: ホームのゲーム開始ボタンに使用
 export const spinPopUp = (
   delay: number,

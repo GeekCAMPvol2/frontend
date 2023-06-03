@@ -1,5 +1,4 @@
 import { MainButton } from '@/components/elements/MainButton';
-import { Styles } from '@/types/Styles';
 import { useRouter } from 'next/router';
 import {
   firebaseSignIn,
@@ -30,6 +29,7 @@ import {
   pagePopup,
   SideFlowing,
 } from '@/animations/variants';
+import { css } from '@emotion/react';
 
 export default function Home() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function Home() {
 
   const [item, setItem] = useRecoilState(itemData);
 
-  const [hoverdColor, sethoverdColor] = useState<string>(
+  const [hoveredColor, setHoveredColor] = useState<string>(
     'rgb(199, 81, 250)'
   ); //選択中のボタン
   const [countDown, setCountDown] = useState<
@@ -48,7 +48,7 @@ export default function Home() {
     useState<boolean>(false);
 
   const handleOnHover = (color: string) => {
-    sethoverdColor(color);
+    setHoveredColor(color);
   };
   const controll = useAnimate();
 
@@ -122,20 +122,8 @@ export default function Home() {
   }, []);
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        background: `rgb(0 0 0 /0)`,
-        transitionDuration: '5s',
-        overflowX: 'hidden',
-        overflowY: 'hidden',
-      }}
-    >
-      <motion.div style={styles.main} {...pagePopup}>
+    <div css={styles.container}>
+      <motion.div css={styles.main} {...pagePopup}>
         <motion.div
           animate="visible"
           variants={infiniteVibration}
@@ -143,16 +131,11 @@ export default function Home() {
           <Title />
         </motion.div>
         <h3>〜失われた金銭感覚を求めて〜</h3>
-        <div style={styles.buttonContainer}>
-          <div
-            style={{
-              display: 'flex',
-              margin: '0 auto',
-            }}
-          >
+        <div css={styles.buttonContainer}>
+          <div css={styles.inputContainer}>
             <input
               type="text"
-              style={styles.textInput}
+              css={styles.textInput}
               ref={playerNameRef}
               placeholder="名前を入力"
               onFocus={(e) => e.target.select()}
@@ -162,8 +145,6 @@ export default function Home() {
               <SigninButton
                 name="サインアウト"
                 onClick={firebaseSignOut}
-                delay={0}
-                color="rgb(255, 255, 255)"
                 onHoverStart={() =>
                   handleOnHover('rgb(199, 81, 250)')
                 }
@@ -172,8 +153,6 @@ export default function Home() {
               <SigninButton
                 name="サインイン"
                 onClick={firebaseSignIn}
-                delay={0}
-                color="rgb(255, 255, 255)"
                 onHoverStart={() =>
                   handleOnHover('rgb(199, 81, 250)')
                 }
@@ -201,96 +180,92 @@ export default function Home() {
             }
           />
         </div>
-        {/* <!-- Rakuten Web Services Attribution Snippet FROM HERE --> */}
+
         <motion.a
           {...SideFlowing}
-          style={styles.credit}
+          css={styles.credit}
           href="https://developers.rakuten.com/"
           target="_blank"
         >
           Supported by Rakuten Developers
         </motion.a>
-        {/* <!-- Rakuten Web Services Attribution Snippet TO HERE --> */}
       </motion.div>
       {isCounting && (
-        <div style={styles.countdown}>
+        <div css={styles.countdown}>
           <motion.div
             {...circularWaves}
+            css={styles.countTime}
             style={{
-              ...styles.countTime,
-              border: `20px solid ${hoverdColor}`,
-              color: hoverdColor,
-              boxShadow: `0 0 30px ${hoverdColor}`,
+              border: `20px solid ${hoveredColor}`,
+              color: hoveredColor,
+              boxShadow: `0 0 30px ${hoveredColor}`,
             }}
           >
             {countDown}
           </motion.div>
         </div>
       )}
-      <Background selected={hoverdColor} />
+      <Background selected={hoveredColor} />
     </div>
   );
 }
 
-const styles: Styles = {
-  htmlDiv: {},
-  main: {
-    width: 1000,
-    height: 900,
-    margin: '0 auto',
-    marginTop: 100,
-    textAlign: 'center',
-    backgroundColor: 'rgb(0 0 0 /0)',
-    overflow: 'hidden',
-  },
-  buttonContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
-    textAlign: 'center',
-    backgroundColor: 'rgb(0 0 0 /0)',
-  },
-  textInput: {
-    backgroundColor: 'rgb(0 0 0 /0)',
-    border: '2px solid #fff',
-    boxShadow: '0 0 5px #fff',
-    fontSize: 30,
-    alignSelf: 'center',
-    width: 500,
-    textAlign: 'center',
-    borderRadius: 100,
-    padding: '10px 20px',
-    marginTop: 30,
-  },
-  countdown: {
-    position: 'absolute',
-    backgroundColor: 'rgb(0 0 0 /.5)',
-    top: 0,
-    width: '100vw',
-    height: '100vh',
-    zIndex: 9999,
-    verticalAlign: 'middle',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  countTime: {
-    backgroundColor: 'rgb(0 0 0 /.5)',
-    borderRadius: '50%',
-
-    width: 800,
-    height: 800,
-    border: '15px solid #fff',
-    fontSize: 400,
-    lineHeight: 2,
-    textAlign: 'center',
-  },
-  credit: {
-    color: '#fff',
-    position: 'absolute',
-    bottom: 50,
-    left: 0,
-    width: '100vw',
-    textAlign: 'center',
-  },
+const styles = {
+  container: css``,
+  main: css`
+    margin: 0 auto;
+    margin-top: 150px;
+    text-align: center;
+  `,
+  buttonContainer: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  `,
+  inputContainer: css`
+    display: flex;
+    margin: 0 auto;
+  `,
+  textInput: css`
+    background-color: rgb(0, 0, 0, 0);
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px #fff;
+    font-size: 30px;
+    align-self: center;
+    width: 500px;
+    text-align: center;
+    border-radius: 100px;
+    padding: 10px 20px;
+    margin-top: 30px;
+  `,
+  countdown: css`
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.5);
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
+  countTime: css`
+    background-color: rgb(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 800px;
+    height: 800px;
+    border: 15px solid #fff;
+    font-size: 400px;
+    line-height: 2;
+    text-align: center;
+  `,
+  credit: css`
+    color: #fff;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  `,
 };

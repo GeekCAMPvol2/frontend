@@ -27,29 +27,29 @@ const GameTimeCard = () => {
   const [keyPadNum, setKeyPadNum] =
     useRecoilState(keyPadNumState);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setTime((prevTime) => prevTime - 1);
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
+  //   useEffect(() => {
+  //     const intervalId = setInterval(() => {
+  //       setTime((prevTime) => prevTime - 1);
+  //     }, 1000);
+  //     return () => clearInterval(intervalId);
+  //   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (time <= 0) {
-        if (crrQuizNum < getItemNum - 1) {
-          const resultData = await getItemData();
-          setItem([...item, resultData]);
-        }
-        setKeyPadNumArr([
-          ...keyPadNumArr,
-          item[crrQuizNum].answer - keyPadNum,
-        ]);
-        // router.push('/solo/ans');
-      }
-    };
-    fetchData();
-  }, [time]);
+  //   useEffect(() => {
+  //     const fetchData = async () => {
+  //       if (time <= 0) {
+  //         if (crrQuizNum < getItemNum - 1) {
+  //           const resultData = await getItemData();
+  //           setItem([...item, resultData]);
+  //         }
+  //         setKeyPadNumArr([
+  //           ...keyPadNumArr,
+  //           item[crrQuizNum].answer - keyPadNum,
+  //         ]);
+  //         // router.push('/solo/ans');
+  //       }
+  //     };
+  //     fetchData();
+  //   }, [time]);
 
   return (
     <div style={styles.container}>

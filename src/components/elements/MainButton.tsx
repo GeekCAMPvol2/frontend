@@ -1,5 +1,4 @@
 import { Styles } from '@/types/Styles';
-import React from 'react';
 import { motion } from 'framer-motion';
 import { spinPopUp } from '@/animations/variants';
 
@@ -39,6 +38,7 @@ export const MainButton = (props: Props) => {
 
 const styles: Styles = {
   button: {
+    cursor: 'pointer',
     height: 100,
     width: 500,
     color: '#fff',
