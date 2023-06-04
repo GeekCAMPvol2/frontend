@@ -67,7 +67,7 @@ const MultiQuiz = () => {
       <div css={styles.rightContainer}>
         <GameTimeCard />
         <KeyPadCard />
-        {/* <AnsQuizButton /> */}
+        <AnsQuizButton />
       </div>
     </div>
   );
