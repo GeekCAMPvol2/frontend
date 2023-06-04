@@ -8,11 +8,38 @@ import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { hoverTapLink } from '@/animations/variants';
+import { ItemData } from '@/types/Game';
+
+const calcItemDiffPercentage = (
+  itemPrice: number[],
+  ansPrice: number[]
+) => {
+  // itemと入力値の差の割合を出力する
+  const diffPercent =
+    itemPrice.reduce(
+      (prev, curr, index) =>
+        prev + Math.abs(ansPrice[index]) / Math.abs(curr),
+      0
+    ) * 100;
+
+  const ret = Math.round(diffPercent);
+  return ret;
+};
+
+const getItemToPrice = (item: ItemData[]) => {
+  return item.map((itemData) => itemData.answer);
+};
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
+  // 入力値
   const [keyPadNumArr, setKeyPadNumArr] = useRecoilState(
     keyPadNumArrState
+  );
+
+  const itemDiffPercentage = calcItemDiffPercentage(
+    getItemToPrice(item),
+    keyPadNumArr
   );
 
   return (
@@ -22,13 +49,19 @@ const Fin = () => {
         <Title />
       </span>
       <div style={styles.wrapper}>
-        <h1>
-          あなたの合計差額:
-          {keyPadNumArr.reduce(
-            (acc, num) => acc + Math.abs(num),
-            0
-          )}
-        </h1>
+        <div style={styles.totalAns}>
+          <h1>
+            あなたの合計差額:
+            {keyPadNumArr.reduce(
+              (acc, num) => acc + Math.abs(num),
+              0
+            )}
+          </h1>
+          <h1>
+            あなたの世間とのずれ:
+            {`${itemDiffPercentage}%`}
+          </h1>
+        </div>
         {/* 上側 */}
         <div style={styles.topWrapper}>
           {item.map((item, index) => (
@@ -116,6 +149,10 @@ const styles: Styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '50px',
+  },
+  totalAns: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
   topWrapper: {
     fontSize: '10px',
