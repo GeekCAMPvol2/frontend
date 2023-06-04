@@ -1,8 +1,31 @@
-import { Styles } from '@/types/Styles';
+import { css } from '@emotion/react';
 import { NumButton } from './NumButton';
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, useCallback, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { keyPadNumState } from '@/store/atoms';
+
+const styles = {
+  container: css`
+    text-align: center;
+  `,
+  input: css`
+    width: 80%;
+    font-size: 30px;
+    text-align: left;
+    text-shadow: 0 0 3px #fff;
+    padding: 10px;
+    padding-bottom: 2px;
+    margin-bottom: 15px;
+    border-bottom: 3px solid #fff;
+    background-color: rgb(0 0 0 /0);
+  `,
+  keyPadWrapper: css`
+    width: 220px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  `,
+};
 
 const KeyPadCard = () => {
   const [keyPadNum, setKeyPadNum] =
@@ -41,22 +64,15 @@ const KeyPadCard = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div css={styles.container}>
       <input
         type="number"
         value={keyPadNum}
         onChange={handleInput}
-        style={styles.input}
+        css={styles.input}
         maxLength={9}
       />
-      <div
-        style={{
-          width: 220,
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-        }}
-      >
+      <div css={styles.keyPadWrapper}>
         {[...Array(9)].map((e, i) => (
           <NumButton
             key={i}
@@ -72,23 +88,6 @@ const KeyPadCard = () => {
       </div>
     </div>
   );
-};
-
-const styles: Styles = {
-  container: {
-    textAlign: 'center',
-  },
-  input: {
-    width: '80%',
-    fontSize: 30,
-    textAlign: 'left',
-    textShadow: '0 0 3px #fff',
-    padding: 10,
-    paddingBottom: 2,
-    marginBottom: 15,
-    borderBottom: '3px solid #fff',
-    backgroundColor: 'rgb(0 0 0 /0)',
-  },
 };
 
 export default KeyPadCard;

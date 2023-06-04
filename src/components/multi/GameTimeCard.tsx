@@ -56,6 +56,7 @@ const GameTimeCard = () => {
     useRecoilState(keyPadNumState);
 
   // Todo: タイマーの処理
+  // const [keyPadNum, setKeyPadNum] = useRecoilState(keyPadNumState);のkeyPadNumをデータベースに送る
   //   useEffect(() => {
   //     const intervalId = setInterval(() => {
   //       setTime((prevTime) => prevTime - 1);
