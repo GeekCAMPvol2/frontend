@@ -7,11 +7,29 @@ import {
   keyPadNumArrState,
   keyPadNumState,
 } from '@/store/atoms';
-import { Styles } from '@/types/Styles';
-import Link from 'next/link';
+import { css } from '@emotion/react';
 import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { hoverTapRed } from '@/animations/variants';
+
+const styles = {
+  container: css`
+    display: flex;
+    justify-content: center;
+  `,
+  button: css`
+    color: rgb(199, 81, 250);
+    border: 3px solid rgb(199, 81, 250);
+    box-shadow: 0 0 5px rgb(199, 81, 250);
+    text-shadow: 0 0 5px rgb(199, 81, 250);
+    background-color: rgb(255 255 255 /0);
+    border-radius: 50px;
+    width: 80%;
+    padding: 10px;
+    font-size: 30px;
+    margin-top: 50px;
+  `,
+};
 
 const AnsQuizButton = () => {
   const [ansQuizUrl, setAnsQuizUrl] =
@@ -28,63 +46,35 @@ const AnsQuizButton = () => {
     useRecoilState(keyPadNumState);
 
   const handleSubmit = async () => {
-    if (crrQuizNum < getItemNum - 1) {
-      const resultData = await getItemData();
-      setItem([...item, resultData]);
-    }
-    setKeyPadNumArr([
-      ...keyPadNumArr,
-      item[crrQuizNum].answer - keyPadNum,
-    ]);
+    // Todo: クイズを解いたときの処理
   };
 
   return (
-    <>
-      {crrQuizNum === getItemNum - 1 &&
-      ansQuizUrl === '/solo/quiz' ? (
-        <Link href={'/solo/fin'}>
-          <button style={styles.button}>FINISH</button>
-        </Link>
-      ) : (
-        <Link href={ansQuizUrl}>
-          {ansQuizUrl === '/solo/ans' ? (
-            <motion.button
-              style={styles.button}
-              onClick={() => handleSubmit()}
-              {...hoverTapRed}
-            >
-              SUBMIT
-            </motion.button>
-          ) : (
-            <motion.button
-              style={styles.button}
-              onClick={() =>
-                setCrrQuizNum((prevNum) => prevNum + 1)
-              }
-              {...hoverTapRed}
-            >
-              NEXT
-            </motion.button>
-          )}
-        </Link>
-      )}
-    </>
+    <div css={styles.container}>
+      {/* 最終問題の解答画面の場合 */}
+      {/* <button css={styles.button}>FINISH</button> */}
+
+      {/* クイズ画面の場合 */}
+      <motion.button
+        css={styles.button}
+        onClick={() => handleSubmit()}
+        {...hoverTapRed}
+      >
+        SUBMIT
+      </motion.button>
+
+      {/* 最終問題以外の解答画面の場合 */}
+      {/* <motion.button
+        css={styles.button}
+        onClick={() =>
+          setCrrQuizNum((prevNum) => prevNum + 1)
+        }
+        {...hoverTapRed}
+      >
+        NEXT
+      </motion.button> */}
+    </div>
   );
 };
 
 export default AnsQuizButton;
-
-const styles: Styles = {
-  button: {
-    color: 'rgb(199, 81, 250)',
-    border: '3px solid rgb(199, 81, 250)',
-    boxShadow: '0 0 5px rgb(199, 81, 250)',
-    textShadow: '0 0 5px rgb(199, 81, 250)',
-    backgroundColor: 'rgb(255 255 255 /0)',
-    borderRadius: '50px',
-    width: '100%',
-    padding: '10px',
-    fontSize: '30px',
-    marginBottom: 10,
-  },
-};
