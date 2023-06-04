@@ -8,12 +8,17 @@ import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { hoverTapLink } from '@/animations/variants';
+import { ItemData } from '@/types/Game';
+import { useItemDiffPercentage } from '@/hooks/useItemDiffPerceentage';
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
+  // 入力値
   const [keyPadNumArr, setKeyPadNumArr] = useRecoilState(
     keyPadNumArrState
   );
+
+  const itemDiffPercentage = useItemDiffPercentage();
 
   return (
     <div style={styles.container}>
@@ -22,13 +27,18 @@ const Fin = () => {
         <Title />
       </span>
       <div style={styles.wrapper}>
-        <h1>
-          あなたの合計差額:
-          {keyPadNumArr.reduce(
-            (acc, num) => acc + Math.abs(num),
-            0
-          )}
-        </h1>
+        <div style={styles.totalAns}>
+          <h1>
+            あなたの合計差額:
+            {keyPadNumArr
+              .reduce((acc, num) => acc + Math.abs(num), 0)
+              .toLocaleString()}
+          </h1>
+          <h1>
+            あなたの世間とのずれ:
+            {itemDiffPercentage.toLocaleString()}%
+          </h1>
+        </div>
         {/* 上側 */}
         <div style={styles.topWrapper}>
           {item.map((item, index) => (
@@ -56,7 +66,7 @@ const Fin = () => {
                   fontSize: 16,
                 }}
               >
-                金額：{item.answer}円
+                金額：{item.answer.toLocaleString()}円
               </p>
               <h1
                 style={{
@@ -68,7 +78,7 @@ const Fin = () => {
               >
                 差額金額：
                 <br />
-                {keyPadNumArr[index]}円
+                {keyPadNumArr[index].toLocaleString()}円
               </h1>
               <motion.a
                 href={item.affiliatelink}
@@ -116,6 +126,10 @@ const styles: Styles = {
     display: 'flex',
     flexDirection: 'column',
     gap: '50px',
+  },
+  totalAns: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
   topWrapper: {
     fontSize: '10px',

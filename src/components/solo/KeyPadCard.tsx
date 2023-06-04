@@ -49,6 +49,10 @@ const KeyPadCard = () => {
     setKeyPadNum(number);
   };
 
+  const handleAllClear = () => {
+    setKeyPadNum(0);
+  };
+
   return (
     <div style={styles.container}>
       <input
@@ -78,6 +82,7 @@ const KeyPadCard = () => {
           number={0}
           onClick={() => handleNumButton(0)}
         />
+        <NumButton number={'AC'} onClick={handleAllClear} />
       </div>
     </div>
   );

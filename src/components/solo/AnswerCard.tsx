@@ -17,11 +17,18 @@ const AnswerCard = () => {
       {item[crrQuizNum] && (
         <div style={styles.wrapper}>
           <p style={styles.label}>正解</p>
-          <h1>{item[crrQuizNum].answer}円</h1>
+          <h1>
+            {item[crrQuizNum].answer.toLocaleString()}円
+          </h1>
           <p style={styles.label}>あなたの回答</p>
-          <h1>{keyPadNum}円</h1>
+          <h1>{keyPadNum.toLocaleString()}円</h1>
           <p style={styles.label}>差額</p>
-          <h1>{item[crrQuizNum].answer - keyPadNum}円</h1>
+          <h1>
+            {(
+              item[crrQuizNum].answer - keyPadNum
+            ).toLocaleString()}
+            円
+          </h1>
         </div>
       )}
     </div>
@@ -33,10 +40,10 @@ export default AnswerCard;
 const styles: Styles = {
   label: {
     marginTop: 20,
-    fontSize:20,
-    fontWeight:"bold",
-    color: "rgb(199,81,250)",
-    textShadow: "0 0 5px rgb(199,81,250)",
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'rgb(199,81,250)',
+    textShadow: '0 0 5px rgb(199,81,250)',
   },
   container: {
     // margin: '50px 0',
