@@ -6,11 +6,39 @@ import {
   keyPadNumState,
   timeLimit,
 } from '@/store/atoms';
-import { Styles } from '@/types/Styles';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useRouter } from 'next/router';
 import { getItemData } from '@/pages/api/game';
+import { css } from '@emotion/react';
+
+const styles = {
+  container: css`
+    min-height: 150px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  `,
+  timeWrapper: css`
+    text-align: left;
+    font-weight: bold;
+    font-size: 26px;
+    padding-left: 50px;
+    padding-top: 10px;
+    color: rgb(199 81 250);
+    text-shadow: 0 0 5px rgb(199 81 250);
+  `,
+  time: css`
+    text-align: right;
+    padding-right: 30px;
+    font-size: 50px;
+  `,
+  timeSec: css`
+    margin-left: 20px;
+    font-size: 20px;
+  `,
+};
 
 const GameTimeCard = () => {
   const [time, setTime] = useRecoilState(timeLimit);
@@ -27,6 +55,7 @@ const GameTimeCard = () => {
   const [keyPadNum, setKeyPadNum] =
     useRecoilState(keyPadNumState);
 
+  // Todo: タイマーの処理
   //   useEffect(() => {
   //     const intervalId = setInterval(() => {
   //       setTime((prevTime) => prevTime - 1);
@@ -52,49 +81,14 @@ const GameTimeCard = () => {
   //   }, [time]);
 
   return (
-    <div style={styles.container}>
-      <div
-        style={{
-          textAlign: 'left',
-          fontWeight: 'bold',
-          fontSize: 26,
-          paddingLeft: 20,
-          paddingTop: 10,
-          color: 'rgb(199 81 250)',
-          textShadow: '0 0 5px rgb(199 81 250)',
-        }}
-      >
-        Remain
-      </div>
-      <div
-        style={{
-          textAlign: 'right',
-          paddingRight: 30,
-          fontSize: 50,
-        }}
-      >
+    <div css={styles.container}>
+      <div css={styles.timeWrapper}>Remain</div>
+      <div css={styles.time}>
         {time}
-        <span
-          style={{
-            marginLeft: 20,
-            fontSize: 20,
-          }}
-        >
-          sec
-        </span>
+        <span css={styles.timeSec}>sec</span>
       </div>
     </div>
   );
 };
 
 export default GameTimeCard;
-
-const styles: Styles = {
-  container: {
-    minHeight: '150px',
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'left',
-  },
-};
