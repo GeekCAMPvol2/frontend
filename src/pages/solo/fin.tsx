@@ -59,7 +59,7 @@ const Fin = () => {
           </h1>
           <h1>
             あなたの世間とのずれ:
-            {`${itemDiffPercentage}%`}
+            {itemDiffPercentage}%
           </h1>
         </div>
         {/* 上側 */}
