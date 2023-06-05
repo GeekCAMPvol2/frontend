@@ -36,6 +36,9 @@ export default function Home() {
   const userId = useFirebaseUserId();
   const playerNameRef = useRef<HTMLInputElement>(null);
 
+  const [quizApiError, setQuizApiError] =
+    useState<unknown>();
+
   const [item, setItem] = useRecoilState(itemData);
 
   const [hoveredColor, setHoveredColor] = useState<string>(
@@ -83,10 +86,15 @@ export default function Home() {
 
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
-    const resultData = await getItemData();
-    setItem([resultData]);
-    setIsCounting(true);
-    fncCountDown(3, path);
+    try {
+      const resultData = await getItemData();
+      setItem([resultData]);
+      setIsCounting(true);
+      fncCountDown(3, path);
+    } catch (err) {
+      console.error(err);
+      setQuizApiError(err);
+    }
   };
 
   // multiプレイ開始ボタン
