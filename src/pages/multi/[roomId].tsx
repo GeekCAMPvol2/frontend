@@ -35,9 +35,8 @@ const Lobby = () => {
   const [isReady, setIsReady] = useState(false);
   const [players, setPlayers] =
     useRecoilState(playersState);
-  const [membersReady, setMembersReady] = useState<
-    Record<string, boolean> | undefined
-  >(undefined);
+  const [membersReady, setMembersReady] =
+    useState<Record<string, boolean>>();
   const [gameStatus, setGameStatus] = useState<
     'INVITING_MEMBERS' | 'GAME_STARTED'
   >('INVITING_MEMBERS');
@@ -102,7 +101,9 @@ const Lobby = () => {
       ) : (
         <div>
           <LeaveButton roomId={roomId} />
-          <Title />
+          <div>
+            <Title />
+          </div>
           <div style={styles.playerContainer}>
             {players.map((player, index) => {
               const userId = player.userId;
@@ -110,7 +111,11 @@ const Lobby = () => {
                 <PlayerCard
                   key={index}
                   name={player.playerName}
-                  checked={membersReady![userId]}
+                  checked={
+                    membersReady != undefined
+                      ? membersReady[userId]
+                      : false
+                  }
                 />
               );
             })}
