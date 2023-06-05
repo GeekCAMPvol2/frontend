@@ -1,9 +1,13 @@
 import { ItemData } from '@/types/Game';
 
 export const getItemData = async (): Promise<ItemData> => {
-  const res = await fetch(
-    new URL(`https://seaffood.com/quiz`)
-  );
-  const data: ItemData = await res.json();
-  return data;
+  const url = 'https://seaffood.com/quiz';
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error('Network response error');
+  }
+
+  const { success } = await res.json();
+
+  return success;
 };
