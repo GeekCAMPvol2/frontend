@@ -7,7 +7,5 @@ export const getItemData = async (): Promise<ItemData> => {
     throw new Error('Network response error');
   }
 
-  const { success } = await res.json();
-
-  return success;
+  return (await res.json()) as ItemData;
 };

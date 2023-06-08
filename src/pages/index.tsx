@@ -41,6 +41,9 @@ export default function Home() {
 
   const [item, setItem] = useRecoilState(itemData);
 
+  const [buttonDisabled, setButtonDisabled] =
+    useState<boolean>(false); //ボタンの無効化
+
   const [hoveredColor, setHoveredColor] = useState<string>(
     'rgb(199, 81, 250)'
   ); //選択中のボタン
@@ -86,9 +89,11 @@ export default function Home() {
 
   // ゲーム開始ボタン
   const handlePlayGame = async (path: string) => {
+    setButtonDisabled(true);
     try {
       const resultData = await getItemData();
       setItem([resultData]);
+      console.log(resultData);
       setIsCounting(true);
       fncCountDown(3, path);
     } catch (err) {
@@ -99,6 +104,7 @@ export default function Home() {
 
   // multiプレイ開始ボタン
   const handlePlayMultiGame = async () => {
+    setButtonDisabled(true);
     const playerName =
       playerNameRef.current!.value == ''
         ? 'プレイヤー1'
@@ -176,13 +182,18 @@ export default function Home() {
             onHoverStart={() =>
               handleOnHover('rgb(199, 81, 250)')
             }
+            disabled={buttonDisabled}
           />
           <MainButton
             delay={0.2}
             color="rgb(0, 225, 255)"
             name="みんなで遊ぶ"
             onClick={handlePlayMultiGame}
-            disabled={userId === undefined}
+            disabled={
+              userId === undefined || buttonDisabled
+                ? true
+                : false
+            }
             onHoverStart={() =>
               handleOnHover('rgb(0, 225, 255)')
             }
