@@ -17,7 +17,7 @@ const styles = {
 
 const TestView = () => {
   const [multiGameStateFlg, setMultiGameStateFlg] =
-    useState('ans');
+    useState('quiz');
   return (
     <>
       <Background selected={'rgb(0, 225, 255)'} />

@@ -2,6 +2,7 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 import AnsQuizButton from '../AnsQuizButton';
 import AnswerCard from '../AnswerCard';
+import HomeButton from '@/components/elements/HomeButton';
 
 const styles = {
   container: css`
@@ -42,6 +43,7 @@ const styles = {
 const MultiAns = () => {
   return (
     <div css={styles.container}>
+      <HomeButton />
       {/* 左側 */}
       <div css={styles.leftContainer}>
         <div css={styles.productTitleWrapper}>
