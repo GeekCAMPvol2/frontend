@@ -5,6 +5,7 @@ import KeyPadCard from '../KeyPadCard';
 import AnsQuizButton from '../AnsQuizButton';
 import HomeButton from '@/components/elements/HomeButton';
 import CheckCount from '../CheckCount';
+import NowQuizNumber from '@/components/elements/NowQuizNumber';
 
 const styles = {
   absContainer: css`
@@ -55,6 +56,7 @@ const MultiQuiz = () => {
     <div css={styles.container}>
       <div css={styles.absContainer}>
         {/* <HomeButton /> */}
+        <NowQuizNumber />
         <CheckCount />
       </div>
       {/* 左側 */}
