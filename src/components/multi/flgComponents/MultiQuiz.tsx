@@ -3,8 +3,18 @@ import Image from 'next/image';
 import GameTimeCard from '../GameTimeCard';
 import KeyPadCard from '../KeyPadCard';
 import AnsQuizButton from '../AnsQuizButton';
+import HomeButton from '@/components/elements/HomeButton';
+import CheckCount from '../CheckCount';
 
 const styles = {
+  absContainer: css`
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  `,
   container: css`
     display: flex;
     justify-content: center;
@@ -43,6 +53,10 @@ const styles = {
 const MultiQuiz = () => {
   return (
     <div css={styles.container}>
+      <div css={styles.absContainer}>
+        {/* <HomeButton /> */}
+        <CheckCount />
+      </div>
       {/* 左側 */}
       <div css={styles.leftContainer}>
         <div css={styles.productTitleWrapper}>

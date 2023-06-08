@@ -4,7 +4,6 @@ import { css } from '@emotion/react';
 
 const styles = {
   button: css`
-    position: absolute;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -16,7 +15,6 @@ const styles = {
     border: 2px solid white;
     border-radius: 400px;
     padding: 10px 20px;
-    margin: 50px;
     transition: 0.3s;
     &:hover {
       transform: scale(1.1);
