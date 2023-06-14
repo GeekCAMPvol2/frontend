@@ -28,10 +28,7 @@ const AnsQuizButton = () => {
     useRecoilState(keyPadNumState);
 
   const handleSubmit = async () => {
-    if (crrQuizNum < getItemNum - 1) {
-      const resultData = await getItemData();
-      setItem([...item, resultData]);
-    }
+    setCrrQuizNum((prevNum) => prevNum + 1);
     setKeyPadNumArr([
       ...keyPadNumArr,
       item[crrQuizNum].answer - keyPadNum,
@@ -40,7 +37,7 @@ const AnsQuizButton = () => {
 
   return (
     <>
-      {crrQuizNum === getItemNum - 1 &&
+      {crrQuizNum === item.length &&
       ansQuizUrl === '/solo/quiz' ? (
         <Link href={'/solo/fin'}>
           <button style={styles.button}>FINISH</button>
@@ -58,9 +55,6 @@ const AnsQuizButton = () => {
           ) : (
             <motion.button
               style={styles.button}
-              onClick={() =>
-                setCrrQuizNum((prevNum) => prevNum + 1)
-              }
               {...hoverTapRed}
             >
               NEXT

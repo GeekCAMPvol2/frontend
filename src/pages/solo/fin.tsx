@@ -36,7 +36,10 @@ const Fin = () => {
           </h1>
           <h1>
             あなたの世間とのずれ:
-            {itemDiffPercentage.toLocaleString()}%
+            {itemDiffPercentage
+              ? itemDiffPercentage.toLocaleString()
+              : 0}
+            %
           </h1>
         </div>
         {/* 上側 */}
@@ -66,7 +69,11 @@ const Fin = () => {
                   fontSize: 16,
                 }}
               >
-                金額：{item.answer.toLocaleString()}円
+                金額：
+                {item.answer
+                  ? item.answer.toLocaleString()
+                  : 0}
+                円
               </p>
               <h1
                 style={{
@@ -78,7 +85,10 @@ const Fin = () => {
               >
                 差額金額：
                 <br />
-                {keyPadNumArr[index].toLocaleString()}円
+                {keyPadNumArr[index]
+                  ? keyPadNumArr[index].toLocaleString()
+                  : 0}
+                円
               </h1>
               <motion.a
                 href={item.affiliatelink}

@@ -10,6 +10,7 @@ import {
   getItemNumState,
   itemData,
   keyPadNumArrState,
+  timeLimit,
 } from '@/store/atoms';
 import { useRecoilState } from 'recoil';
 import {
@@ -43,6 +44,7 @@ export default function Home() {
 
   const [buttonDisabled, setButtonDisabled] =
     useState<boolean>(false); //ボタンの無効化
+  const [time, setTime] = useRecoilState(timeLimit);
 
   const [hoveredColor, setHoveredColor] = useState<string>(
     'rgb(199, 81, 250)'
@@ -92,8 +94,7 @@ export default function Home() {
     setButtonDisabled(true);
     try {
       const resultData = await getItemData();
-      setItem([resultData]);
-      console.log(resultData);
+      setItem(resultData);
       setIsCounting(true);
       fncCountDown(3, path);
     } catch (err) {
@@ -131,6 +132,7 @@ export default function Home() {
   // 初期化
   useEffect(() => {
     setItem([]);
+    setTime(30);
     setCrrQuizNum(0);
     setKeyPadNumArr([]);
   }, []);

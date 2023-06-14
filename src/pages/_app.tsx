@@ -6,6 +6,9 @@ import styled from 'styled-components';
 import { useIsomorphicEffect } from '@/utils/IsomorphicEffect';
 import { useState } from 'react';
 import { css } from '@emotion/react';
+import { Router } from 'next/router';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 const Wrapper = styled.div.attrs<{ renderScale: number }>(
   (p) => ({
@@ -14,6 +17,15 @@ const Wrapper = styled.div.attrs<{ renderScale: number }>(
     },
   })
 )``;
+Router.events.on('routeChangeStart', () =>
+  NProgress.start()
+);
+Router.events.on('routeChangeComplete', () =>
+  NProgress.done()
+);
+Router.events.on('routeChangeError', () =>
+  NProgress.done()
+);
 
 const styles = {
   body: css`
