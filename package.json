@@ -14,6 +14,7 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.0",
     "@types/node": "18.15.11",
+    "@types/nprogress": "^0.2.0",
     "@types/react": "18.0.32",
     "@types/react-dom": "18.0.11",
     "@types/styled-components": "^5.1.26",
@@ -25,6 +26,7 @@
     "jdenticon": "^3.2.0",
     "jotai": "^2.0.3",
     "next": "13.2.4",
+    "nprogress": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "recoil": "^0.7.7",
@@ -36,7 +38,7 @@
   "devDependencies": {
     "@netlify/plugin-nextjs": "^4.34.0",
     "eslint-config-prettier": "^8.8.0",
-    "netlify-cli": "^13.2.2",
+    "netlify-cli": "^15.4.1",
     "next-intercept-stdout": "^1.0.1",
     "prettier": "^2.8.7"
   }
