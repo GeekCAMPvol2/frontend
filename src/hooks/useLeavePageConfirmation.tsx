@@ -1,4 +1,4 @@
-import { leaveRoom } from '@/components/multi/leaveHandler';
+import { leaveRoom } from '@/lib/leaveHandler';
 import { useEffect } from 'react';
 
 const handleBeforeunload = (
