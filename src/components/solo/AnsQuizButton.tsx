@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { hoverTapRed } from '@/animations/variants';
+import { useRouter } from 'next/router';
 
 const AnsQuizButton = () => {
   const [ansQuizUrl, setAnsQuizUrl] =
@@ -27,23 +28,31 @@ const AnsQuizButton = () => {
   const [keyPadNum, setKeyPadNum] =
     useRecoilState(keyPadNumState);
 
+  const router = useRouter();
+
   const handleSubmit = async () => {
-    setCrrQuizNum((prevNum) => prevNum + 1);
     setKeyPadNumArr([
       ...keyPadNumArr,
       item[crrQuizNum].answer - keyPadNum,
     ]);
+    router.push('/solo/ans');
+  };
+
+  const handleNext = () => {
+    router.push(ansQuizUrl);
+    // setCrrQuizNum((prev) => prev + 1);
   };
 
   return (
     <>
-      {crrQuizNum === item.length &&
+      {crrQuizNum === item.length - 1 &&
       ansQuizUrl === '/solo/quiz' ? (
         <Link href={'/solo/fin'}>
           <button style={styles.button}>FINISH</button>
         </Link>
       ) : (
-        <Link href={ansQuizUrl}>
+        // <Link href={ansQuizUrl}>
+        <>
           {ansQuizUrl === '/solo/ans' ? (
             <motion.button
               style={styles.button}
@@ -56,11 +65,13 @@ const AnsQuizButton = () => {
             <motion.button
               style={styles.button}
               {...hoverTapRed}
+              onClick={handleNext}
             >
               NEXT
             </motion.button>
           )}
-        </Link>
+        </>
+        // </Link>
       )}
     </>
   );

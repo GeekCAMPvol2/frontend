@@ -10,7 +10,7 @@ import {
 } from '@/store/atoms';
 import { Styles } from '@/types/Styles';
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { Background } from '@/components/elements/Background';
 import { Title } from '@/components/elements/Title';
@@ -30,11 +30,21 @@ const Quiz = () => {
   const [keyPadNum, setKeyPadNum] =
     useRecoilState(keyPadNumState);
 
+  const loadedRef = useRef(false);
+
   // 問題が始まったらAPI取得して新しい商品をセットする + タイマーをセットする
   useEffect(() => {
     setKeyPadNum(0);
     setAnsQuizUrl('/solo/ans');
   }, []);
+
+  useEffect(() => {
+    if (!loadedRef.current) {
+      loadedRef.current = true;
+
+      setCrrQuizNum((prev) => prev + 1);
+    }
+  });
 
   return (
     <div style={styles.container}>

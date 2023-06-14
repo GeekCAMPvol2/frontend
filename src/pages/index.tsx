@@ -133,7 +133,7 @@ export default function Home() {
   useEffect(() => {
     setItem([]);
     setTime(30);
-    setCrrQuizNum(0);
+    setCrrQuizNum(-1);
     setKeyPadNumArr([]);
   }, []);
 
