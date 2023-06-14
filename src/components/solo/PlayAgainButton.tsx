@@ -22,9 +22,9 @@ const PlayAgainButton = () => {
     useRecoilState(crrQuizNumState);
 
   const handlePlayAgain = async () => {
-    setCrrQuizNum(0);
+    setCrrQuizNum(-1);
     const resultData = await getItemData();
-    setItem([resultData]);
+    setItem(resultData);
     setKeyPadNumArr([]);
     router.push('/solo/quiz');
   };
