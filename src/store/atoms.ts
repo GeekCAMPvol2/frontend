@@ -131,7 +131,7 @@ export const getItemNumState = atom<number>({
 // 現在の問題番号
 export const crrQuizNumState = atom<number>({
   key: 'crrQuizNumState',
-  default: 0,
+  default: -1,
 });
 
 // 入力した金額配列
