@@ -55,3 +55,12 @@ export const leaveRoom = async (roomId: string) => {
     roomId: roomId,
   });
 };
+
+export const submitAnswer = async (roomId: string) => {
+  const submitAnswerCallback: HttpsCallable<{
+    roomId: string;
+  }> = httpsCallable(functions, 'submitAnswer');
+  await submitAnswerCallback({
+    roomId: roomId,
+  });
+};
