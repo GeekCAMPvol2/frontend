@@ -27,6 +27,7 @@ import {
   roomIdState,
 } from '@/store/atoms';
 import { Title } from '@/components/elements/Title';
+import { setMemberReady } from '@/lib/firestoreHandler';
 
 // マルチモードが実際に行われるページコンポーネント
 const Lobby = () => {
@@ -77,20 +78,6 @@ const Lobby = () => {
   const handleReady = () => {
     setMemberReady(roomId, !isReady);
     setIsReady(true);
-  };
-
-  const setMemberReady = async (
-    roomId: string,
-    ready: boolean
-  ) => {
-    const setMemberReadyCallback: HttpsCallable<
-      { roomId: string; ready: boolean },
-      undefined
-    > = httpsCallable(functions, 'setMemberReadyState');
-    await setMemberReadyCallback({
-      roomId: roomId,
-      ready: ready,
-    });
   };
 
   return (

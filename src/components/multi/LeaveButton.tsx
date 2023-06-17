@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { leaveRoom } from '../../lib/leaveHandler';
 import HomeIcon from '@mui/icons-material/Home';
 import { Styles } from '@/types/Styles';
+import { leaveRoom } from '@/lib/firestoreHandler';
 
 type Props = {
   roomId: string;
