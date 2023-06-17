@@ -4,22 +4,14 @@ import { Background } from '@/components/elements/Background';
 import { LobbyButton } from '@/components/lobby/LobbyButton';
 import { PlayerCard } from '@/components/lobby/PlayerCard';
 import { useFirebaseUserId } from '@/hooks/useFirebaseUserId';
-import {
-  db,
-  firebaseSignIn,
-  functions,
-} from '@/lib/firebase';
+import { db, firebaseSignIn } from '@/lib/firebase';
 import { playersState, roomIdState } from '@/store/atoms';
-import { Player } from '@/types/Player';
 import { Styles } from '@/types/Styles';
 import { doc, onSnapshot } from 'firebase/firestore';
-import {
-  HttpsCallable,
-  httpsCallable,
-} from 'firebase/functions';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
+import { joinRoom } from '@/lib/firestoreHandler';
 
 // 待機画面
 const Lobby = () => {
@@ -60,21 +52,6 @@ const Lobby = () => {
         : playerNameRef.current!.value;
     await joinRoom(roomId, playerName);
     router.push(`/multi/${roomId}`);
-  };
-
-  // 入室
-  const joinRoom = async (
-    roomId: string,
-    playerName: string
-  ) => {
-    const joinRoomCallback: HttpsCallable<
-      { roomId: string; playerName: string },
-      any
-    > = httpsCallable(functions, 'joinRoom');
-    await joinRoomCallback({
-      roomId: roomId,
-      playerName: playerName,
-    });
   };
 
   return (

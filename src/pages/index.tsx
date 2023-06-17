@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import {
   firebaseSignIn,
   firebaseSignOut,
-  functions,
 } from '../lib/firebase';
 import {
   crrQuizNumState,
@@ -13,10 +12,6 @@ import {
   timeLimit,
 } from '@/store/atoms';
 import { useRecoilState } from 'recoil';
-import {
-  HttpsCallable,
-  httpsCallable,
-} from 'firebase/functions';
 import { getItemData } from './api/game';
 import { useEffect, useRef, useState } from 'react';
 import { Title } from '@/components/elements/Title';
@@ -31,6 +26,7 @@ import {
   SideFlowing,
 } from '@/animations/variants';
 import { css } from '@emotion/react';
+import { createRoom } from '@/lib/firestoreHandler';
 
 export default function Home() {
   const router = useRouter();
@@ -112,21 +108,6 @@ export default function Home() {
         : playerNameRef.current!.value;
     const roomId = await createRoom(playerName);
     router.push(`/multi/${roomId}`);
-  };
-
-  // 部屋作成
-  const createRoom = async (
-    playerName: string
-  ): Promise<string> => {
-    const createRoomCallback: HttpsCallable<
-      { playerName: string },
-      { roomId: string }
-    > = httpsCallable(functions, 'createRoom');
-    const createRoomResponse = await createRoomCallback({
-      playerName: playerName,
-    });
-    console.log(createRoomResponse.data.roomId);
-    return createRoomResponse.data.roomId;
   };
 
   // 初期化
