@@ -26,7 +26,7 @@ import {
   SideFlowing,
 } from '@/animations/variants';
 import { css } from '@emotion/react';
-import { createRoom } from '@/lib/firestoreHandler';
+import { createRoom } from '@/features/multiplay/clients/room';
 
 export default function Home() {
   const router = useRouter();
@@ -106,7 +106,7 @@ export default function Home() {
       playerNameRef.current!.value == ''
         ? 'プレイヤー1'
         : playerNameRef.current!.value;
-    const roomId = await createRoom(playerName);
+    const { roomId } = await createRoom(playerName);
     router.push(`/multi/${roomId}`);
   };
 

@@ -1,5 +1,7 @@
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import { MultiplayRoomMember } from '@/features/multiplay/model';
+import { formatNumberToJpyString } from '@/features/multiplay/utils/formatNumberToJpyString';
 
 const styles = {
   container: css`
@@ -46,12 +48,19 @@ const styles = {
   `,
 };
 
-const AnswerCard = () => {
+export type AnswerCardProps = {
+  correctPrice: number;
+  players: MultiplayRoomMember[];
+  answersByPlayer: Map<string, number>;
+};
+
+export const AnswerCard = (props: AnswerCardProps) => {
+  const { correctPrice, answersByPlayer } = props;
   return (
     <div css={styles.container}>
       <div css={styles.answerWrapper}>
         <p css={styles.label}>正解</p>
-        <h1>9,999,999円</h1>
+        <h1>{formatNumberToJpyString(correctPrice)}</h1>
       </div>
 
       <div css={styles.tableContainer}>
@@ -64,50 +73,33 @@ const AnswerCard = () => {
             </tr>
           </thead>
           <tbody>
-            <tr css={styles.answerTr}>
-              <td>
-                <Image
-                  css={styles.userImage}
-                  src={'/flower2.jpg'}
-                  alt={'ユーザーアイコン'}
-                  height={50}
-                  width={50}
-                />
-              </td>
-              <td css={styles.answerTd}>999,999円</td>
-              <td>9,000,000円</td>
-            </tr>
-            <tr css={styles.answerTr}>
-              <td>
-                <Image
-                  css={styles.userImage}
-                  src={'/flower2.jpg'}
-                  alt={'ユーザーアイコン'}
-                  height={50}
-                  width={50}
-                />
-              </td>
-              <td css={styles.answerTd}>999,999円</td>
-              <td>9,000,000円</td>
-            </tr>
-            <tr css={styles.answerTr}>
-              <td>
-                <Image
-                  css={styles.userImage}
-                  src={'/flower2.jpg'}
-                  alt={'ユーザーアイコン'}
-                  height={50}
-                  width={50}
-                />
-              </td>
-              <td css={styles.answerTd}>999,999円</td>
-              <td>9,000,000円</td>
-            </tr>
+            {Array.from(
+              answersByPlayer,
+              ([userId, answeredPrice]) => (
+                <tr css={styles.answerTr} key={userId}>
+                  <td>
+                    <Image
+                      css={styles.userImage}
+                      src={'/flower2.jpg'}
+                      alt={'ユーザーアイコン'}
+                      height={50}
+                      width={50}
+                    />
+                  </td>
+                  <td css={styles.answerTd}>
+                    {formatNumberToJpyString(answeredPrice)}
+                  </td>
+                  <td>
+                    {formatNumberToJpyString(
+                      Math.abs(answeredPrice - correctPrice)
+                    )}
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>
     </div>
   );
 };
-
-export default AnswerCard;
