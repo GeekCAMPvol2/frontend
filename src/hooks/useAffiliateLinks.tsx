@@ -8,9 +8,5 @@ export const useAffiliateLinks = () => {
     (item) => item.affiliatelink
   );
 
-  useEffect(() => {
-    console.log(affiliateLinks);
-  }, []);
-
   return affiliateLinks;
 };
