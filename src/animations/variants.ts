@@ -215,9 +215,18 @@ export const hoverTapKeyPad: HTMLMotionProps<'button'> = {
 export const hoverRed: HTMLMotionProps<'button'> = {
   whileHover: {
     scale: 1.1,
-    width: '100%',
+    width: '50%',
     border: '2px solid rgb(199, 81, 250)',
     backgroundColor: 'rgb(199, 81, 250)',
     boxShadow: '0 0 15px rgb(199, 81, 250)',
+  },
+};
+export const hoverBlue: HTMLMotionProps<'button'> = {
+  whileHover: {
+    scale: 1.1,
+    width: '20%',
+    border: '2px solid rgb(0, 255, 250)',
+    backgroundColor: 'rgb(0, 255, 250)',
+    boxShadow: '0 0 15px rgb(0, 255, 250)',
   },
 };

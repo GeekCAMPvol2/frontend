@@ -87,6 +87,7 @@ export default Quiz;
 
 const styles: Styles = {
   container: {
+    color: '#fff',
     margin: '50px 0',
     overflowX: 'hidden',
   },

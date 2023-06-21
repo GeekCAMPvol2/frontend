@@ -213,7 +213,9 @@ export default function Home() {
 }
 
 const styles = {
-  container: css``,
+  container: css`
+    color: #fff;
+  `,
   main: css`
     margin: 0 auto;
     margin-top: 150px;

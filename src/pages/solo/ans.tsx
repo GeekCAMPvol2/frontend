@@ -74,6 +74,7 @@ const styles: Styles = {
   container: {
     margin: '50px 0',
     overflowX: 'hidden',
+    color: '#fff',
   },
   titleWrapper: {
     textAlign: 'center',

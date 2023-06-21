@@ -10,6 +10,8 @@ import { motion } from 'framer-motion';
 import { hoverTapLink } from '@/animations/variants';
 import { ItemData } from '@/types/Game';
 import { useItemDiffPercentage } from '@/hooks/useItemDiffPerceentage';
+import { useEffect, useRef } from 'react';
+import SharedButton from '@/components/elements/SharedButton';
 
 const Fin = () => {
   const [item, setItem] = useRecoilState(itemData);
@@ -20,8 +22,14 @@ const Fin = () => {
 
   const itemDiffPercentage = useItemDiffPercentage();
 
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  // useEffect(() => {
+  //   console.log(componentRef);
+  // }, []);
+
   return (
-    <div style={styles.container}>
+    <div style={styles.container} ref={componentRef}>
       {/* <HomeButton /> */}
       <span style={styles.titleWrapper}>
         <Title />
@@ -111,6 +119,7 @@ const Fin = () => {
 
         {/* 下側 */}
         <div style={styles.bottomWrapper}>
+          <SharedButton componentRef={componentRef} />
           <PlayAgainButton />
         </div>
       </div>
@@ -123,6 +132,7 @@ export default Fin;
 
 const styles: Styles = {
   container: {
+    color: '#fff',
     margin: '0px 0',
     overflowX: 'hidden',
     overflowY: 'hidden',
@@ -168,7 +178,7 @@ const styles: Styles = {
   },
   bottomWrapper: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     gap: '50px',
   },

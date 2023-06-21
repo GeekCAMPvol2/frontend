@@ -46,9 +46,10 @@ const styles: Styles = {
     textShadow: '0 0 5px rgb(199,81,250)',
   },
   container: {
+    color: '#fff',
     // margin: '50px 0',
   },
   wrapper: {
-    color: 'black',
+    // color: 'black',
   },
 };
