@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { Styles } from '@/types/Styles';
 import { hoverRed } from '@/animations/variants';
+import { useEffect } from 'react';
 
 const PlayAgainButton = () => {
   const router = useRouter();
@@ -22,12 +23,19 @@ const PlayAgainButton = () => {
     useRecoilState(crrQuizNumState);
 
   const handlePlayAgain = async () => {
-    setCrrQuizNum(-1);
+    // setCrrQuizNum(-1);
     const resultData = await getItemData();
     setItem(resultData);
     setKeyPadNumArr([]);
     router.push('/solo/quiz');
   };
+
+  useEffect(() => {
+    return () => {
+      setCrrQuizNum(-1);
+    };
+  }, [handlePlayAgain]);
+
   return (
     <motion.button
       style={styles.button}
