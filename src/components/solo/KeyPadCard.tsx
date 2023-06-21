@@ -90,6 +90,7 @@ const KeyPadCard = () => {
 
 const styles: Styles = {
   container: {
+    color: '#fff',
     textAlign: 'center',
   },
   input: {
@@ -102,6 +103,7 @@ const styles: Styles = {
     marginBottom: 15,
     borderBottom: '3px solid #fff',
     backgroundColor: 'rgb(0 0 0 /0)',
+    color: '#fff',
   },
 };
 
