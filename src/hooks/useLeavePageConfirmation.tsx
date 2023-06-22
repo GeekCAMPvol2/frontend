@@ -1,4 +1,4 @@
-import { leaveRoom } from '@/lib/leaveHandler';
+import { leaveRoom } from '@/lib/firestoreHandler';
 import { useEffect } from 'react';
 
 const handleBeforeunload = (
