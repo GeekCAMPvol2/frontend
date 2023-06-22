@@ -241,6 +241,7 @@ const styles = {
     border-radius: 100px;
     padding: 10px 20px;
     margin-top: 30px;
+    color: #fff;
   `,
   countdown: css`
     position: absolute;
