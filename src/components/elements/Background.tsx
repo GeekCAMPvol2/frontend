@@ -13,6 +13,8 @@ export const Background = (props: Props) => {
         className={
           selected == 'rgb(199, 81, 250)'
             ? `${styles.background}`
+            : selected == `rgb(18, 255, 34)`
+            ? `${styles.background} ${styles.type3}`
             : `${styles.background} ${styles.type2}`
         }
       >

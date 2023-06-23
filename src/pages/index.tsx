@@ -181,6 +181,18 @@ export default function Home() {
               handleOnHover('rgb(0, 225, 255)')
             }
           />
+          {/* <MainButton
+            delay={0.1}
+            color="rgb(18, 255, 34)"
+            name="アドベンチャー"
+            onClick={() =>
+              handlePlayGame('/solo/adventure')
+            }
+            onHoverStart={() =>
+              handleOnHover('rgb(18, 255, 34)')
+            }
+            disabled={buttonDisabled}
+          /> */}
         </div>
 
         <motion.a

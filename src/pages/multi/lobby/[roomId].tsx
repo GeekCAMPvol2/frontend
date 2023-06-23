@@ -58,7 +58,9 @@ const Lobby = () => {
     <div>
       {/* ホームボタンコンポーネント */}
       <HomeButton />
-      <Title />
+      <span style={styles.title}>
+        <Title />
+      </span>
       <div style={styles.playerContainer}>
         {players.map((player, index) => (
           <PlayerCard
