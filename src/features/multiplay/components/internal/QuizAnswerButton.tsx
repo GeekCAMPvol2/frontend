@@ -1,16 +1,10 @@
-import { getItemData } from '@/pages/api/game';
-import {
-  ansQuizState,
-  crrQuizNumState,
-  getItemNumState,
-  itemData,
-  keyPadNumArrState,
-  keyPadNumState,
-} from '@/store/atoms';
 import { css } from '@emotion/react';
-import { useRecoilState } from 'recoil';
 import { motion } from 'framer-motion';
 import { hoverTapRed } from '@/animations/variants';
+
+export type QuizAnswerButtonProps = {
+  onClick: () => void;
+};
 
 const styles = {
   container: css`
@@ -31,23 +25,10 @@ const styles = {
   `,
 };
 
-const AnsQuizButton = () => {
-  const [ansQuizUrl, setAnsQuizUrl] =
-    useRecoilState(ansQuizState);
-  const [crrQuizNum, setCrrQuizNum] =
-    useRecoilState(crrQuizNumState);
-  const [getItemNum, setGetItemNum] =
-    useRecoilState(getItemNumState);
-  const [item, setItem] = useRecoilState(itemData);
-  const [keyPadNumArr, setKeyPadNumArr] = useRecoilState(
-    keyPadNumArrState
-  );
-  const [keyPadNum, setKeyPadNum] =
-    useRecoilState(keyPadNumState);
-
-  const handleSubmit = async () => {
-    // Todo: クイズを解いたときの処理
-  };
+export const QuizAnswerButton = (
+  props: QuizAnswerButtonProps
+) => {
+  const { onClick } = props;
 
   return (
     <div css={styles.container}>
@@ -57,7 +38,7 @@ const AnsQuizButton = () => {
       {/* クイズ画面の場合 */}
       <motion.button
         css={styles.button}
-        onClick={() => handleSubmit()}
+        onClick={onClick}
         {...hoverTapRed}
       >
         SUBMIT
@@ -76,5 +57,3 @@ const AnsQuizButton = () => {
     </div>
   );
 };
-
-export default AnsQuizButton;

@@ -1,6 +1,11 @@
 import { css } from '@emotion/react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
+export type PlayerCountIndicatorProps = {
+  answeredPlayerCount: number;
+  playerCount: number;
+};
+
 const styles = {
   container: css`
     background-color: transparent;
@@ -17,18 +22,19 @@ const styles = {
   `,
 };
 
-const CheckCount = () => {
+export const PlayerCountIndicator = (
+  props: PlayerCountIndicatorProps
+) => {
+  const { answeredPlayerCount, playerCount } = props;
   return (
     <div>
       <p css={styles.container}>
         <i>
           <CheckCircleIcon />
         </i>
-        <span>{`${'Submitした人数'}/${'参加人数'}`}</span>
+        <span>{`${answeredPlayerCount}/${playerCount}`}</span>
         <span></span>
       </p>
     </div>
   );
 };
-
-export default CheckCount;
