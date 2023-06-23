@@ -181,6 +181,16 @@ export default function Home() {
               handleOnHover('rgb(0, 225, 255)')
             }
           />
+          <MainButton
+            delay={0.1}
+            color="rgb(199, 81, 250)"
+            name="一人で遊ぶ"
+            onClick={() => handlePlayGame('/solo/quiz')}
+            onHoverStart={() =>
+              handleOnHover('rgb(199, 81, 250)')
+            }
+            disabled={buttonDisabled}
+          />
         </div>
 
         <motion.a
