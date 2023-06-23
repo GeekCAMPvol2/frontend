@@ -181,7 +181,7 @@ export default function Home() {
               handleOnHover('rgb(0, 225, 255)')
             }
           />
-          <MainButton
+          {/* <MainButton
             delay={0.1}
             color="rgb(18, 255, 34)"
             name="アドベンチャー"
@@ -192,7 +192,7 @@ export default function Home() {
               handleOnHover('rgb(18, 255, 34)')
             }
             disabled={buttonDisabled}
-          />
+          /> */}
         </div>
 
         <motion.a
