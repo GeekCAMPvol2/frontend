@@ -183,11 +183,13 @@ export default function Home() {
           />
           <MainButton
             delay={0.1}
-            color="rgb(199, 81, 250)"
-            name="一人で遊ぶ"
-            onClick={() => handlePlayGame('/solo/quiz')}
+            color="rgb(18, 255, 34)"
+            name="アドベンチャー"
+            onClick={() =>
+              handlePlayGame('/solo/adventure')
+            }
             onHoverStart={() =>
-              handleOnHover('rgb(199, 81, 250)')
+              handleOnHover('rgb(18, 255, 34)')
             }
             disabled={buttonDisabled}
           />
