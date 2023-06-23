@@ -1,12 +1,20 @@
 import { ItemData } from '@/types/Game';
+import {
+  HttpsCallable,
+  httpsCallable,
+} from 'firebase/functions';
+import { functions } from '@/lib/firebase';
 
-export const getItemData = async (): Promise<ItemData[]> => {
-  // https://seaffood.com/quiz
-  const url = 'https://seaffood.com/quizlake?hits=5';
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error('Network response error');
-  }
-
-  return (await res.json()) as ItemData[];
+export const getItemData = async (): Promise<
+  ItemData[]
+> => {
+  const createRoomCallable: HttpsCallable<
+    { count: number },
+    { questions: ItemData[] }
+  > = httpsCallable(functions, 'getSoloQuestions');
+  const createRoomResponse = await createRoomCallable({
+    count: 5,
+  });
+  const { questions } = createRoomResponse.data;
+  return questions;
 };
