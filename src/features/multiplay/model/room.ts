@@ -1,5 +1,9 @@
 import { AtomEffect } from 'recoil';
-import { subscribeMultiplayRoom } from '../clients/room';
+import {
+  joinRoom,
+  leaveRoom,
+  subscribeMultiplayRoom,
+} from '../clients/room';
 
 export type MultiplaySceneKind =
   | 'LOADING'
@@ -118,13 +122,25 @@ const subscribeMultiplayRoomAndPushToAtom =
     };
   };
 
+const joinAndLeaveRoomEffect =
+  (roomId: string): AtomEffect<MultiplayRoom> =>
+  () => {
+    joinRoom(roomId, 'プレイヤー');
+    return () => {
+      leaveRoom(roomId);
+    };
+  };
+
 export const getAtomEffectsForMultiplayRoomState = (
   roomId: string | undefined
 ): AtomEffect<MultiplayRoom>[] => {
   if (roomId == null) {
     return [];
   }
-  return [subscribeMultiplayRoomAndPushToAtom(roomId)];
+  return [
+    subscribeMultiplayRoomAndPushToAtom(roomId),
+    joinAndLeaveRoomEffect(roomId),
+  ];
 };
 
 export const getCurrentQuestionAnswersByPlayer = (
