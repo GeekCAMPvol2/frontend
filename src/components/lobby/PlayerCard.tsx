@@ -1,6 +1,5 @@
-import { Styles } from '@/types/Styles';
 import { UserImg } from '../UserImg';
-import { after } from 'node:test';
+import { css } from '@emotion/react';
 
 type Props = {
   name: string;
@@ -11,57 +10,62 @@ export const PlayerCard = (props: Props) => {
   const { name, checked = false } = props;
 
   return (
-    <div style={styles.container}>
+    <div css={styles.container}>
       {checked ? (
-        <div style={styles.imageChecked}>
-          <span style={styles.checkMark} />
+        <div css={styles.imageChecked}>
+          <span css={styles.checkMark} />
         </div>
       ) : (
         <></>
       )}
-      <div style={styles.imageWrapper}>
+      <div css={styles.imageWrapper}>
         <UserImg userId={name} />
       </div>
 
-      <h2>{name}</h2>
+      <h2 css={styles.playerName}>{name}</h2>
     </div>
   );
 };
 
-const styles: Styles = {
-  container: {
-    position: 'relative',
-    textAlign: 'center',
-  },
-  imageChecked: {
-    position: 'absolute',
-    top: 0,
-    width: 150,
-    height: 150,
-    backgroundColor: '#00000067',
-    borderRadius: '100%',
-    margin: '0 50px',
-    marginBottom: 20,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  checkMark: {
-    display: 'block',
-    position: 'absolute',
-    width: '80px',
-    height: '40px',
-    borderLeft: '10px solid #ffffffb9',
-    borderBottom: '10px solid #ffffffb9',
-    transform: 'rotate(-45deg)',
-  },
-  imageWrapper: {
-    overflow: 'hidden',
-    width: 150,
-    height: 150,
-    backgroundColor: '#00000067',
-    borderRadius: '100%',
-    margin: '0 50px',
-    marginBottom: 20,
-  },
+const styles = {
+  container: css`
+    position: relative;
+    text-align: center;
+  `,
+  imageChecked: css`
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 150px;
+    background-color: #00000067;
+    border-radius: 100%;
+    margin: 0 50px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
+  checkMark: css`
+    display: block;
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    border-left: 10px solid #ffffffb9;
+    border-bottom: 10px solid #ffffffb9;
+    transform: rotate(-45deg);
+  `,
+  imageWrapper: css`
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    background-color: #00000067;
+    border-radius: 100%;
+    margin: 0 50px;
+    margin-bottom: 20px;
+  `,
+  playerName: css`
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+  `,
 };
