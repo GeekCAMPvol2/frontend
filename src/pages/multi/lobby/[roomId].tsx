@@ -11,7 +11,7 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { joinRoom } from '@/lib/firestoreHandler';
+import { joinRoom } from '@/features/multiplay/clients/room';
 
 // 待機画面
 const Lobby = () => {
