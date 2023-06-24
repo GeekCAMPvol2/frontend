@@ -1,4 +1,4 @@
-import { leaveRoom } from '@/lib/firestoreHandler';
+import { leaveRoom } from '@/features/multiplay/clients/room';
 import { useEffect } from 'react';
 
 const handleBeforeunload = (
