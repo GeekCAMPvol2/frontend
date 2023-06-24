@@ -12,10 +12,24 @@ import { MultiplayRoomInLobby } from '@/features/multiplay/model';
 import { LeaveButton } from '../internal/LeaveButton';
 
 const styles = {
+  container: css`
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  `,
+  absContainer: css`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  `,
   titleWrapper: css`
-    font-size: 80;
     text-align: center;
-    padding: '50px';
+    padding: 50px;
   `,
   playerContainer: css`
     width: 100%;
@@ -23,8 +37,6 @@ const styles = {
     justify-content: center;
   `,
   buttonContainer: css`
-    position: absolute;
-    bottom: 100;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -47,7 +59,7 @@ export const MultiplayLobbyScene = (
   const handleClickCopyButton = useCallback(() => {
     const baseUrl = window.location.origin;
     navigator.clipboard.writeText(
-      `${baseUrl}/multi/lobby/${roomId}`
+      `${baseUrl}/multi/${roomId}`
     );
   }, [roomId]);
 
@@ -56,12 +68,14 @@ export const MultiplayLobbyScene = (
   }, [roomId, amIReady]);
 
   return (
-    <div>
-      <LeaveButton {...{ roomId, goBackFromMultiplay }} />
-      <div>
+    <div css={styles.container}>
+      <div css={styles.absContainer}>
+        <LeaveButton {...{ roomId, goBackFromMultiplay }} />
+      </div>
+      <div css={styles.titleWrapper}>
         <Title />
       </div>
-      <div className={`${styles.playerContainer}`}>
+      <div css={styles.playerContainer}>
         {room.members.map((member, index) => (
           <PlayerCard
             key={index}
@@ -71,7 +85,7 @@ export const MultiplayLobbyScene = (
         ))}
       </div>
 
-      <div className={`${styles.buttonContainer}`}>
+      <div css={styles.buttonContainer}>
         <LobbyButton
           name="URLをコピー"
           onClick={handleClickCopyButton}
