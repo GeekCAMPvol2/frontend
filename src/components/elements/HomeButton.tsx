@@ -3,6 +3,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import { css } from '@emotion/react';
 
 const styles = {
+  container: css`
+    position: absolute;
+    top: 50px;
+    left: 50px;
+  `,
   button: css`
     display: flex;
     justify-content: center;
@@ -25,7 +30,7 @@ const styles = {
 
 const HomeButton = () => {
   return (
-    <Link href={'/'}>
+    <Link css={styles.container} href={'/'}>
       <button css={styles.button}>
         <HomeIcon />
         ホーム

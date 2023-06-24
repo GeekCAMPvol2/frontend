@@ -24,13 +24,9 @@ const Fin = () => {
 
   const componentRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   console.log(componentRef);
-  // }, []);
-
   return (
     <div style={styles.container} ref={componentRef}>
-      {/* <HomeButton /> */}
+      <HomeButton />
       <span style={styles.titleWrapper}>
         <Title />
       </span>

@@ -48,7 +48,7 @@ const Quiz = () => {
 
   return (
     <div style={styles.container}>
-      {/* <HomeButton /> */}
+      <HomeButton />
       <span style={styles.titleWrapper}>
         <Title />
       </span>
